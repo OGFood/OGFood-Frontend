@@ -12,12 +12,18 @@ import Logo from "../assets/images/logo-notext-white-small.png"
 import MenuIcon from '@mui/icons-material/Menu';
 import { margin, textAlign } from '@mui/system';
 import FoodBg from "../assets/images/foodbg.png"
+import Checkbox from '@mui/material/Checkbox';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 
 // TODO: Make a proper "recipe-preview" card/paper.
 
-
-const tempData = [{
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
+const tempDataRecipes = [{
 	name: "Pasta Bolognese",
 	ingredients: ["pasta", "minced meat", "tomatoes"],
 	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/629559204/0a998d4e-d757-4ef1-9915-48189679c1eb.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
@@ -44,8 +50,9 @@ const tempData = [{
 },
 ];
 
+const tempDataIngredients = ["chicken", "tomatoe", "pasta", "fish", "dough", "cucumber"]
 
-const displayRecipes = tempData.map((recipe) => (
+const displayRecipes = tempDataRecipes.map((recipe) => (
 	<Grid item xs={12} sm={6} lg={4}>
 		<RecipePreviewCard recipe={recipe} />
 	</Grid >
@@ -54,18 +61,42 @@ const displayRecipes = tempData.map((recipe) => (
 const Main = () => {
 
 	return (
-		<Container sx={{ bgcolor: "white", border: "1px solid black", minHeight: "100vh" }} maxWidth="xl" >
+		<Container sx={{ bgcolor: "mainbg.main", minHeight: "100vh" }} maxWidth="xl" >
 
 			{/* <Box sx={{
 				backgroundImage: `url(${FoodBg})`,
 				bgcolor: "primary.light",
 				padding: "100px",
 				borderRadius: "2rem",
+				marginTop: "2rem"
 			}}> */}
-			<Box sx={{ bgcolor: "white" }}>
-				<Typography>
-
+			<Box sx={{ bgcolor: "mainbg.main" }}>
+				<Typography variant='h5' component="h2">
+					Enter the ingredients you have at hand
 				</Typography>
+
+				<Autocomplete
+					multiple
+					id="ingredients"
+					options={tempDataIngredients}
+					disableCloseOnSelect
+					getOptionLabel={(option) => option}
+					renderOption={(props, option, { selected }) => (
+						<li {...props}>
+							<Checkbox
+								icon={icon}
+								checkedIcon={checkedIcon}
+								style={{ marginRight: 8 }}
+								checked={selected}
+							/>
+							{option}
+						</li>
+					)}
+					style={{ width: 500 }}
+					renderInput={(params) => (
+						<TextField {...params} label="Ingredients" placeholder="Select ingredients" style={{ backgroundColor: "white" }} />
+					)} />
+
 			</Box>
 
 

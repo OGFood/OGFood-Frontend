@@ -40,7 +40,7 @@ function App() {
       <ThemeProvider theme={Theme}>
 
         <Header />
-        <Box sx={{ bgcolor: "white", minHeight: "100vh" }}>
+        <Box sx={{ bgcolor: "mainbg.main", minHeight: "100vh" }}>
           <Main />
         </Box>
         <Footer />
