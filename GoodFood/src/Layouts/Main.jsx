@@ -44,6 +44,7 @@ const tempData = [{
 },
 ];
 
+
 const displayRecipes = tempData.map((recipe) => (
 	<Grid item xs={12} sm={6} lg={4}>
 		<RecipePreviewCard recipe={recipe} />

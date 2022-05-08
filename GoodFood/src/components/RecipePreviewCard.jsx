@@ -4,6 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import Chip from '@mui/material/Chip';
 
 const RecipePreviewCard = ({ recipe }) => {
 	return (
@@ -13,23 +15,27 @@ const RecipePreviewCard = ({ recipe }) => {
 				height="140"
 				image={recipe.imgSrc}
 				alt={recipe.name}
+
 			/>
 			<CardContent>
 				<Typography gutterBottom variant="h5" component="div">
 					{recipe.name}
 				</Typography>
+
 				<Typography variant="body2" color="text.secondary" gutterBottom>
-					Ingredients
+					<Divider textAlign="left">Ingredients</Divider>
 					{recipe.ingredients.map((ingredient) => <li>{ingredient}</li>)}
 				</Typography>
+				<Divider></Divider>
 				<Typography variant="body3" color="text.secondary">
+
 					Lalala short description from the recipe
 				</Typography>
 			</CardContent>
 			<CardActions>
 				<Button size="small">View</Button>
 			</CardActions>
-		</Card>
+		</Card >
 	);
 }
 
