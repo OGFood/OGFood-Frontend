@@ -42,7 +42,7 @@ function App() {
       <CssBaseline />
       <ThemeProvider theme={Theme}>
         <Header />
-        <Box sx={{ bgcolor: "mainbg.main", minHeight: "100vh" }}>
+        <Box sx={{ bgcolor: "white", minHeight: "100vh" }}>
           <Main />
         </Box>
         <Footer />
