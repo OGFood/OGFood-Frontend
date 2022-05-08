@@ -26,8 +26,8 @@ const theme = createTheme({
 		h3: {
 			fontFamily: "dacasa"
 		},
-		fontFamily: ["Open Sans", "Segoe UI", "Tahoma", "sans-serif"]
-	}
+		fontFamily: ["Open Sans", "Segoe UI", "Tahoma", "sans-serif"].join(",")
+	},
 })
 
 export default theme;

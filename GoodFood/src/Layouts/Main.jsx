@@ -48,6 +48,11 @@ const tempDataRecipes = [{
 	ingredients: ["pasta", "minced meat", "tomatoes"],
 	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/629559204/0a998d4e-d757-4ef1-9915-48189679c1eb.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
 },
+{
+	name: "Pizza",
+	ingredients: ["dough", "cheese", "whatever"],
+	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/66124392/d83377a8-d3ea-46bc-aee6-fca575172aef.jpg?crop=(0,0,0,-148)&w=1269&h=715&ak=f525e733&hm=5c342ed7",
+},
 ];
 
 const tempDataIngredients = ["chicken", "tomatoe", "pasta", "fish", "dough", "cucumber"]
@@ -61,47 +66,52 @@ const displayRecipes = tempDataRecipes.map((recipe) => (
 const Main = () => {
 
 	return (
-		<Container sx={{ bgcolor: "mainbg.main", minHeight: "100vh" }} maxWidth="xl" >
+		<Container sx={{ bgcolor: "mainbg.main" }} maxWidth="xl" >
 
-			{/* <Box sx={{
+			<Box sx={{
 				backgroundImage: `url(${FoodBg})`,
 				bgcolor: "primary.light",
-				padding: "100px",
-				borderRadius: "2rem",
+				padding: "2rem",
+				borderRadius: "5rem",
+				maxWidth: "85vmax",
+				marginInline: "auto",
 				marginTop: "2rem"
-			}}> */}
-			<Box sx={{ bgcolor: "mainbg.main" }}>
-				<Typography variant='h5' component="h2">
-					Enter the ingredients you have at hand
-				</Typography>
+			}}>
+				<Toolbar sx={{ bgcolor: "", justifyContent: "center", flexDirection: "column" }} >
+					<Typography variant='h4' component="h2" color="white" gutterBottom fontWeight="700">
+						No inspiration? No problem!
+					</Typography>
+					<Typography color="white" variant='body1' gutterBottom>
+						Enter what you have in your fridge or your pantry, and we'll come up with a fitting recipe
+					</Typography>
 
-				<Autocomplete
-					multiple
-					id="ingredients"
-					options={tempDataIngredients}
-					disableCloseOnSelect
-					getOptionLabel={(option) => option}
-					renderOption={(props, option, { selected }) => (
-						<li {...props}>
-							<Checkbox
-								icon={icon}
-								checkedIcon={checkedIcon}
-								style={{ marginRight: 8 }}
-								checked={selected}
-							/>
-							{option}
-						</li>
-					)}
-					style={{ width: 500 }}
-					renderInput={(params) => (
-						<TextField {...params} label="Ingredients" placeholder="Select ingredients" style={{ backgroundColor: "white" }} />
-					)} />
+					<Autocomplete
+						multiple
+						id="ingredients"
+						options={tempDataIngredients} // The autocomplete data
+						disableCloseOnSelect
+						getOptionLabel={(option) => option}
+						renderOption={(props, option, { selected }) => (
+							<li {...props}>
+								<Checkbox
+									icon={icon}
+									checkedIcon={checkedIcon}
+									style={{ marginRight: 8 }}
+									checked={selected}
+								/>
+								{option}
+							</li>
+						)}
+						style={{ minWidth: "79vmin" }}
+						renderInput={(params) => (
+							<TextField {...params} label="Ingredients" placeholder="Select ingredients" style={{ backgroundColor: "white" }} />
+						)} />
+
+				</Toolbar>
+
+
 
 			</Box>
-
-
-
-			{/* </Box> */}
 			<Box marginTop={"4rem"}>
 				<Grid container spacing={2} justifyContent={"center"}>
 					{/* <Grid item xs={12} md={6} lg={4}>

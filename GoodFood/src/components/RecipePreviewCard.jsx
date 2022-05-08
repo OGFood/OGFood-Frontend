@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip';
 
+
+// TODO: Remember proper id as key
 const RecipePreviewCard = ({ recipe }) => {
 	return (
 		<Card sx={{ maxWidth: 500 }}>
@@ -18,15 +20,14 @@ const RecipePreviewCard = ({ recipe }) => {
 
 			/>
 			<CardContent>
-				<Typography gutterBottom variant="h5" component="div">
+				<Typography gutterBottom variant="h5" >
 					{recipe.name}
 				</Typography>
-
+				<Divider textAlign="left">Ingredients</Divider>
 				<Typography variant="body2" color="text.secondary" gutterBottom>
-					<Divider textAlign="left">Ingredients</Divider>
-					{recipe.ingredients.map((ingredient) => <li>{ingredient}</li>)}
+					{recipe.ingredients.map((ingredient, index) => <li key={index}>{ingredient}</li>)}
 				</Typography>
-				<Divider></Divider>
+				<Divider />
 				<Typography variant="body3" color="text.secondary">
 
 					Lalala short description from the recipe

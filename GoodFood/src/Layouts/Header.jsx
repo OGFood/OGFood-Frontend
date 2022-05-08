@@ -13,22 +13,20 @@ import { margin, textAlign } from '@mui/system';
 const Header = () => {
 
 	return (
-		<Box sx={{ flexGrow: 1 }}>
-			<AppBar position="static">
-				<Toolbar sx={{ justifyContent: "center" }}>
-					<IconButton size='small'  >
-						<img src={Logo} ></img>
-					</IconButton>
-					<Typography
-						variant="h2"
-						component="h1"
-						textAlign={"center"}
-						color={"white"}>
-						God Food
-					</Typography>
-				</Toolbar>
-			</AppBar>
-		</Box >
+		<AppBar position="static">
+			<Toolbar sx={{ justifyContent: "center" }}>
+				<IconButton size='small'  >
+					<img src={Logo} ></img>
+				</IconButton>
+				<Typography
+					variant="h2"
+					component="h1"
+					textAlign={"center"}
+					color={"white"}>
+					God Food
+				</Typography>
+			</Toolbar>
+		</AppBar>
 	)
 
 

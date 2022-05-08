@@ -36,14 +36,14 @@ function App() {
   return (
     <>
 
-      <CssBaseline />
-      <ThemeProvider theme={Theme}>
 
-        <Header />
-        <Box sx={{ bgcolor: "mainbg.main", minHeight: "100vh" }}>
+      <ThemeProvider theme={Theme}>
+        <CssBaseline />
+        <Box sx={{ bgcolor: "mainbg.main" }}>
+          <Header />
           <Main />
+          <Footer />
         </Box>
-        <Footer />
         <ScrollToTopButton />
       </ThemeProvider>
 
