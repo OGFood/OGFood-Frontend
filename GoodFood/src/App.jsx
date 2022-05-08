@@ -39,11 +39,11 @@ function App() {
 
       <ThemeProvider theme={Theme}>
         <CssBaseline />
-        <Box sx={{ bgcolor: "mainbg.main" }}>
+        <Box sx={{ bgcolor: "mainbg.main", minHeight: "100vh" }}>
           <Header />
           <Main />
-          <Footer />
         </Box>
+        <Footer />
         <ScrollToTopButton />
       </ThemeProvider>
 

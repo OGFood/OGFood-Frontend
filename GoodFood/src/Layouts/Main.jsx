@@ -20,6 +20,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 
 // TODO: Make a proper "recipe-preview" card/paper.
+// TODO: Text shadow
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -78,10 +79,10 @@ const Main = () => {
 				marginTop: "2rem"
 			}}>
 				<Toolbar sx={{ bgcolor: "", justifyContent: "center", flexDirection: "column" }} >
-					<Typography variant='h4' component="h2" color="white" gutterBottom fontWeight="700">
+					<Typography variant='h4' component="h2" color="white" gutterBottom fontWeight="700" sx={{ textShadow: "0px 2px 2px black" }}>
 						No inspiration? No problem!
 					</Typography>
-					<Typography color="white" variant='body1' gutterBottom>
+					<Typography color="white" variant='body1' gutterBottom sx={{ textShadow: "0px 2px 2px black" }}>
 						Enter what you have in your fridge or your pantry, and we'll come up with a fitting recipe
 					</Typography>
 
@@ -90,7 +91,6 @@ const Main = () => {
 						id="ingredients"
 						options={tempDataIngredients} // The autocomplete data
 						disableCloseOnSelect
-						getOptionLabel={(option) => option}
 						renderOption={(props, option, { selected }) => (
 							<li {...props}>
 								<Checkbox
@@ -104,7 +104,7 @@ const Main = () => {
 						)}
 						style={{ minWidth: "79vmin" }}
 						renderInput={(params) => (
-							<TextField {...params} label="Ingredients" placeholder="Select ingredients" style={{ backgroundColor: "white" }} />
+							<TextField {...params} variant="outlined" label="Ingredients" placeholder="Select ingredients" color="secondary" sx={{ bgcolor: "white" }} />
 						)} />
 
 				</Toolbar>
