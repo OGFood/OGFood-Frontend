@@ -8,6 +8,7 @@ import Header from './layouts/Header'
 import Footer from "./layouts/Footer"
 import Main from "./layouts/Main"
 import './App.css'
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 
 
@@ -37,11 +38,13 @@ function App() {
 
       <CssBaseline />
       <ThemeProvider theme={Theme}>
+
         <Header />
         <Box sx={{ bgcolor: "white", minHeight: "100vh" }}>
           <Main />
         </Box>
         <Footer />
+        <ScrollToTopButton />
       </ThemeProvider>
 
 
