@@ -1,7 +1,12 @@
-import { Container, createTheme, Box, Typography, CssBaseline } from '@mui/material'
+import Container from "@mui/material/Container"
+import Typography from '@mui/material/Typography';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
 import Theme from './style/muitheme'
 import { ThemeProvider } from '@mui/material/styles'
-import Header from './Layouts/Header'
+import Header from './layouts/Header'
+import Footer from "./layouts/Footer"
+import Main from "./layouts/Main"
 import './App.css'
 
 
@@ -17,7 +22,6 @@ function App() {
    * 
    *        Basic layout:
    *          Wrapper container with 100vw 100vh to contain all items
-   *          Responsive Header with logo+name)
    * 
    *        Layout: 
    *          Intro section
@@ -28,23 +32,20 @@ function App() {
    * 
    * 
    *        Folder Structure:
-   *          Layout folder (header/main/footer/etc)
-   *          Assets  (fonts, icons, images)
    *          Components (recipe card, buttons, etc)
    */
 
 
   return (
     <>
-      <CssBaseline />
 
+      <CssBaseline />
       <ThemeProvider theme={Theme}>
         <Header />
         <Box sx={{ bgcolor: "mainbg.main", minHeight: "100vh" }}>
-          <Container sx={{ bgcolor: "white" }}>
-            Inner section
-          </Container>
+          <Main />
         </Box>
+        <Footer />
       </ThemeProvider>
 
 
