@@ -18,10 +18,11 @@ const RecipePreviewCard = ({ recipe }) => {
 				<Typography gutterBottom variant="h5" component="div">
 					{recipe.name}
 				</Typography>
-				<Typography variant="body3" color="text.secondary">
-					{recipe.ingredients}
+				<Typography variant="body2" color="text.secondary" gutterBottom>
+					Ingredients
+					{recipe.ingredients.map((ingredient) => <li>{ingredient}</li>)}
 				</Typography>
-				<Typography variant="body2" color="text.secondary">
+				<Typography variant="body3" color="text.secondary">
 					Lalala short description from the recipe
 				</Typography>
 			</CardContent>

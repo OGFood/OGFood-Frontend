@@ -11,14 +11,11 @@ import './App.css'
 
 
 
-
-
-
 function App() {
-
 
   /**
    *  TODO: 
+   *        Remove misc help borders/colours
    * 
    *        Basic layout:
    *          Wrapper container with 100vw 100vh to contain all items
@@ -34,7 +31,6 @@ function App() {
    *        Folder Structure:
    *          Components (recipe card, buttons, etc)
    */
-
 
   return (
     <>

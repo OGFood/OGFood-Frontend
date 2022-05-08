@@ -26,11 +26,26 @@ const tempData = [{
 	name: "Pizza",
 	ingredients: ["dough", "cheese", "whatever"],
 	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/66124392/d83377a8-d3ea-46bc-aee6-fca575172aef.jpg?crop=(0,0,0,-148)&w=1269&h=715&ak=f525e733&hm=5c342ed7",
-}
+},
+{
+	name: "Pasta Bolognese",
+	ingredients: ["pasta", "minced meat", "tomatoes"],
+	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/629559204/0a998d4e-d757-4ef1-9915-48189679c1eb.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
+},
+{
+	name: "Pizza",
+	ingredients: ["dough", "cheese", "whatever"],
+	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/66124392/d83377a8-d3ea-46bc-aee6-fca575172aef.jpg?crop=(0,0,0,-148)&w=1269&h=715&ak=f525e733&hm=5c342ed7",
+},
+{
+	name: "Pasta Bolognese",
+	ingredients: ["pasta", "minced meat", "tomatoes"],
+	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/629559204/0a998d4e-d757-4ef1-9915-48189679c1eb.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
+},
 ];
 
 const displayRecipes = tempData.map((recipe) => (
-	<Grid item xs={12} md={6} lg={4}>
+	<Grid item xs={12} sm={6} lg={4}>
 		<RecipePreviewCard recipe={recipe} />
 	</Grid >
 ));
@@ -56,7 +71,7 @@ const Main = () => {
 
 			{/* </Box> */}
 			<Box marginTop={"4rem"}>
-				<Grid container spacing={2}>
+				<Grid container spacing={2} justifyContent={"center"}>
 					{/* <Grid item xs={12} md={6} lg={4}>
 					<Item>xs=8</Item>
 				</Grid> */}
