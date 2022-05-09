@@ -1,3 +1,4 @@
+import { useState } from "react"
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -22,8 +23,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 // TODO: Make a proper "recipe-preview" card/paper.
 // TODO: Text shadow
 
-const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-const checkedIcon = <CheckBoxIcon fontSize="small" />;
+
 const tempDataRecipes = [{
 	name: "Pasta Bolognese",
 	ingredients: ["pasta", "minced meat", "tomatoes"],
@@ -55,25 +55,30 @@ const tempDataRecipes = [{
 	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/66124392/d83377a8-d3ea-46bc-aee6-fca575172aef.jpg?crop=(0,0,0,-148)&w=1269&h=715&ak=f525e733&hm=5c342ed7",
 },
 ];
-
 const tempDataIngredients = ["chicken", "tomatoe", "pasta", "fish", "dough", "cucumber"]
 
-const displayRecipes = tempDataRecipes.map((recipe) => (
-	<Grid item xs={12} sm={6} lg={4}>
-		<RecipePreviewCard recipe={recipe} />
-	</Grid >
-));
 
 const Main = () => {
+	// TODO: States for ingredients/recipe, searchterm etc
+
+
+	const displayRecipes = tempDataRecipes.map((recipe) => (
+		<Grid item xs={12} sm={6} lg={4}>
+			<RecipePreviewCard recipe={recipe} />
+		</Grid >
+	));
+
+	const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+	const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 	return (
-		<Container sx={{ bgcolor: "mainbg.main" }} maxWidth="xl" >
+		<Container sx={{ bgcolor: "mainbg.main", paddingBottom: "5rem" }} maxWidth="xl" >
 
 			<Box sx={{
 				backgroundImage: `url(${FoodBg})`,
 				bgcolor: "primary.light",
 				padding: "2rem",
-				borderRadius: "5rem",
+				borderRadius: "1rem",
 				maxWidth: "85vmax",
 				marginInline: "auto",
 				marginTop: "2rem"
