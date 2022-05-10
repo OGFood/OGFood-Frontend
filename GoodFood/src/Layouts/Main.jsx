@@ -60,7 +60,7 @@ const tempDataIngredients = ["chicken", "tomatoe", "pasta", "fish", "dough", "cu
 
 const Main = () => {
 	// TODO: States for ingredients/recipe, searchterm etc
-
+	const [selectedIngredients, setSelectedIngredients] = useState([])
 
 	const displayRecipes = tempDataRecipes.map((recipe) => (
 		<Grid item xs={12} sm={6} lg={4}>
@@ -68,12 +68,10 @@ const Main = () => {
 		</Grid >
 	));
 
-	const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-	const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 	return (
 		<Container sx={{ bgcolor: "mainbg.main", paddingBottom: "5rem" }} maxWidth="xl" >
-
+			{console.log(selectedIngredients)}
 			<Box sx={{
 				backgroundImage: `url(${FoodBg})`,
 				bgcolor: "primary.light",
@@ -92,6 +90,7 @@ const Main = () => {
 					</Typography>
 
 					<Autocomplete
+						onChange={(e, value) => setSelectedIngredients(value)}
 						multiple
 						id="ingredients"
 						options={tempDataIngredients} // The autocomplete data
@@ -99,8 +98,8 @@ const Main = () => {
 						renderOption={(props, option, { selected }) => (
 							<li {...props}>
 								<Checkbox
-									icon={icon}
-									checkedIcon={checkedIcon}
+									icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
+									checkedIcon={<CheckBoxIcon fontSize="small" />}
 									style={{ marginRight: 8 }}
 									checked={selected}
 								/>
