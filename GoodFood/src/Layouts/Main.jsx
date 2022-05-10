@@ -82,10 +82,10 @@ const Main = () => {
 				marginTop: "2rem"
 			}}>
 				<Toolbar sx={{ bgcolor: "", justifyContent: "center", flexDirection: "column" }} >
-					<Typography variant='h4' component="h2" color="white" gutterBottom fontWeight="700" sx={{ textShadow: "0px 2px 2px black" }}>
+					<Typography variant='h4' component="h2" color="white" gutterBottom fontWeight="700" sx={{ textShadow: "0px 2px 10px black" }}>
 						No inspiration? No problem!
 					</Typography>
-					<Typography color="white" variant='body1' gutterBottom sx={{ textShadow: "0px 2px 2px black" }}>
+					<Typography color="white" variant='body1' gutterBottom sx={{ textShadow: "0px 2px 8px black" }}>
 						Enter what you have in your fridge or your pantry, and we'll come up with a fitting recipe
 					</Typography>
 
@@ -108,7 +108,7 @@ const Main = () => {
 						)}
 						style={{ minWidth: "79vmin" }}
 						renderInput={(params) => (
-							<TextField {...params} variant="outlined" label="Ingredients" placeholder="Select ingredients" color="secondary" sx={{ bgcolor: "white" }} />
+							<TextField {...params} variant="outlined" label="Ingredients" placeholder="Select ingredients" color="primary" sx={{ bgcolor: "white", boxShadow: "0px 0px 4px black", borderRadius: "5px" }} />
 						)} />
 
 				</Toolbar>
