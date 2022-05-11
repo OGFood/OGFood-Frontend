@@ -57,9 +57,7 @@ const RecipePreviewCard = ({ recipe }) => {
 
 					<Typography gutterBottom variant="h5" >
 						{recipe.name}
-						<IconButton onClick={() => handleExpandDesc(recipe.id)} size="large" >
-							{expandDesc === -1 ? <ExpandCircleDown color="primary" /> : <ExpandLessOutlined />}
-						</IconButton>
+
 					</Typography>
 
 				</Divider>
@@ -71,10 +69,12 @@ const RecipePreviewCard = ({ recipe }) => {
 						<Collapse in={expandDesc == recipe.id} >
 							{recipe.description}
 						</Collapse>}
-
+					<IconButton onClick={() => handleExpandDesc(recipe.id)} size="large" >
+						{expandDesc === -1 ? <ExpandCircleDown color="primary" /> : <ExpandLessOutlined />}
+					</IconButton>
 				</Typography>
 
-				<Divider textAlign="right">
+				<Divider textAlign="left">
 					<Typography variant="body3" color="text.secondary" >
 						Ingredients
 					</Typography>
