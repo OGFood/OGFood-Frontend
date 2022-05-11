@@ -11,6 +11,7 @@ import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
 import Collapse from '@mui/material/Collapse';
 import { IconButton } from '@mui/material';
+import { Modal } from "@mui/material";
 import { ExpandMoreOutlined, ExpandCircleDown, ExpandLessOutlined } from '@mui/icons-material';
 
 
@@ -22,6 +23,17 @@ const RecipePreviewCard = ({ recipe }) => {
 	const [expandIngr, setExpandIngr] = useState(-1)
 	const [expandDesc, setExpandDesc] = useState(-1)
 
+	const recipeModal = () => {
+
+		return (
+			<Modal>
+				<Card>
+
+					<Typography> Hii</Typography>
+				</Card>
+			</Modal>
+		)
+	}
 
 	const firstThreeIngredients = recipe.ingredients.slice(0, 3)
 
@@ -83,7 +95,7 @@ const RecipePreviewCard = ({ recipe }) => {
 			</CardContent>
 			<CardActions>
 				<Grid container justifyContent="right">
-					<Button size="medium">View Recipe</Button>
+					<Button onClick={() => recipeModal()} size="medium">View Recipe</Button>
 				</Grid>
 			</CardActions>
 		</Card >

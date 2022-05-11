@@ -11,7 +11,7 @@ import CompanyLogo from "../assets/images/c-logo.png"
 
 const Footer = () => {
 	return (
-		<Container sx={{ bgcolor: "primary.main", boxShadow: "0px 3px 10px black" }} maxWidth="false">
+		<Container sx={{ bgcolor: "primary.light", boxShadow: "0px 3px 10px black" }} maxWidth="false">
 			<Toolbar sx={{ justifyContent: "center" }}>
 				<Typography textAlign={"middle"} sx={{ verticalAlign: "middle" }}>
 					©  2022

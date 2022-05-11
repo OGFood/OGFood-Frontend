@@ -34,40 +34,40 @@ const tempDataRecipes = [{
 {
 	name: "Pizza",
 	id: 2,
-	ingredients: ["dough", "cheese", "whatever"],
-	description: "A short description of the recipe to be displayed here. This is how you cook Pizza",
+	ingredients: ["dough", "cheese", "salami", "smoked ham"],
+	description: "Pizza, a modern classic! Make it as your average meal or spice it up for your favourite weekend-movie. Simple recipe made with home-made dough and tomatoes with shredded cheese. This pizza is topped with sliced ham, salami sausage, and mushrooms",
 	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/66124392/d83377a8-d3ea-46bc-aee6-fca575172aef.jpg?crop=(0,0,0,-148)&w=1269&h=715&ak=f525e733&hm=5c342ed7",
 },
 {
-	name: "Pasta Bolognese",
+	name: "Pad Thai",
 	id: 3,
-	ingredients: ["pasta", "minced meat", "tomatoes"],
-	description: "A short description of the recipe to be displayed here. This is how you cook Pasta Bolognese.",
-	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/629559204/0a998d4e-d757-4ef1-9915-48189679c1eb.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
+	ingredients: ["noodles", "chicken", "peanuts", "chili flakes", "sweet chili sauce", "lime"],
+	description: "A wonderful recipe for Pad Thai. Release the fragrances of the Thai Kitchen at your dinner table. Pad Thai is a street-food classic that everybody loves. Adjust the hottness after taste and throw some peanuts and chili flakes on top for extra garnish.",
+	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/2703932663/0856b724-f44d-4afd-aa12-acd925ed24fb.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
 },
 {
-	name: "Pizza",
+	name: "Meatballs with mashed potatoes",
 	id: 4,
-	ingredients: ["dough", "cheese", "whatever"],
-	description: "A short description of the recipe to be displayed here. This is how you cook Pizza",
-	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/66124392/d83377a8-d3ea-46bc-aee6-fca575172aef.jpg?crop=(0,0,0,-148)&w=1269&h=715&ak=f525e733&hm=5c342ed7",
+	ingredients: ["ground beef", "potatoes", "sour cream"],
+	description: "A swedish classic. Garnish with some diced apple and parsly for a slight twist.",
+	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/2108144194/01ee9015-b7d0-405b-b322-2f5d4cedfecf.jpg?crop=(0,148,0,0)&w=1269&h=715&ak=f525e733&hm=531bb18d",
 },
 {
-	name: "Pasta Bolognese",
+	name: "Salmon with pasta and lime",
 	id: 5,
-	ingredients: ["pasta", "minced meat", "tomatoes"],
-	description: "A short description of the recipe to be displayed here. This is how you cook Pasta Bolognese.",
-	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/629559204/0a998d4e-d757-4ef1-9915-48189679c1eb.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
+	ingredients: ["pasta", "salmon", "lime", "creme fraiche", "honey", "chicken broth"],
+	description: "A quick and tasty everyday favourite. Served with a creamy sauce sweetened by honey, with some extra zing from lime.",
+	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/3185386303/97993690-6b12-4db5-99e5-4a9c327dcf97.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
 },
 {
-	name: "Pizza",
+	name: "Pancakes",
 	id: 6,
-	ingredients: ["dough", "cheese", "whatever"],
-	description: "A short description of the recipe to be displayed here. This is how you cook Pizza",
-	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/66124392/d83377a8-d3ea-46bc-aee6-fca575172aef.jpg?crop=(0,0,0,-148)&w=1269&h=715&ak=f525e733&hm=5c342ed7",
+	ingredients: ["milk", "eggs", "butter", "flour"],
+	description: "Pancake - a clear favourite! Simple base recipe for thin pancakes. Throw them in the pan and serve with jam, cream, or why not some ice-cream!",
+	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/3249856695/32b74f1c-1632-4aee-aa3b-8fd449494835.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
 },
 ];
-const tempDataIngredients = ["chicken", "tomatoe", "pasta", "fish", "dough", "cucumber"]
+const tempDataIngredients = ["chicken", "tomato", "pasta", "fish", "dough", "cucumber"]
 
 
 const Main = () => {
@@ -142,9 +142,6 @@ const Main = () => {
 			</Box>
 			<Box marginTop={"4rem"}>
 				<Grid container spacing={2} justifyContent={"center"}>
-					{/* <Grid item xs={12} md={6} lg={4}>
-					<Item>xs=8</Item>
-				</Grid> */}
 					{displayRecipes}
 				</Grid>
 			</Box>
