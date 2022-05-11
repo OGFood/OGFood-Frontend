@@ -13,6 +13,10 @@ const theme = createTheme({
 		mainbg: defaultTheme.palette.augmentColor({
 			color: { main: "#faf0e6" },
 			name: "mainbg"
+		}),
+		dark: defaultTheme.palette.augmentColor({
+			color: { main: "#272b0b" },
+			name: "dark"
 		})
 
 	},

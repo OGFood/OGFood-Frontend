@@ -27,7 +27,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 const tempDataRecipes = [{
 	name: "Pasta Bolognese",
 	id: 1,
-	ingredients: ["pasta", "minced meat", "tomatoes"],
+	ingredients: ["pasta", "minced meat", "tomatoes", "oregano"],
 	description: "A short description of the recipe to be displayed here. This is how you cook Pasta Bolognese.",
 	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/629559204/0a998d4e-d757-4ef1-9915-48189679c1eb.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
 },
@@ -120,7 +120,16 @@ const Main = () => {
 						)}
 						style={{ minWidth: "79vmin" }}
 						renderInput={(params) => (
-							<TextField {...params} variant="outlined" label="Ingredients" placeholder="Select ingredients" color="primary" sx={{ bgcolor: "white", boxShadow: "0px 0px 4px black", borderRadius: "5px" }} />
+							<TextField {...params} variant="outlined" label="Ingredients" placeholder="Search & Select ingredients" color="primary"
+								sx={{
+									"& .MuiOutlinedInput-root.Mui-focused": {
+										"& > fieldset": {
+											boxShadow: "0px 0px 5px 4px white"
+										}
+									},
+									bgcolor: "white"
+								}}
+							/>
 						)} />
 
 				</Toolbar>
