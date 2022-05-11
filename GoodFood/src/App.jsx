@@ -17,20 +17,12 @@ function App() {
   /**
    *  TODO: 
    *        Remove misc help borders/colours
+   *        Resize favicon properly
    * 
-   *        Basic layout:
-   *          Wrapper container with 100vw 100vh to contain all items
+   *        
    * 
    *        Layout: 
-   *          Intro section
-   *          Container/Box for input+ingredientlist
-   *          Grid container for ingredientlist results
-   *          Grid container for multiple recipes
    *          View large recipe
-   * 
-   * 
-   *        Folder Structure:
-   *          Components (recipe card, buttons, etc)
    */
 
   return (
