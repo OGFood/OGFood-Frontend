@@ -2,6 +2,8 @@ import { createTheme } from "@mui/material/styles"
 
 const defaultTheme = createTheme();
 
+// Overrides the default MUI-theme. View the documentation for usage. Can be used to change default styling of components/palettes/typography/etc.
+
 const theme = createTheme({
 	palette: {
 		primary: {

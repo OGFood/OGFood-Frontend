@@ -15,6 +15,9 @@ import { ExpandMoreOutlined, ExpandCircleDown, ExpandLessOutlined } from '@mui/i
 
 
 // TODO: Remember proper id as key
+// TODO: When using Collapse as part of conditional rendering, the animation goes away..? 
+// TODO: Hide action-button for sprint-demo since it's not a functional element
+
 const RecipePreviewCard = ({ recipe }) => {
 	const [expandIngr, setExpandIngr] = useState(-1)
 	const [expandDesc, setExpandDesc] = useState(-1)
@@ -52,7 +55,11 @@ const RecipePreviewCard = ({ recipe }) => {
 
 
 				<Typography variant="body3" color="text.secondary" noWrap={false} >
-					{recipe.description.slice(0, 200)}
+					{expandDesc !== recipe.id ? recipe.description.slice(0, 100) + "..." :
+						<Collapse in={expandDesc == recipe.id} >
+							{recipe.description}
+						</Collapse>}
+
 				</Typography>
 
 				<Divider textAlign="right">

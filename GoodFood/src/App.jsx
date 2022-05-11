@@ -25,10 +25,11 @@ function App() {
    *          View large recipe
    */
 
+
+  // For Material-UI (MUI) documentation - https://mui.com/material-ui/getting-started/usage/
+
   return (
     <>
-
-
       <ThemeProvider theme={Theme}>
         <CssBaseline />
         <Box sx={{ bgcolor: "mainbg.main", minHeight: "100vh" }}>

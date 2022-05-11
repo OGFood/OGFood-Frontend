@@ -11,7 +11,7 @@ import RecipePreviewCard from '../components/RecipePreviewCard';
 import { styled } from '@mui/material/styles';
 import Logo from "../assets/images/logo-notext-white-small.png"
 import MenuIcon from '@mui/icons-material/Menu';
-import { margin, textAlign } from '@mui/system';
+import { margin, padding, textAlign } from '@mui/system';
 import FoodBg from "../assets/images/foodbg.png"
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
@@ -28,7 +28,7 @@ const tempDataRecipes = [{
 	name: "Pasta Bolognese",
 	id: 1,
 	ingredients: ["pasta", "minced meat", "tomatoes", "oregano"],
-	description: "A short description of the recipe to be displayed here. This is how you cook Pasta Bolognese.",
+	description: "Nothing beats a hearthy meal of Pasta Bolognese. This recipe is easy to make and makes the perfect lunch or dinner. It tastes just as good the day after, so cook some extra!",
 	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/629559204/0a998d4e-d757-4ef1-9915-48189679c1eb.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
 },
 {
@@ -94,7 +94,7 @@ const Main = () => {
 				marginTop: "2rem"
 			}}>
 				<Toolbar sx={{ bgcolor: "", justifyContent: "center", flexDirection: "column" }} >
-					<Typography variant='h4' component="h2" color="white" gutterBottom fontWeight="700" sx={{ textShadow: "0px 2px 10px black" }}>
+					<Typography variant='h4' component="h2" color="white" gutterBottom fontWeight="700" sx={{ textShadow: "0px 1px 6px black" }}>
 						No inspiration? No problem!
 					</Typography>
 					<Typography color="white" variant='body1' gutterBottom sx={{ textShadow: "0px 2px 8px black" }}>
@@ -122,12 +122,15 @@ const Main = () => {
 						renderInput={(params) => (
 							<TextField {...params} variant="outlined" label="Ingredients" placeholder="Search & Select ingredients" color="primary"
 								sx={{
+									"& .MuiOutlinedInput-root": {
+										bgcolor: "white",
+									},
 									"& .MuiOutlinedInput-root.Mui-focused": {
 										"& > fieldset": {
-											boxShadow: "0px 0px 5px 4px white"
+											boxShadow: "0px 0px 5px 4px white",
 										}
 									},
-									bgcolor: "white"
+
 								}}
 							/>
 						)} />
