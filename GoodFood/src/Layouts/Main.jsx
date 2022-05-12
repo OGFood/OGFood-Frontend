@@ -47,9 +47,9 @@ const tempDataRecipes = [{
 {
 	name: "Meatballs with mashed potatoes",
 	id: 4,
-	ingredients: ["ground beef", "potatoes", "sour cream"],
+	ingredients: ["ground beef", "potatoes", "cream sauce", "lingonberry sauce"],
 	description: "A swedish classic. Garnish with some diced apple and parsley for a slight twist.",
-	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/2108144194/01ee9015-b7d0-405b-b322-2f5d4cedfecf.jpg?crop=(0,148,0,0)&w=1269&h=715&ak=f525e733&hm=531bb18d",
+	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/3776820023/44d39292-0f40-46d6-a91c-0ff5931476e0.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
 },
 {
 	name: "Salmon with pasta and lime",
@@ -66,7 +66,7 @@ const tempDataRecipes = [{
 	imgSrc: "https://cdn-rdb.arla.com/Files/arla-se/3249856695/32b74f1c-1632-4aee-aa3b-8fd449494835.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
 },
 ];
-const tempDataIngredients = ["chicken", "tomato", "pasta", "fish", "dough", "noodles", "cucumber", "creme fraiche", "salmon"]
+const tempDataIngredients = ["chicken", "tomato", "pasta", "fish", "dough", "noodles", "cucumber", "creme fraiche", "salmon", "ground-beef", "black pepper", "salt", "lime", "cheese", "milk", "water", ""]
 
 
 const Main = () => {
