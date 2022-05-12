@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -18,6 +18,8 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import {useRecoilState} from "recoil"
+import ingredientsState from "../atoms/ingredientsState";
 
 
 // TODO: Make a proper "recipe-preview" card/paper.
@@ -72,12 +74,22 @@ const tempDataIngredients = ["chicken", "tomato", "pasta", "fish", "dough", "noo
 const Main = () => {
 	// TODO: States for ingredients/recipe, searchterm etc
 	const [selectedIngredients, setSelectedIngredients] = useState([])
+	const [ingredientsList,setIngredientsList] = useRecoilState(ingredientsState);
 
 	const displayRecipes = tempDataRecipes.map((recipe, i) => (
 		<Grid item xs={12} sm={6} lg={4} key={i}>
 			<RecipePreviewCard recipe={recipe} />
-		</Grid >
+		</Grid>
 	));
+
+	useEffect(() => {
+		async function fetchIngredients() {
+		let data = await fetch("https://localhost:7144/api/ingredients");
+		let json = await data.json();
+		setIngredientsList(json);
+	}
+	fetchIngredients();
+	},[]);
 
 
 	return (
@@ -104,7 +116,7 @@ const Main = () => {
 						onChange={(e, value) => setSelectedIngredients(value)}
 						multiple
 						id="ingredients"
-						options={tempDataIngredients} // The autocomplete data
+						options={ingredientsList===null?tempDataIngredients:ingredientsList.map(x=>x.name)} // The autocomplete data
 						disableCloseOnSelect
 						renderOption={(props, option, { selected }) => (
 							<li {...props}>
