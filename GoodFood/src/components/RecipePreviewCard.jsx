@@ -56,6 +56,9 @@ const RecipePreviewCard = ({ recipe }) => {
 					{expandDesc !== recipe.id ? recipe.description.slice(0, 100) + "..." :
 						<Collapse in={expandDesc == recipe.id} >
 							{recipe.description}
+							<Typography variant="body2" sx={{ mt: "2rem" }}>
+								{recipe.instructions.map((inst, i) => <li key={i}>{inst} <br /><br /></li>)}
+							</Typography>
 						</Collapse>}
 					<IconButton onClick={() => handleExpandDesc(recipe.id)} size="large" >
 						{expandDesc === -1 ? <ExpandCircleDown color="primary" /> : <ExpandLessOutlined />}
