@@ -14,6 +14,7 @@ import { IconButton } from '@mui/material';
 import { Modal } from "@mui/material";
 import { ExpandMoreOutlined, ExpandCircleDown, ExpandLessOutlined } from '@mui/icons-material';
 import RecipeModal from "./RecipeModal";
+import { minHeight } from "@mui/system";
 
 
 // TODO: Remember proper id as key
@@ -40,22 +41,18 @@ const RecipePreviewCard = ({ recipe }) => {
 				image={recipe.imgSrc}
 				alt={recipe.name}
 			/>
-			<CardContent sx={{ paddingBottom: "0.2rem" }}>
+			<CardContent sx={{ paddingBottom: "0.2rem", minHeight: "200px" }}>
 				<Divider textAlign="left">
-
 					<Typography gutterBottom variant="h5" >
 						{recipe.name}
-
 					</Typography>
-
 				</Divider>
 
-
-
 				<Typography variant="body3" color="text.secondary" noWrap={false} >
-					{expandDesc !== recipe.id ? recipe.description.slice(0, 100) + "..." :
+					{expandDesc !== recipe.id ? recipe.description.slice(0, 150) + "..." :
 						<Collapse in={expandDesc == recipe.id} >
 							{recipe.description}
+							<Divider sx={{ mt: "10px" }} />
 							<Typography variant="body2" sx={{ mt: "2rem" }}>
 								{recipe.instructions.map((inst, i) => <li key={i}>{inst} <br /><br /></li>)}
 							</Typography>
