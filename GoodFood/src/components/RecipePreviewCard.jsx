@@ -86,7 +86,7 @@ const RecipePreviewCard = ({ recipe }) => {
 			</CardContent>
 			<CardActions>
 				<Grid container justifyContent="right">
-					<Button size="medium">View Recipe</Button>
+					{/* <Button size="medium">View Recipe</Button> */}
 				</Grid>
 			</CardActions>
 		</Card >
