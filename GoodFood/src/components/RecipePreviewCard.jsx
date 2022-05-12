@@ -15,6 +15,8 @@ import { Modal } from "@mui/material";
 import { ExpandMoreOutlined, ExpandCircleDown, ExpandLessOutlined } from '@mui/icons-material';
 import RecipeModal from "./RecipeModal";
 import { minHeight } from "@mui/system";
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 // TODO: Remember proper id as key
@@ -33,6 +35,10 @@ const RecipePreviewCard = ({ recipe }) => {
 		setExpandIngr(expandIngr === i ? -1 : i)
 	};
 
+	//temp media query solution to fix non responsive recipe name text
+	const theme = useTheme();
+	const matches = useMediaQuery(theme.breakpoints.down('md'));
+
 	return (
 		<Card sx={{ maxWidth: 500 }}>
 			<CardMedia
@@ -42,11 +48,17 @@ const RecipePreviewCard = ({ recipe }) => {
 				alt={recipe.name}
 			/>
 			<CardContent sx={{ paddingBottom: "0.2rem", minHeight: "200px" }}>
-				<Divider textAlign="left">
-					<Typography gutterBottom variant="h5" >
+
+				{matches ?
+					<Typography gutterBottom variant="h5" noWrap={false}>
 						{recipe.name}
-					</Typography>
-				</Divider>
+						<Divider />
+					</Typography> :
+					<Divider textAlign="left">
+						<Typography gutterBottom variant="h5" noWrap={false}>
+							{recipe.name}
+						</Typography>
+					</Divider>}
 
 				<Typography variant="body3" color="text.secondary" noWrap={false} >
 					{expandDesc !== recipe.id ? recipe.description.slice(0, 150) + "..." :
