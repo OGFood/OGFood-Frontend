@@ -72,7 +72,7 @@ const tempDataRecipes = [{
 	instructions: ["Whisk the flour into the milk until it's a smooth mix. Add the rest of the milk, eggs and some salt.", "Let the mix rest for 10 minutes.", "Heat up some butter in a pan and pour the pancake-mix into the pan."]
 },
 ];
-const tempDataIngredients = ["chicken", "tomato", "pasta", "fish", "dough", "noodles", "cucumber", "creme fraiche", "salmon", "ground-beef", "black pepper", "salt", "lime", "cheese", "milk", "water", ""]
+const tempDataIngredients = ["chicken", "tomato", "pasta", "fish", "dough", "noodles", "cucumber", "creme fraiche", "salmon", "ground-beef", "black pepper", "salt", "lime", "cheese", "milk", "water", "onion", "garlic", "chili flakes", "chili"]
 
 
 const Main = () => {
