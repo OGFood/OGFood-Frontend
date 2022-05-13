@@ -17,6 +17,8 @@ import RecipeModal from "./RecipeModal";
 import { minHeight } from "@mui/system";
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useRecoilState } from "recoil";
+import recipeModalState from "../atoms/recipeModalState";
 
 
 // TODO: Remember proper id as key
@@ -26,7 +28,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 const RecipePreviewCard = ({ recipe }) => {
 	const [expandIngr, setExpandIngr] = useState(-1)
 	const [expandDesc, setExpandDesc] = useState(-1)
-
+	const [openRecipeModal, setOpenRecipeModal] = useRecoilState(recipeModalState)
 
 	const handleExpandDesc = (i) => {
 		setExpandDesc(expandDesc === i ? -1 : i)
@@ -35,11 +37,10 @@ const RecipePreviewCard = ({ recipe }) => {
 		setExpandIngr(expandIngr === i ? -1 : i)
 	};
 
-	//temp media query solution to fix non responsive recipe name text
-	const theme = useTheme();
-	const matches = useMediaQuery(theme.breakpoints.down('md'));
+	const isScreenSizeMedium = useMediaQuery(useTheme().breakpoints.down('md'));
 
 	return (
+
 		<Card sx={{ maxWidth: 500 }}>
 			<CardMedia
 				component="img"
@@ -49,53 +50,45 @@ const RecipePreviewCard = ({ recipe }) => {
 			/>
 			<CardContent sx={{ paddingBottom: "0.2rem", minHeight: "200px" }}>
 
-				{matches ?
-					<Typography gutterBottom variant="h5" noWrap={false}>
+				{isScreenSizeMedium
+					? <Typography gutterBottom variant="h5" noWrap={false}>
 						{recipe.name}
 						<Divider />
-					</Typography> :
-					<Divider textAlign="left">
+					</Typography>
+					: <Divider textAlign="left">
 						<Typography gutterBottom variant="h5" noWrap={false}>
 							{recipe.name}
 						</Typography>
 					</Divider>}
 
 				<Typography variant="body3" color="text.secondary" noWrap={false} >
-					{expandDesc !== recipe.id ? recipe.description.slice(0, 150) + "..." :
-						<Collapse in={expandDesc == recipe.id} >
-							{recipe.description}
-							<Divider sx={{ mt: "10px" }} />
-							<Typography variant="body2" sx={{ mt: "2rem" }}>
-								{recipe.instructions.map((inst, i) => <li key={i}>{inst} <br /><br /></li>)}
-							</Typography>
-						</Collapse>}
-					<IconButton onClick={() => handleExpandDesc(recipe.id)} size="large" >
-						{expandDesc === -1 ? <ExpandCircleDown color="primary" /> : <ExpandLessOutlined />}
-					</IconButton>
+
+					{recipe.description}
+					<Divider sx={{ mt: "10px" }} />
 				</Typography>
 
-				<Divider textAlign="left">
+				{/* <Divider textAlign="left">
 					<Typography variant="body3" color="text.secondary" >
 						Ingredients
 					</Typography>
 					<IconButton onClick={() => handleExpandIngredient(recipe.id)}>
 						{expandIngr === -1 ? <ExpandMoreOutlined color="primary" /> : <ExpandLessOutlined />}
 					</IconButton>
-				</Divider>
+				</Divider> */}
 
-				<Typography variant="body2" color="text.secondary" component="section">
+				{/* <Typography variant="body2" color="text.secondary" component="section">
 
 					<Collapse in={expandIngr === recipe.id} unmountOnExit>
 						{recipe.ingredients.map((ingredient, index) =>
 							<li key={index}>{ingredient}</li>)}
 					</Collapse>
 
-				</Typography>
+				</Typography> */}
 
 			</CardContent>
 			<CardActions>
 				<Grid container justifyContent="right">
-					{/* <Button size="medium">View Recipe</Button> */}
+					<RecipeModal />
 				</Grid>
 			</CardActions>
 		</Card >

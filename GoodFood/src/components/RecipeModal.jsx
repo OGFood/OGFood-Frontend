@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Box from "@mui/material/Box";
@@ -10,37 +10,51 @@ import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
 import Collapse from '@mui/material/Collapse';
-import { IconButton } from '@mui/material';
-import Modal from "@mui/material/Modal";
-import { ExpandMoreOutlined, ExpandCircleDown, ExpandLessOutlined } from '@mui/icons-material';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import { useRecoilState } from "recoil"
+import recipeModalState from "../atoms/recipeModalState";
 
-const RecipeModal = ({ recipe }) => {
+const Transition = forwardRef(function Transition(props, ref) {
+	return <Slide direction="up" ref={ref} {...props} />;
+});
 
-	const style = {
-		position: 'absolute',
-		top: '50%',
-		left: '50%',
-		transform: 'translate(-50%, -50%)',
-		width: 400,
-		bgcolor: 'background.paper',
-		border: '2px solid #000',
-		boxShadow: 24,
-		p: 4,
+export default function RecipeModal() {
+	const [open, setOpen] = useRecoilState(recipeModalState)
+
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setOpen(false);
 	};
 
 	return (
-
-		<Modal
-		// open={open}
-		// onClose={handleClose}
-		>
-			<Box sx={style}>
-				<Typography variant="h6" component="h2">
-					Test
-				</Typography>
-			</Box>
-		</Modal>
-	)
+		<>
+			<Button variant="text" onClick={handleClickOpen}>
+				View Recipe
+			</Button>
+			<Dialog
+				open={open}
+				TransitionComponent={Transition}
+				keepMounted
+				onClose={handleClose}
+				BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.2)" } }}>
+				<DialogTitle>{"Title"}</DialogTitle>
+				<DialogContent>
+					<DialogContentText>
+						Test test test test
+					</DialogContentText>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={handleClose}>Close</Button>
+				</DialogActions>
+			</Dialog>
+		</>
+	);
 }
-
-export default RecipeModal
