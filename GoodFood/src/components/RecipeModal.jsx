@@ -36,9 +36,6 @@ const RecipeModal = ({ recipe }) => {
 
 	return (
 		<>
-			<Button variant="text" onClick={handleClickOpen}>
-				View Recipe
-			</Button>
 			<Dialog
 				fullWidth={true}
 				maxWidth={"lg"}
@@ -51,12 +48,12 @@ const RecipeModal = ({ recipe }) => {
 				<Card sx={{ minHeight: "80vh" }}>
 					<CardMedia
 						component="img"
-						height="140"
+						height="300"
 						image={recipe.imgSrc}
 						alt={recipe.name}
 					/>
 					<CardContent>
-						<Typography> {recipe.name}</Typography>
+						<Typography variant="h4" component="h2"> {recipe.name}</Typography>
 					</CardContent>
 				</Card>
 			</Dialog>
