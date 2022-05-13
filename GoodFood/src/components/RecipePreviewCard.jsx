@@ -19,6 +19,7 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useRecoilState } from "recoil";
 import recipeModalState from "../atoms/recipeModalState";
+import chosenRecipeState from "../atoms/chosenRecipeState"
 
 
 // TODO: Remember proper id as key
@@ -29,6 +30,7 @@ const RecipePreviewCard = ({ recipe }) => {
 	const [expandIngr, setExpandIngr] = useState(-1)
 	const [expandDesc, setExpandDesc] = useState(-1)
 	const [openRecipeModal, setOpenRecipeModal] = useRecoilState(recipeModalState)
+	const [chosenRecipe, setChosenRecipe] = useRecoilState(chosenRecipeState)
 
 	const handleExpandDesc = (i) => {
 		setExpandDesc(expandDesc === i ? -1 : i)
@@ -39,6 +41,16 @@ const RecipePreviewCard = ({ recipe }) => {
 
 	const isScreenSizeMedium = useMediaQuery(useTheme().breakpoints.down('md'));
 
+	const testr = () => {
+		return (
+			<RecipeModal></RecipeModal>
+		)
+	}
+
+	const handleOpenModalClick = () => {
+		setChosenRecipe(recipe)
+		setOpenRecipeModal(true)
+	}
 	return (
 
 		<Card sx={{ maxWidth: 500 }}>
@@ -88,10 +100,13 @@ const RecipePreviewCard = ({ recipe }) => {
 			</CardContent>
 			<CardActions>
 				<Grid container justifyContent="right">
-					<RecipeModal />
+					{/* <RecipeModal recipe={recipe} /> */}
+					<Button onClick={() => handleOpenModalClick()}> Test</Button>
 				</Grid>
 			</CardActions>
+			{openRecipeModal ? <RecipeModal recipe={chosenRecipe} /> : null}
 		</Card >
+
 	);
 }
 

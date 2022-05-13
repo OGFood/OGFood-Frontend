@@ -23,7 +23,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function RecipeModal() {
+const RecipeModal = ({ recipe }) => {
 	const [open, setOpen] = useRecoilState(recipeModalState)
 
 	const handleClickOpen = () => {
@@ -40,21 +40,28 @@ export default function RecipeModal() {
 				View Recipe
 			</Button>
 			<Dialog
+				fullWidth={true}
+				maxWidth={"lg"}
 				open={open}
 				TransitionComponent={Transition}
 				keepMounted
 				onClose={handleClose}
-				BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.2)" } }}>
-				<DialogTitle>{"Title"}</DialogTitle>
-				<DialogContent>
-					<DialogContentText>
-						Test test test test
-					</DialogContentText>
-				</DialogContent>
-				<DialogActions>
-					<Button onClick={handleClose}>Close</Button>
-				</DialogActions>
+				BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.2)" } }}
+			>
+				<Card sx={{ minHeight: "80vh" }}>
+					<CardMedia
+						component="img"
+						height="140"
+						image={recipe.imgSrc}
+						alt={recipe.name}
+					/>
+					<CardContent>
+						<Typography> {recipe.name}</Typography>
+					</CardContent>
+				</Card>
 			</Dialog>
 		</>
 	);
 }
+
+export default RecipeModal
