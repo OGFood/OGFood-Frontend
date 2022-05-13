@@ -116,7 +116,7 @@ const Main = () => {
 					<Typography variant='h4' component="h2" color="white" gutterBottom fontWeight="700" sx={{ textShadow: "0px 1px 6px black" }}>
 						No inspiration? No problem!
 					</Typography>
-					<Typography color="white" variant='body1' gutterBottom sx={{ textShadow: "0px 2px 8px black" }}>
+					<Typography color="white" variant='body1' fontWeight="600" gutterBottom sx={{ textShadow: "0px 2px 8px black" }}>
 						Enter what you have in your fridge or your pantry, and we'll come up with a fitting recipe
 					</Typography>
 

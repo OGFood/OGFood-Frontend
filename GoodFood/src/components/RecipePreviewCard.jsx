@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Box from "@mui/material/Box";
 import CardContent from '@mui/material/CardContent';
+import CardActionArea from "@mui/material/CardActionArea";
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -23,8 +24,7 @@ import chosenRecipeState from "../atoms/chosenRecipeState"
 
 
 // TODO: Remember proper id as key
-// TODO: When using Collapse as part of conditional rendering, the animation goes away..? 
-// TODO: Hide action-button for sprint-demo since it's not a functional element
+
 
 
 
@@ -51,33 +51,36 @@ const RecipePreviewCard = ({ recipe }) => {
 	return (
 
 		<Card sx={{ maxWidth: 500 }}>
+
 			{openRecipeModal && <RecipeModal recipe={chosenRecipe} />}
-			<CardMedia
-				component="img"
-				height="140"
-				image={recipe.imgSrc}
-				alt={recipe.name}
-			/>
-			<CardContent sx={{ paddingBottom: "0.2rem", minHeight: "200px" }}>
+			<CardActionArea onClick={() => handleOpenModalClick()}>
+				<CardMedia
+					component="img"
+					height="140"
+					image={recipe.imgSrc}
+					alt={recipe.name}
+				/>
 
-				{isScreenSizeMedium
-					? <Typography gutterBottom variant="h5" noWrap={false}>
-						{recipe.name}
-						<Divider />
-					</Typography>
-					: <Divider textAlign="left">
-						<Typography gutterBottom variant="h5" noWrap={false}>
+				<CardContent sx={{ paddingBottom: "0.2rem", minHeight: "200px" }}>
+
+					{isScreenSizeMedium
+						? <Typography gutterBottom variant="h5" noWrap={false}>
 							{recipe.name}
+							<Divider />
 						</Typography>
-					</Divider>}
+						: <Divider textAlign="left">
+							<Typography gutterBottom variant="h5" color="primary.dark" noWrap={false}>
+								{recipe.name}
+							</Typography>
+						</Divider>}
 
-				<Typography variant="body3" color="text.secondary" noWrap={false} >
+					<Typography variant="body3" fontSize="1.1rem" color="text.secondary" noWrap={false} >
 
-					{recipe.description}
-					<Divider sx={{ mt: "10px" }} />
-				</Typography>
+						{recipe.description}
+						<Divider sx={{ mt: "10px" }} />
+					</Typography>
 
-				{/* <Divider textAlign="left">
+					{/* <Divider textAlign="left">
 					<Typography variant="body3" color="text.secondary" >
 						Ingredients
 					</Typography>
@@ -86,7 +89,7 @@ const RecipePreviewCard = ({ recipe }) => {
 					</IconButton>
 				</Divider> */}
 
-				{/* <Typography variant="body2" color="text.secondary" component="section">
+					{/* <Typography variant="body2" color="text.secondary" component="section">
 
 					<Collapse in={expandIngr === recipe.id} unmountOnExit>
 						{recipe.ingredients.map((ingredient, index) =>
@@ -95,16 +98,17 @@ const RecipePreviewCard = ({ recipe }) => {
 
 				</Typography> */}
 
-			</CardContent>
+				</CardContent>
+			</CardActionArea>
 			<CardActions>
 				<Grid container justifyContent="right">
-					{/* <RecipeModal recipe={recipe} /> */}
-					<Button onClick={() => handleOpenModalClick()}> Test</Button>
+					{/* <Button onClick={() => handleOpenModalClick()}> View Recipe</Button> */}
+					<IconButton onClick={() => handleExpandIngredient(recipe.id)}>
+						{expandDesc === -1 ? <ExpandMoreOutlined color="primary" /> : <ExpandLessOutlined />}
+					</IconButton>
 				</Grid>
 			</CardActions>
-
 		</Card >
-
 	);
 }
 
