@@ -25,7 +25,7 @@ import chosenRecipeState from "../atoms/chosenRecipeState"
 // TODO: Remember proper id as key
 // TODO: When using Collapse as part of conditional rendering, the animation goes away..? 
 // TODO: Hide action-button for sprint-demo since it's not a functional element
-const isScreenSizeMedium = useMediaQuery(useTheme().breakpoints.down('md'));
+
 
 
 const RecipePreviewCard = ({ recipe }) => {
@@ -45,6 +45,9 @@ const RecipePreviewCard = ({ recipe }) => {
 		setChosenRecipe(recipe)
 		setOpenRecipeModal(true)
 	};
+
+	const isScreenSizeMedium = useMediaQuery(useTheme().breakpoints.down('md'));
+
 	return (
 
 		<Card sx={{ maxWidth: 500 }}>
