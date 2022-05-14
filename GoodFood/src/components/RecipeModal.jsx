@@ -31,7 +31,7 @@ const RecipeModal = ({ recipe }) => {
 	const [open, setOpen] = useRecoilState(recipeModalState)
 
 	// TODO: Grid layout with columns for text areas / icons 
-	// TODO: Text: Ingredients + amount + symbol/icon. 
+	// TODO: Text: Ingredient amount + Approx time to cook
 	// 			   SUPER DUPER CLEAR INSTRUCTIONS
 	// Ingredients as Mui-chips
 
@@ -94,7 +94,7 @@ const RecipeModal = ({ recipe }) => {
 						</Divider>}
 					<Box>
 
-						<Grid container justifyContent={"flex-end"}>
+						<Grid container justifyContent={"flex-start"} sx={{ mb: "1rem" }}>
 							<Grid item >{<span style={{ color: "#A6B727" }}><i className="fa-solid fa-seedling fa-xl"></i></span>} </Grid>
 							{recipe.ingredients?.map((ingredient, index) =>
 								<Grid item> <Chip label={ingredient} variant="outlined" /> </Grid>
