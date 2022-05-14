@@ -20,6 +20,8 @@ import { useRecoilState } from "recoil"
 import recipeModalState from "../atoms/recipeModalState";
 import { IconButton, Toolbar } from "@mui/material";
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
@@ -31,6 +33,7 @@ const RecipeModal = ({ recipe }) => {
 	// TODO: Grid layout with columns for text areas / icons 
 	// TODO: Text: Ingredients + amount + symbol/icon. 
 	// 			   SUPER DUPER CLEAR INSTRUCTIONS
+	// Ingredients as Mui-chips
 
 
 	const handleClose = () => {
@@ -40,29 +43,36 @@ const RecipeModal = ({ recipe }) => {
 	/**
 	 * Icons as <i> since I can't be bothered installing another package:
 	 * 			
-			{<span style={{ color: "" }}><i class="fa-solid fa-bowl-rice fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i class="fa-solid fa-cubes-stacked fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i class="fa-solid fa-seedling fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i class="fa-solid fa-utensils fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i class="fa-regular fa-clock fa-xl"></i></span>}
+			{<span style={{ color: "" }}><i className="fa-solid fa-bowl-rice fa-xl"></i></span>}
+			{<span style={{ color: "" }}><i className="fa-solid fa-cubes-stacked fa-xl"></i></span>}
+			{<span style={{ color: "" }}><i className="fa-solid fa-seedling fa-xl"></i></span>}
+			{<span style={{ color: "" }}><i className="fa-solid fa-utensils fa-xl"></i></span>}
+			{<span style={{ color: "" }}><i className="fa-regular fa-clock fa-xl"></i></span>}
 			{<span style={{ color: "" }}><i class="fa-solid fa-clock fa-xl"></i></span>}
+
 	 */
+	const isScreenSizeSmall = useMediaQuery(useTheme().breakpoints.down('sm'));
 
 	return (
 		<Dialog
+			scroll="body"
 			fullWidth={true}
 			maxWidth={"md"}
 			open={open}
 			TransitionComponent={Transition}
-
+			sx={{ minWidth: "100%" }}
 			keepMounted
 			onClose={handleClose}
 			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.2)" } }}
 		>
 			<Card sx={{ minHeight: "80vh" }}>
-				<IconButton onClick={() => handleClose()} sx={{ color: "mainbg.main", position: "absolute", right: "0", fontSize: "4em" }}>
-					<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 4px black)" }}></CancelOutlinedIcon>
-				</IconButton>
+				{!isScreenSizeSmall ?
+					<IconButton onClick={() => handleClose()} sx={{ color: "mainbg.main", position: "absolute", right: "0", fontSize: "4em" }}>
+						<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 4px black)" }}></CancelOutlinedIcon>
+					</IconButton> :
+					<IconButton onClick={() => handleClose()} sx={{ color: "primary.light", position: "absolute", right: "0", bottom: "0", fontSize: "4em" }}>
+						<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 1px black)" }}></CancelOutlinedIcon>
+					</IconButton>}
 				<CardMedia
 					component="img"
 					height="300"
@@ -71,15 +81,30 @@ const RecipeModal = ({ recipe }) => {
 				/>
 
 				<CardContent>
-					<Grid container >
-						<Grid item>
-							<Typography variant="h4" component="h2" > {recipe.name} </Typography>
-
+					{isScreenSizeSmall
+						? <Typography gutterBottom variant="h4" color="primary.dark" noWrap={false}>
+							{recipe.name}
+							<Divider />
+						</Typography>
+						: <Divider textAlign="left">
+							<Typography gutterBottom variant="h4" color="primary.dark" noWrap={false}>
+								{recipe.name}
+							</Typography>
+						</Divider>}
+					<Box>
+						<Grid container justifyContent={"flex-end"}>
+							<Grid item >{<span style={{ color: "#A6B727" }}><i className="fa-solid fa-seedling fa-xl"></i></span>} </Grid>
+							{recipe.ingredients?.map((ingredient, index) =>
+								<Grid item> <Chip label={ingredient} variant="outlined" /> </Grid>
+							)}
 						</Grid>
-						<Grid item>
 
-						</Grid>
-					</Grid>
+					</Box>
+					<Typography variant="body3">
+						{recipe.instructions?.map((inst, i) => <li style={{ listStyle: "ordered" }} key={i}>{inst} <br /><br /></li>)}
+					</Typography>
+
+
 				</CardContent>
 			</Card>
 		</Dialog>

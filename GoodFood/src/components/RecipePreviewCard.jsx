@@ -23,6 +23,7 @@ import recipeModalState from "../atoms/recipeModalState";
 import chosenRecipeState from "../atoms/chosenRecipeState"
 
 
+
 // TODO: Remember proper id as key
 
 
@@ -37,8 +38,10 @@ const RecipePreviewCard = ({ recipe }) => {
 	const handleExpandDesc = (i) => {
 		setExpandDesc(expandDesc === i ? -1 : i)
 	};
+
 	const handleExpandIngredient = (i) => {
 		setExpandIngr(expandIngr === i ? -1 : i)
+
 	};
 
 	const handleOpenModalClick = () => {
@@ -64,7 +67,7 @@ const RecipePreviewCard = ({ recipe }) => {
 				<CardContent sx={{ paddingBottom: "0.2rem", minHeight: "200px" }}>
 
 					{isScreenSizeMedium
-						? <Typography gutterBottom variant="h5" noWrap={false}>
+						? <Typography gutterBottom variant="h5" color="primary.dark" noWrap={false}>
 							{recipe.name}
 							<Divider />
 						</Typography>
