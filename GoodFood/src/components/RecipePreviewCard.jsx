@@ -52,7 +52,7 @@ const RecipePreviewCard = ({ recipe }) => {
 
 		<Card sx={{ maxWidth: 500 }}>
 
-			{openRecipeModal && <RecipeModal recipe={chosenRecipe} />}
+			<RecipeModal recipe={chosenRecipe} />
 			<CardActionArea onClick={() => handleOpenModalClick()}>
 				<CardMedia
 					component="img"

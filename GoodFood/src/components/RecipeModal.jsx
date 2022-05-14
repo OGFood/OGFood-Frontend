@@ -61,7 +61,7 @@ const RecipeModal = ({ recipe }) => {
 		>
 			<Card sx={{ minHeight: "80vh" }}>
 				<IconButton onClick={() => handleClose()} sx={{ color: "mainbg.main", position: "absolute", right: "0", fontSize: "4em" }}>
-					<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 2px black)" }}></CancelOutlinedIcon>
+					<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 4px black)" }}></CancelOutlinedIcon>
 				</IconButton>
 				<CardMedia
 					component="img"
