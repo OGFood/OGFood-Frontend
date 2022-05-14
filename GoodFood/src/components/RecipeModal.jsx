@@ -33,7 +33,7 @@ const RecipeModal = ({ recipe }) => {
 	// TODO: Grid layout with columns for text areas / icons 
 	// TODO: Text: Ingredient amount + Approx time to cook
 	// 			   SUPER DUPER CLEAR INSTRUCTIONS
-	// Ingredients as Mui-chips
+	// TODO: Add proper approxtime into recipe
 
 
 	const handleClose = () => {
@@ -97,7 +97,7 @@ const RecipeModal = ({ recipe }) => {
 						<Grid container justifyContent={"flex-start"} sx={{ mb: "1rem" }}>
 							<Grid item >{<span style={{ color: "#A6B727" }}><i className="fa-solid fa-seedling fa-xl"></i></span>} </Grid>
 							{recipe.ingredients?.map((ingredient, index) =>
-								<Grid item> <Chip label={ingredient} variant="outlined" /> </Grid>
+								<Grid item key={index}> <Chip label={ingredient} variant="outlined" /> </Grid>
 							)}
 						</Grid>
 
@@ -106,6 +106,10 @@ const RecipeModal = ({ recipe }) => {
 
 					<Typography gutterBottom variant="body1">{recipe.description}</Typography>
 					<Divider sx={{ marginBottom: "1rem" }} />
+					<Typography fontWeight="600">
+						{<span style={{ color: "#A6B727" }}><i className="fa-regular fa-clock fa-xl"></i></span>} {recipe.aproxTime}
+						{<br />}{<br />}
+					</Typography>
 					<Typography variant="body3">
 						{recipe.instructions?.map((inst, i) => <li style={{ listStyle: "ordered" }} key={i}>{inst} <br /><br /></li>)}
 					</Typography>
