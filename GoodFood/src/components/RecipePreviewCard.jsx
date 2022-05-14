@@ -15,7 +15,6 @@ import { IconButton } from '@mui/material';
 import { Modal } from "@mui/material";
 import { ExpandMoreOutlined, ExpandCircleDown, ExpandLessOutlined } from '@mui/icons-material';
 import RecipeModal from "./RecipeModal";
-import { minHeight } from "@mui/system";
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useRecoilState } from "recoil";
@@ -24,7 +23,8 @@ import chosenRecipeState from "../atoms/chosenRecipeState"
 
 
 
-// TODO: Remember proper id as key
+
+// TODO: Favicon / fav stuff, maybe share icon?
 
 
 
@@ -65,7 +65,6 @@ const RecipePreviewCard = ({ recipe }) => {
 				/>
 
 				<CardContent sx={{ paddingBottom: "0.2rem", minHeight: "200px" }}>
-
 					{isScreenSizeMedium
 						? <Typography gutterBottom variant="h5" color="primary.dark" noWrap={false}>
 							{recipe.name}
@@ -82,30 +81,11 @@ const RecipePreviewCard = ({ recipe }) => {
 						{recipe.description}
 						<Divider sx={{ mt: "10px" }} />
 					</Typography>
-
-					{/* <Divider textAlign="left">
-					<Typography variant="body3" color="text.secondary" >
-						Ingredients
-					</Typography>
-					<IconButton onClick={() => handleExpandIngredient(recipe.id)}>
-						{expandIngr === -1 ? <ExpandMoreOutlined color="primary" /> : <ExpandLessOutlined />}
-					</IconButton>
-				</Divider> */}
-
-					{/* <Typography variant="body2" color="text.secondary" component="section">
-
-					<Collapse in={expandIngr === recipe.id} unmountOnExit>
-						{recipe.ingredients.map((ingredient, index) =>
-							<li key={index}>{ingredient}</li>)}
-					</Collapse>
-
-				</Typography> */}
-
 				</CardContent>
+
 			</CardActionArea>
 			<CardActions>
 				<Grid container justifyContent="right">
-					{/* <Button onClick={() => handleOpenModalClick()}> View Recipe</Button> */}
 					<IconButton onClick={() => handleExpandIngredient(recipe.id)}>
 						{expandDesc === -1 ? <ExpandMoreOutlined color="primary" /> : <ExpandLessOutlined />}
 					</IconButton>
