@@ -28,20 +28,25 @@ const Transition = forwardRef(function Transition(props, ref) {
 const RecipeModal = ({ recipe }) => {
 	const [open, setOpen] = useRecoilState(recipeModalState)
 
-	// TODO: Overlay X button on top-right corner of image to close the modal (So it's clear it can be closed even though it already can be closed)
 	// TODO: Grid layout with columns for text areas / icons 
 	// TODO: Text: Ingredients + amount + symbol/icon. 
 	// 			   SUPER DUPER CLEAR INSTRUCTIONS
 
-	const handleClickOpen = () => {
-		setOpen(true);
-	};
 
 	const handleClose = () => {
 		setOpen(false);
 	};
 
-
+	/**
+	 * Icons as <i> since I can't be bothered installing another package:
+	 * 			
+			{<span style={{ color: "" }}><i class="fa-solid fa-bowl-rice fa-xl"></i></span>}
+			{<span style={{ color: "" }}><i class="fa-solid fa-cubes-stacked fa-xl"></i></span>}
+			{<span style={{ color: "" }}><i class="fa-solid fa-seedling fa-xl"></i></span>}
+			{<span style={{ color: "" }}><i class="fa-solid fa-utensils fa-xl"></i></span>}
+			{<span style={{ color: "" }}><i class="fa-regular fa-clock fa-xl"></i></span>}
+			{<span style={{ color: "" }}><i class="fa-solid fa-clock fa-xl"></i></span>}
+	 */
 
 	return (
 		<Dialog
@@ -55,8 +60,8 @@ const RecipeModal = ({ recipe }) => {
 			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.2)" } }}
 		>
 			<Card sx={{ minHeight: "80vh" }}>
-				<IconButton onClick={() => handleClose()} sx={{ position: "absolute", right: "0", fontSize: "5rem" }}>
-					<CancelOutlinedIcon fontSize="4rem"></CancelOutlinedIcon>
+				<IconButton onClick={() => handleClose()} sx={{ color: "mainbg.main", position: "absolute", right: "0", fontSize: "4em" }}>
+					<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 2px black)" }}></CancelOutlinedIcon>
 				</IconButton>
 				<CardMedia
 					component="img"
@@ -69,6 +74,7 @@ const RecipeModal = ({ recipe }) => {
 					<Grid container >
 						<Grid item>
 							<Typography variant="h4" component="h2" > {recipe.name} </Typography>
+
 						</Grid>
 						<Grid item>
 
