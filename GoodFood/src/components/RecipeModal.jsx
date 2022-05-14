@@ -96,8 +96,10 @@ const RecipeModal = ({ recipe }) => {
 
 						<Grid container justifyContent={"flex-start"} sx={{ mb: "1rem" }}>
 							<Grid item >{<span style={{ color: "#A6B727" }}><i className="fa-solid fa-seedling fa-xl"></i></span>} </Grid>
-							{recipe.ingredients?.map((ingredient, index) =>
-								<Grid item key={index}> <Chip label={ingredient} variant="outlined" /> </Grid>
+							{recipe.ingredients?.map((ing, index) =>
+								<Grid item key={index}>
+									<Chip sx={{ marginInline: "1px" }} label={ing.ingredient.name + " " + ing.amount + ing.unit} variant="outlined" />
+								</Grid>
 							)}
 						</Grid>
 
