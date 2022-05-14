@@ -55,6 +55,7 @@ const RecipeModal = ({ recipe }) => {
 
 	return (
 		<Dialog
+
 			scroll="body"
 			fullWidth={true}
 			maxWidth={"md"}
@@ -63,7 +64,7 @@ const RecipeModal = ({ recipe }) => {
 			sx={{ minWidth: "100%" }}
 			keepMounted
 			onClose={handleClose}
-			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.2)" } }}
+			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}
 		>
 			<Card sx={{ minHeight: "80vh" }}>
 				{!isScreenSizeSmall ?
@@ -92,6 +93,7 @@ const RecipeModal = ({ recipe }) => {
 							</Typography>
 						</Divider>}
 					<Box>
+
 						<Grid container justifyContent={"flex-end"}>
 							<Grid item >{<span style={{ color: "#A6B727" }}><i className="fa-solid fa-seedling fa-xl"></i></span>} </Grid>
 							{recipe.ingredients?.map((ingredient, index) =>
@@ -100,10 +102,14 @@ const RecipeModal = ({ recipe }) => {
 						</Grid>
 
 					</Box>
+
+
+					<Typography gutterBottom variant="body1">{recipe.description}</Typography>
+					<Divider sx={{ marginBottom: "1rem" }} />
 					<Typography variant="body3">
 						{recipe.instructions?.map((inst, i) => <li style={{ listStyle: "ordered" }} key={i}>{inst} <br /><br /></li>)}
 					</Typography>
-
+					<Divider sx={{ marginBottom: "1rem" }} />
 
 				</CardContent>
 			</Card>
