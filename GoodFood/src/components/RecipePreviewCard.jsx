@@ -60,7 +60,7 @@ const RecipePreviewCard = ({ recipe }) => {
 				<CardMedia
 					component="img"
 					height="140"
-					image={recipe.imgSrc}
+					image={recipe.imgUrl}
 					alt={recipe.name}
 				/>
 
