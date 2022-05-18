@@ -77,7 +77,7 @@ const RecipeModal = ({ recipe }) => {
 				<CardMedia
 					component="img"
 					height="300"
-					image={recipe.imgSrc}
+					image={recipe.imgUrl}
 					alt={recipe.name}
 				/>
 

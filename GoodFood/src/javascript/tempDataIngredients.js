@@ -1,8 +1,4 @@
-import {atom} from 'recoil';
-
-const ingredientsState = atom({
-	  key: 'ingredients',
-	  default: [
+const tempDataIngredients = [
 	{id:"",name:"chicken"},
 	{id:"",name:"tomato"},
 	{id:"",name:"pasta"},
@@ -24,6 +20,5 @@ const ingredientsState = atom({
 	{id:"",name:"chili flakes"},
 	{id:"",name:"chili"}
 ]
-});
 
-export default ingredientsState;
+export default tempDataIngredients;
