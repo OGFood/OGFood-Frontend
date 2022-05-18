@@ -15,7 +15,7 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 
 	// TODO: recipe.servings state
 	const [servings, setServings] = useState()
-	const [value, setValue] = useState()
+	const [value, setValue] = useState("")
 
 
 
@@ -48,7 +48,7 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 					variant="outlined"
 					labelId="select-serving-size"
 					id="serving-size"
-					defaultValue={recServings}
+					defaultValue={servings}
 					value={value}
 					label="Serving Size"
 					onChange={handleServingChange}
