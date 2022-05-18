@@ -31,9 +31,6 @@ const RecipeModal = ({ recipe }) => {
 	const [open, setOpen] = useRecoilState(recipeModalState)
 
 	// TODO: Grid layout with columns for text areas / icons 
-	// TODO: Text: Ingredient amount + Approx time to cook
-	// 			   SUPER DUPER CLEAR INSTRUCTIONS
-	// TODO: Add proper approxtime into recipe
 
 
 	const handleClose = () => {
@@ -109,7 +106,7 @@ const RecipeModal = ({ recipe }) => {
 					<Typography gutterBottom variant="body1">{recipe.description}</Typography>
 					<Divider sx={{ marginBottom: "1rem" }} />
 					<Typography fontWeight="600">
-						{<span style={{ color: "#A6B727" }}><i className="fa-regular fa-clock fa-xl"></i></span>} {recipe.aproxTime}
+						{<span style={{ color: "#A6B727" }}><i className="fa-regular fa-clock fa-xl"></i></span>} {recipe.aproxTime}min
 						{<br />}{<br />}
 					</Typography>
 					<Typography variant="body3">

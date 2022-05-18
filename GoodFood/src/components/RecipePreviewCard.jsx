@@ -22,11 +22,7 @@ import recipeModalState from "../atoms/recipeModalState";
 import chosenRecipeState from "../atoms/chosenRecipeState"
 
 
-
-
 // TODO: Favicon / fav stuff, maybe share icon?
-
-
 
 
 const RecipePreviewCard = ({ recipe }) => {
