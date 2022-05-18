@@ -22,9 +22,7 @@ import { useRecoilState } from "recoil"
 import ingredientsState from "../atoms/ingredientsState";
 import recipesState from "../atoms/recipesState";
 import { fetchIngredients,fetchRecipes } from "../javascript/fetchFromOwnAPI";
-
-
-
+import filterRecipes from "../javascript/filterRecipes";
 
 // TODO: Make a proper "recipe-preview" card/paper.
 // TODO: Text shadow
@@ -35,10 +33,6 @@ const Main = () => {
 	const [ingredientsList, setIngredientsList] = useRecoilState(ingredientsState);
 	const [recipes, setRecipes] = useRecoilState(recipesState);
 	const [filteredRecipes, setFilteredRecipes] = useState(recipes);
-
-	// console.log("filteredRecipes:",filteredRecipes);
-	// console.log("recipes:",recipes);
-	// console.log("ingredients:",ingredientsList);
 
 	const displayRecipes = filteredRecipes.map((recipe, i) => (
 		<Grid item xs={12} sm={6} lg={4} key={i}>
@@ -52,23 +46,12 @@ const Main = () => {
 	}, []);
 
 	useEffect(()=>{
-		
-		console.log("selectedIngredients:",selectedIngredients,"length:",selectedIngredients.length);
-		selectedIngredients.length > 0 ? setFilteredRecipes(recipes.filter(recipe => {
-			return recipe.ingredients.some(ingredient => selectedIngredients.includes(ingredient.ingredient.name))
-		})): setFilteredRecipes(recipes);
-		console.log("recipe:",recipes);
+		filterRecipes(recipes,setFilteredRecipes,selectedIngredients);
 	},[selectedIngredients])
-
-	useEffect(()=>{
-		console.log("recipes got changed");
-	},[recipes])
-
 
 	return (
 		<Container sx={{ bgcolor: "mainbg.main", paddingBottom: "5rem" }} maxWidth="xl" >
 			{console.log(selectedIngredients)}
-			{console.log(filteredRecipes)}
 			<Box sx={{
 				backgroundImage: `url(${FoodBg})`,
 				bgcolor: "primary.light",
