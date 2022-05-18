@@ -21,16 +21,10 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { useRecoilState } from "recoil"
 import ingredientsState from "../atoms/ingredientsState";
 import recipesState from "../atoms/recipesState";
-import { fetchIngredients,fetchRecipes } from "../javascript/fetchFromOwnAPI";
+import { fetchIngredients, fetchRecipes } from "../javascript/fetchFromOwnAPI";
 
-
-
-
-// TODO: Make a proper "recipe-preview" card/paper.
-// TODO: Text shadow
 
 const Main = () => {
-	// TODO: States for ingredients/recipe, searchterm etc
 	const [selectedIngredients, setSelectedIngredients] = useState([])
 	const [ingredientsList, setIngredientsList] = useRecoilState(ingredientsState);
 	const [recipes, setRecipes] = useRecoilState(recipesState);
@@ -48,21 +42,21 @@ const Main = () => {
 
 	useEffect(() => {
 		fetchIngredients(setIngredientsList);
-		fetchRecipes(setRecipes,setFilteredRecipes);
+		fetchRecipes(setRecipes, setFilteredRecipes);
 	}, []);
 
-	useEffect(()=>{
-		
-		console.log("selectedIngredients:",selectedIngredients,"length:",selectedIngredients.length);
+	useEffect(() => {
+
+		console.log("selectedIngredients:", selectedIngredients, "length:", selectedIngredients.length);
 		selectedIngredients.length > 0 ? setFilteredRecipes(recipes.filter(recipe => {
 			return recipe.ingredients.some(ingredient => selectedIngredients.includes(ingredient.ingredient.name))
-		})): setFilteredRecipes(recipes);
-		console.log("recipe:",recipes);
-	},[selectedIngredients])
+		})) : setFilteredRecipes(recipes);
+		console.log("recipe:", recipes);
+	}, [selectedIngredients])
 
-	useEffect(()=>{
+	useEffect(() => {
 		console.log("recipes got changed");
-	},[recipes])
+	}, [recipes])
 
 
 	return (
