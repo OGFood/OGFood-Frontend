@@ -28,7 +28,6 @@ import filterRecipes from "../javascript/filterRecipes";
 // TODO: Text shadow
 
 const Main = () => {
-	// TODO: States for ingredients/recipe, searchterm etc
 	const [selectedIngredients, setSelectedIngredients] = useState([])
 	const [ingredientsList, setIngredientsList] = useRecoilState(ingredientsState);
 	const [recipes, setRecipes] = useRecoilState(recipesState);
@@ -42,7 +41,7 @@ const Main = () => {
 
 	useEffect(() => {
 		fetchIngredients(setIngredientsList);
-		fetchRecipes(setRecipes,setFilteredRecipes);
+		fetchRecipes(setRecipes, setFilteredRecipes);
 	}, []);
 
 	useEffect(()=>{
