@@ -1,4 +1,4 @@
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, useEffect } from "react";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Box from "@mui/material/Box";
@@ -22,6 +22,7 @@ import { IconButton, Toolbar } from "@mui/material";
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import SelectPortionSize from "./SelectPortionSize";
 
 const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
@@ -29,14 +30,17 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 const RecipeModal = ({ recipe }) => {
 	const [open, setOpen] = useRecoilState(recipeModalState)
-
-	// TODO: Grid layout with columns for text areas / icons 
+	const [recipeIngredients, setRecipeIngredients] = useState()
 
 
 	const handleClose = () => {
 		setOpen(false);
 	};
 
+
+	useEffect(() => {
+		setRecipeIngredients(recipe.ingredients)
+	})
 	/**
 	 * Icons as <i> since I can't be bothered installing another package:
 	 * 			
@@ -77,7 +81,6 @@ const RecipeModal = ({ recipe }) => {
 					image={recipe.imgUrl}
 					alt={recipe.name}
 				/>
-
 				<CardContent>
 					{isScreenSizeSmall
 						? <Typography gutterBottom variant="h4" color="primary.dark" noWrap={false}>
@@ -91,9 +94,15 @@ const RecipeModal = ({ recipe }) => {
 						</Divider>}
 					<Box>
 
+						<SelectPortionSize
+							recipeIngredients={recipeIngredients}
+							setRecipeIngredients={setRecipeIngredients}
+							recServings={recipe.servings}
+						/>
+
 						<Grid container justifyContent={"flex-start"} sx={{ mb: "1rem" }}>
 							<Grid item >{<span style={{ color: "#A6B727" }}><i className="fa-solid fa-seedling fa-xl"></i></span>} </Grid>
-							{recipe.ingredients?.map((ing, index) =>
+							{recipeIngredients?.map((ing, index) =>
 								<Grid item key={index}>
 									<Chip sx={{ marginInline: "1px" }} label={ing.ingredient.name + " " + ing.amount + ing.unit} variant="outlined" />
 								</Grid>
