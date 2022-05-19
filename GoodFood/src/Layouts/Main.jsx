@@ -21,7 +21,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { useRecoilState } from "recoil"
 import ingredientsState from "../atoms/ingredientsState";
 import recipesState from "../atoms/recipesState";
-import { fetchIngredients,fetchRecipes } from "../javascript/fetchFromOwnAPI";
+import { fetchIngredients, fetchRecipes } from "../javascript/fetchFromOwnAPI";
 import filterRecipes from "../javascript/filterRecipes";
 
 // TODO: Make a proper "recipe-preview" card/paper.
@@ -44,9 +44,9 @@ const Main = () => {
 		fetchRecipes(setRecipes, setFilteredRecipes);
 	}, []);
 
-	useEffect(()=>{
-		filterRecipes(recipes,setFilteredRecipes,selectedIngredients);
-	},[selectedIngredients])
+	useEffect(() => {
+		filterRecipes(recipes, setFilteredRecipes, selectedIngredients);
+	}, [selectedIngredients])
 
 	return (
 		<Container sx={{ bgcolor: "mainbg.main", paddingBottom: "5rem" }} maxWidth="xl" >
@@ -69,6 +69,7 @@ const Main = () => {
 					</Typography>
 
 					<Autocomplete
+						ListboxProps={{ style: { maxHeight: "15rem" } }}
 						onChange={(e, value) => setSelectedIngredients(value)}
 						multiple
 						id="ingredients"
