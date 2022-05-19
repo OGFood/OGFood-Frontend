@@ -21,28 +21,37 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 	 * Modify the ingredients amount based on the new serving size value
 	*/
 
+
+	// Value lags behind
 	const [servings, setServings] = useState()
 	const [value, setValue] = useState("")
 
-	const changeIngredientsTest = () => {
+	const changeIngredientsTest = (number) => {
 
 		// let ingredientsArray = recipeIngredients.map(element => {
 		// 	return element.amount;
 		// });
+
 		let items = [...recipeIngredients]
 
-		// let item = { ...items[0] }
+		console.log(recipeIngredients)
+
 		for (let i = 0; i < items.length; i++) {
+
 			let item = { ...items[i] };
 
-			let standardAmount = recipeIngredients[i].amount
-
-			item.amount = (standardAmount / 4) * value;
+			item.amount += number
 
 			items[i] = item;
+
 		}
 		console.log(items)
 
+
+		console.log(number)
+
+
+		// let item = { ...items[i] };
 		// item.amount = 200
 
 		// put edited item back into array
@@ -52,14 +61,14 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 	}
 
 	const handleServingChange = (e) => {
-
-		changeIngredientsTest();
 		setValue(e.target.value)
+		changeIngredientsTest(e.target.value);
 	}
 
-	useEffect(() => {
-		setServings(recServings)
-	})
+	// useEffect(() => {
+	// 	// setServings(recServings)
+	// 	// changeIngredientsTest();
+	// }, [value])
 
 
 
