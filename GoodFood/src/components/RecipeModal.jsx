@@ -24,13 +24,26 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SelectPortionSize from "./SelectPortionSize";
 
+/**
+ * Icons as <i> since I can't be bothered installing another package:
+ * 			
+		{<span style={{ color: "" }}><i className="fa-solid fa-bowl-rice fa-xl"></i></span>}
+		{<span style={{ color: "" }}><i className="fa-solid fa-cubes-stacked fa-xl"></i></span>}
+		{<span style={{ color: "" }}><i className="fa-solid fa-seedling fa-xl"></i></span>}
+		{<span style={{ color: "" }}><i className="fa-solid fa-utensils fa-xl"></i></span>}
+		{<span style={{ color: "" }}><i className="fa-regular fa-clock fa-xl"></i></span>}
+		{<span style={{ color: "" }}><i class="fa-solid fa-clock fa-xl"></i></span>}
+
+ */
+
 const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const RecipeModal = ({ recipe }) => {
+
 	const [open, setOpen] = useRecoilState(recipeModalState)
-	const [recipeIngredients, setRecipeIngredients] = useState()
+	const [recipeIngredients, setRecipeIngredients] = useState([])
 
 
 	const handleClose = () => {
@@ -40,18 +53,9 @@ const RecipeModal = ({ recipe }) => {
 
 	useEffect(() => {
 		setRecipeIngredients(recipe.ingredients)
-	})
-	/**
-	 * Icons as <i> since I can't be bothered installing another package:
-	 * 			
-			{<span style={{ color: "" }}><i className="fa-solid fa-bowl-rice fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i className="fa-solid fa-cubes-stacked fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i className="fa-solid fa-seedling fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i className="fa-solid fa-utensils fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i className="fa-regular fa-clock fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i class="fa-solid fa-clock fa-xl"></i></span>}
+	}, [recipe])
 
-	 */
+
 	const isScreenSizeSmall = useMediaQuery(useTheme().breakpoints.down('sm'));
 
 	return (
@@ -67,6 +71,7 @@ const RecipeModal = ({ recipe }) => {
 			onClose={handleClose}
 			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}
 		>
+
 			<Card sx={{ minHeight: "80vh" }}>
 				{!isScreenSizeSmall ?
 					<IconButton onClick={() => handleClose()} sx={{ color: "mainbg.main", position: "absolute", right: "0", fontSize: "4em" }}>

@@ -10,7 +10,7 @@ import chosenRecipeState from '../atoms/chosenRecipeState';
 import recipesState from '../atoms/recipesState';
 import { useEffect, useState } from "react"
 
-const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServings, ingredientsAmount }) => {
+const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServings }) => {
 
 	const bowlIcon = <span style={{ color: "", verticalAlign: "center", display: "inline-block" }}><i className="fa-solid fa-bowl-rice fa-xl"></i></span>;
 
@@ -21,43 +21,28 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 	 * Modify the ingredients amount based on the new serving size value
 	*/
 
-
-	// Value lags behind
 	const [servings, setServings] = useState()
 	const [value, setValue] = useState("")
 
-	const changeIngredientsTest = (number) => {
 
-		// let ingredientsArray = recipeIngredients.map(element => {
-		// 	return element.amount;
-		// });
 
-		let items = [...recipeIngredients]
+	const changeIngredientsTest = (desiredServings) => {
+		let adjustedIngredients = [...recipeIngredients]
 
-		console.log(recipeIngredients)
+		const defaultServingSize = recServings;
 
-		for (let i = 0; i < items.length; i++) {
+		const conversionFactor = desiredServings / defaultServingSize;
+		console.log("converstion factor:", conversionFactor)
 
-			let item = { ...items[i] };
+		for (let i = 0; i < adjustedIngredients.length; i++) {
+			let ingredient = { ...adjustedIngredients[i] };
 
-			item.amount += number
+			ingredient.amount *= conversionFactor;
 
-			items[i] = item;
-
+			adjustedIngredients[i] = ingredient;
 		}
-		console.log(items)
 
-
-		console.log(number)
-
-
-		// let item = { ...items[i] };
-		// item.amount = 200
-
-		// put edited item back into array
-		// items[0] = item;
-
-		// console.log(items)
+		setRecipeIngredients(adjustedIngredients)
 	}
 
 	const handleServingChange = (e) => {
@@ -68,18 +53,14 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 	// useEffect(() => {
 	// 	// setServings(recServings)
 	// 	// changeIngredientsTest();
-	// }, [value])
-
-
-
+	// 	setValue(recServings)
+	// })
 
 	return (
 
 
 
 		<Box sx={{ minWidth: 120, maxWidth: 120, paddingBottom: "10px" }}>
-			{servings}
-			{value}
 			{/* {console.log(servingSize)} */}
 			<FormControl fullWidth>
 
@@ -89,8 +70,7 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 					label="Serving Size"
 					labelId="select-serving-size"
 					size='small'
-					variant="outlined"
-					displayEmpty
+					variant="standard"
 					value={value}
 					onChange={handleServingChange}
 				>
