@@ -10,38 +10,32 @@ import chosenRecipeState from '../atoms/chosenRecipeState';
 import recipesState from '../atoms/recipesState';
 import { useEffect, useState } from "react"
 
-const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServings }) => {
+const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServings, originalIngredients }) => {
 
 	const bowlIcon = <span style={{ color: "", verticalAlign: "center", display: "inline-block" }}><i className="fa-solid fa-bowl-rice fa-xl"></i></span>;
 
-	/** 
-	 * Set value to the recipe.serving as default => 
-	 * Copy recipe.serving into a new changable serving for the recipe => 
-	 * Modify the changeable serving size based on the value => 
-	 * Modify the ingredients amount based on the new serving size value
-	*/
-
-	const [servings, setServings] = useState()
 	const [value, setValue] = useState("")
 
 
 
 	const changeIngredientsTest = (desiredServings) => {
+		console.log(originalIngredients)
 		let adjustedIngredients = [...recipeIngredients]
 
 		const defaultServingSize = recServings;
 
+		// Sets the conversion factor.
+		// Eg 4 servings = 1, 6 servings = conversion factor of 1.5. 8serv = conversion factor of 2 (since it's double).
 		const conversionFactor = desiredServings / defaultServingSize;
-		console.log("converstion factor:", conversionFactor)
 
 		for (let i = 0; i < adjustedIngredients.length; i++) {
 			let ingredient = { ...adjustedIngredients[i] };
-
+			// Need to set ingredient amount to base value before changing it again
+			ingredient.amount = originalIngredients[i].amount
 			ingredient.amount *= conversionFactor;
 
 			adjustedIngredients[i] = ingredient;
 		}
-
 		setRecipeIngredients(adjustedIngredients)
 	}
 
@@ -50,11 +44,6 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 		changeIngredientsTest(e.target.value);
 	}
 
-	// useEffect(() => {
-	// 	// setServings(recServings)
-	// 	// changeIngredientsTest();
-	// 	setValue(recServings)
-	// })
 
 	return (
 

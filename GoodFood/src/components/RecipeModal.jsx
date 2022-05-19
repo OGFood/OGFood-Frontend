@@ -46,6 +46,7 @@ const RecipeModal = ({ recipe }) => {
 	const [recipeIngredients, setRecipeIngredients] = useState([])
 
 
+
 	const handleClose = () => {
 		setOpen(false);
 	};
@@ -103,6 +104,7 @@ const RecipeModal = ({ recipe }) => {
 							recipeIngredients={recipeIngredients}
 							setRecipeIngredients={setRecipeIngredients}
 							recServings={recipe.servings}
+							originalIngredients={recipe.ingredients}
 						/>
 
 						<Grid container justifyContent={"flex-start"} sx={{ mb: "1rem" }}>
