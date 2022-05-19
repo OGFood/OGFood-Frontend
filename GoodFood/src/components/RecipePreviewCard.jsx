@@ -20,6 +20,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useRecoilState } from "recoil";
 import recipeModalState from "../atoms/recipeModalState";
 import chosenRecipeState from "../atoms/chosenRecipeState"
+import { red } from '@mui/material/colors';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
 // TODO: Favicon / fav stuff, maybe share icon?
@@ -28,6 +30,7 @@ import chosenRecipeState from "../atoms/chosenRecipeState"
 const RecipePreviewCard = ({ recipe }) => {
 	const [expandIngr, setExpandIngr] = useState(-1)
 	const [expandDesc, setExpandDesc] = useState(-1)
+	const [favIcon, setFavIcon] = useState(-1)
 	const [openRecipeModal, setOpenRecipeModal] = useRecoilState(recipeModalState)
 	const [chosenRecipe, setChosenRecipe] = useRecoilState(chosenRecipeState)
 
@@ -37,6 +40,11 @@ const RecipePreviewCard = ({ recipe }) => {
 
 	const handleExpandIngredient = (i) => {
 		setExpandIngr(expandIngr === i ? -1 : i)
+
+	};
+
+	const handleFavIcon = (i) => {
+		setFavIcon(favIcon === i ? -1 : i)
 
 	};
 
@@ -81,9 +89,13 @@ const RecipePreviewCard = ({ recipe }) => {
 
 			</CardActionArea>
 			<CardActions>
+				<Typography textAlign="center" fontWeight="600" color="primary.dark">{<span style={{ color: "#A6B727" }}><i className="fa-regular fa-clock fa-xl"></i></span>} {recipe.aproxTime}min</Typography>
 				<Grid container justifyContent="right">
-					<IconButton onClick={() => handleExpandIngredient(recipe.id)}>
+					{/* <IconButton onClick={() => handleExpandIngredient(recipe.id)}>
 						{expandDesc === -1 ? <ExpandMoreOutlined color="primary" /> : <ExpandLessOutlined />}
+					</IconButton> */}
+					<IconButton onClick={() => handleFavIcon(recipe.id)} size="large" aria-label="add to favorites">
+						{favIcon === -1 ? <FavoriteIcon /> : <FavoriteIcon sx={{ color: "red" }} />}
 					</IconButton>
 				</Grid>
 			</CardActions>
