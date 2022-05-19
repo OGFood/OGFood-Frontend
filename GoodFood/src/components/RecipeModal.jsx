@@ -1,4 +1,4 @@
-import { useState, forwardRef } from "react";
+import { useState, forwardRef, useEffect } from "react";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Box from "@mui/material/Box";
@@ -22,32 +22,41 @@ import { IconButton, Toolbar } from "@mui/material";
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import SelectPortionSize from "./SelectPortionSize";
+
+/**
+ * Icons as <i> since I can't be bothered installing another package:
+ * 			
+		{<span style={{ color: "" }}><i className="fa-solid fa-bowl-rice fa-xl"></i></span>}
+		{<span style={{ color: "" }}><i className="fa-solid fa-cubes-stacked fa-xl"></i></span>}
+		{<span style={{ color: "" }}><i className="fa-solid fa-seedling fa-xl"></i></span>}
+		{<span style={{ color: "" }}><i className="fa-solid fa-utensils fa-xl"></i></span>}
+		{<span style={{ color: "" }}><i className="fa-regular fa-clock fa-xl"></i></span>}
+		{<span style={{ color: "" }}><i class="fa-solid fa-clock fa-xl"></i></span>}
+
+ */
 
 const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const RecipeModal = ({ recipe }) => {
-	const [open, setOpen] = useRecoilState(recipeModalState)
 
-	// TODO: Grid layout with columns for text areas / icons 
+	const [open, setOpen] = useRecoilState(recipeModalState)
+	const [recipeIngredients, setRecipeIngredients] = useState([])
+
 
 
 	const handleClose = () => {
 		setOpen(false);
 	};
 
-	/**
-	 * Icons as <i> since I can't be bothered installing another package:
-	 * 			
-			{<span style={{ color: "" }}><i className="fa-solid fa-bowl-rice fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i className="fa-solid fa-cubes-stacked fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i className="fa-solid fa-seedling fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i className="fa-solid fa-utensils fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i className="fa-regular fa-clock fa-xl"></i></span>}
-			{<span style={{ color: "" }}><i class="fa-solid fa-clock fa-xl"></i></span>}
 
-	 */
+	useEffect(() => {
+		setRecipeIngredients(recipe.ingredients)
+	}, [recipe])
+
+
 	const isScreenSizeSmall = useMediaQuery(useTheme().breakpoints.down('sm'));
 
 	return (
@@ -63,6 +72,7 @@ const RecipeModal = ({ recipe }) => {
 			onClose={handleClose}
 			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}
 		>
+
 			<Card sx={{ minHeight: "80vh" }}>
 				{!isScreenSizeSmall ?
 					<IconButton onClick={() => handleClose()} sx={{ color: "mainbg.main", position: "absolute", right: "0", fontSize: "4em" }}>
@@ -77,7 +87,6 @@ const RecipeModal = ({ recipe }) => {
 					image={recipe.imgUrl}
 					alt={recipe.name}
 				/>
-
 				<CardContent>
 					{isScreenSizeSmall
 						? <Typography gutterBottom variant="h4" color="primary.dark" noWrap={false}>
@@ -91,11 +100,18 @@ const RecipeModal = ({ recipe }) => {
 						</Divider>}
 					<Box>
 
+						<SelectPortionSize
+							recipeIngredients={recipeIngredients}
+							setRecipeIngredients={setRecipeIngredients}
+							recServings={recipe.servings}
+							originalIngredients={recipe.ingredients}
+						/>
+
 						<Grid container justifyContent={"flex-start"} sx={{ mb: "1rem" }}>
 							<Grid item >{<span style={{ color: "#A6B727" }}><i className="fa-solid fa-seedling fa-xl"></i></span>} </Grid>
-							{recipe.ingredients?.map((ing, index) =>
+							{recipeIngredients?.map((ing, index) =>
 								<Grid item key={index}>
-									<Chip sx={{ marginInline: "1px" }} label={ing.ingredient.name + " " + ing.amount + ing.unit} variant="outlined" />
+									<Chip sx={{ marginInline: "1px", marginBottom: "1px", fontWeight: "600" }} label={ing.ingredient.name + " " + ing.amount + ing.unit} variant="outlined" />
 								</Grid>
 							)}
 						</Grid>
