@@ -89,7 +89,8 @@ const RecipePreviewCard = ({ recipe }) => {
 
 			</CardActionArea>
 			<CardActions>
-				<Grid container justifyContent="left">
+				<Typography textAlign="center" fontWeight="600" color="primary.dark">{<span style={{ color: "#A6B727" }}><i className="fa-regular fa-clock fa-xl"></i></span>} {recipe.aproxTime}min</Typography>
+				<Grid container justifyContent="right">
 					{/* <IconButton onClick={() => handleExpandIngredient(recipe.id)}>
 						{expandDesc === -1 ? <ExpandMoreOutlined color="primary" /> : <ExpandLessOutlined />}
 					</IconButton> */}
