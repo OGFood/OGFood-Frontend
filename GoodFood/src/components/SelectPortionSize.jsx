@@ -8,15 +8,19 @@ import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import chosenRecipeState from '../atoms/chosenRecipeState';
 import recipesState from '../atoms/recipesState';
-import { useRecoilState, useRecoilValue } from "recoil"
 import { useEffect, useState } from "react"
 
 const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServings }) => {
 
-	// TODO: recipe.servings state
-	const [servings, setServings] = useState()
-	const [value, setValue] = useState("")
+	/** 
+	 * Set value to the recipe.serving as default => 
+	 * Copy recipe.serving into a new changable serving for the recipe => 
+	 * Modify the changeable serving size based on the value => 
+	 * Modify the ingredients amount based on the new serving size value
+	*/
 
+	const [servings, setServings] = useState()
+	const [value, setValue] = useState(servings)
 
 
 
@@ -39,6 +43,7 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 
 		<Box sx={{ minWidth: 120, maxWidth: 120, paddingBottom: "10px" }}>
 			{servings}
+			{value}
 			{/* {console.log(servingSize)} */}
 			<FormControl fullWidth>
 
@@ -48,7 +53,8 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 					variant="outlined"
 					labelId="select-serving-size"
 					id="serving-size"
-					defaultValue={servings}
+					defaultValue={recServings}
+					defaultOpen={false}
 					value={value}
 					label="Serving Size"
 					onChange={handleServingChange}
