@@ -111,7 +111,7 @@ const RecipeModal = ({ recipe }) => {
 							<Grid item >{<span style={{ color: "#A6B727" }}><i className="fa-solid fa-seedling fa-xl"></i></span>} </Grid>
 							{recipeIngredients?.map((ing, index) =>
 								<Grid item key={index}>
-									<Chip sx={{ marginInline: "1px" }} label={ing.ingredient.name + " " + ing.amount + ing.unit} variant="outlined" />
+									<Chip sx={{ marginInline: "1px", marginBottom: "1px", fontWeight: "600" }} label={ing.ingredient.name + " " + ing.amount + ing.unit} variant="outlined" />
 								</Grid>
 							)}
 						</Grid>
