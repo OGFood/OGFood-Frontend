@@ -10,7 +10,9 @@ import chosenRecipeState from '../atoms/chosenRecipeState';
 import recipesState from '../atoms/recipesState';
 import { useEffect, useState } from "react"
 
-const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServings }) => {
+const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServings, ingredientsAmount }) => {
+
+	const bowlIcon = <span style={{ color: "", verticalAlign: "center", display: "inline-block" }}><i className="fa-solid fa-bowl-rice fa-xl"></i></span>;
 
 	/** 
 	 * Set value to the recipe.serving as default => 
@@ -20,13 +22,38 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 	*/
 
 	const [servings, setServings] = useState()
-	const [value, setValue] = useState(servings)
+	const [value, setValue] = useState("")
 
+	const changeIngredientsTest = () => {
 
+		// let ingredientsArray = recipeIngredients.map(element => {
+		// 	return element.amount;
+		// });
+		let items = [...recipeIngredients]
+
+		// let item = { ...items[0] }
+		for (let i = 0; i < items.length; i++) {
+			let item = { ...items[i] };
+
+			let standardAmount = recipeIngredients[i].amount
+
+			item.amount = (standardAmount / 4) * value;
+
+			items[i] = item;
+		}
+		console.log(items)
+
+		// item.amount = 200
+
+		// put edited item back into array
+		// items[0] = item;
+
+		// console.log(items)
+	}
 
 	const handleServingChange = (e) => {
 
-		console.log(servings)
+		changeIngredientsTest();
 		setValue(e.target.value)
 	}
 
@@ -35,7 +62,7 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 	})
 
 
-	const bowlIcon = <span style={{ color: "", verticalAlign: "center", display: "inline-block" }}><i className="fa-solid fa-bowl-rice fa-xl"></i></span>;
+
 
 	return (
 
@@ -49,14 +76,13 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 
 				<InputLabel id="select-serving-size">Servings</InputLabel>
 				<Select
+					id="serving-size"
+					label="Serving Size"
+					labelId="select-serving-size"
 					size='small'
 					variant="outlined"
-					labelId="select-serving-size"
-					id="serving-size"
-					defaultValue={recServings}
-					defaultOpen={false}
+					displayEmpty
 					value={value}
-					label="Serving Size"
 					onChange={handleServingChange}
 				>
 					<MenuItem value={1}>1</MenuItem>
