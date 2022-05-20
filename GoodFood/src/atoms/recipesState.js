@@ -102,7 +102,7 @@ const recipesState = atom({
 			{ ingredient: { id: "", name: "eggs" }, amount: 3, unit: "pc" },
 			{ ingredient: { id: "", name: "butter" }, amount: 30, unit: "ml" },
 			{ ingredient: { id: "", name: "flour" }, amount: 3, unit: "dl" },],
-		description: "Pancake - a clear favourite! Simple base recipe for thin pancakes. Throw them in the pan and serve with jam, cream, or why not some ice-cream!",
+		description: "Pancake - a clear favourite! Simple base recipe for thin pancakes. Throw them in the pan and serve with jam, cream, or why not some ice-cream! Pancake - a clear favourite! Simple base recipe for thin pancakes. Throw them in the pan and serve with jam, cream, or why not some ice-cream!",
 		imgUrl: "https://cdn-rdb.arla.com/Files/arla-se/3249856695/32b74f1c-1632-4aee-aa3b-8fd449494835.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
 		instructions: ["Whisk the flour into the milk until it's a smooth mix. Add the rest of the milk, eggs and some salt.", "Let the mix rest for 10 minutes.", "Heat up some butter in a pan and pour the pancake-mix into the pan."],
 		aproxTime: 45,
@@ -112,3 +112,26 @@ const recipesState = atom({
 });
 
 export default recipesState;
+
+
+// {
+// 		name: "?",
+// 		ingredients: [
+// 			{ ingredient: {  name: "?" }, amount: ?, unit: "?"},
+// 			{ ingredient: {  name: "?" }, amount: ?, unit: "?"},
+// 			{ ingredient: {  name: "?" }, amount: ?, unit: "?" },
+// 			{ ingredient: {  name: "?" }, amount: ?, unit: "?"},
+// 			{ ingredient: {  name: "?" }, amount: ?, unit: "?" },
+// 			{ ingredient: {  name: "?" }, amount: ?, unit: "?"},
+// 			{ ingredient: {  name: "?" }, amount: ?, unit: "?" },
+// 			{ ingredient: {  name: "?" }, amount: ?, unit: "?" },
+// 			{ ingredient: {  name: "?" }, amount: ?, unit: "?" },
+// 			{ ingredient: {  name: "?" }, amount: ?, unit: "?" },
+// 			{ ingredient: {  name: "?" }, amount: ?, unit: "?" }],
+// 		description: "Nothing beats a hearthy meal of Pasta Bolognese. This recipe is easy to make and makes the perfect lunch or dinner. It tastes just as good the day after, so cook some extra!",
+// 		imgUrl: "https://cdn-rdb.arla.com/Files/arla-se/629559204/0a998d4e-d757-4ef1-9915-48189679c1eb.jpg?mode=crop&w=1269&h=715&ak=f525e733&hm=e78d4790",
+// 		instructions: ["Cut up the vegetables. Fry them in a bit of butter in a big pot for 10 minutes until lightly coloured. Add oregano.", "Fry the ground beef in a pan with butter. Add salt and pepper.", "Add tomatoes and milk to the pan and let it simmer for a minute or two until the sauce thickens."],
+// 		aproxTime: 60,
+// 		servings: 4,
+		
+// 	}

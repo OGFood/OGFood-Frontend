@@ -15,7 +15,7 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 
 	const bowlIcon = <span style={{ color: "", verticalAlign: "center", display: "inline-block" }}><i className="fa-solid fa-bowl-rice fa-xl"></i></span>;
 
-	const [value, setValue] = useState("")
+	const [selectedServings, setSelectedServings] = useState("");
 
 	// TODO: Reset value shown in MUI-SelectBox to the correct value for each recipe
 
@@ -41,15 +41,18 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 	}
 
 	const handleServingChange = (e) => {
-		setValue(e.target.value)
+		setSelectedServings(e.target.value)
 		changeIngredientsTest(e.target.value);
 	}
 
+	useEffect(() => {
+		setSelectedServings("")
+	}, [originalIngredients])
+
+
 	const displayIcons =
-		[...Array(value)].map((elem, index) =>
-
-			<span key={index} style={{ color: "primary.dark", verticalAlign: "center", display: "inline-block" }}><i className="fa-solid fa-bowl-rice fa-xl"></i></span>
-
+		[...Array(selectedServings ? selectedServings : recServings)].map((elem, index) =>
+			<span key={index} style={{ paddingRight: "3px", color: "primary.dark", verticalAlign: "center", display: "inline-block" }}><i className="fa-solid fa-bowl-rice fa-xl"></i></span>
 		)
 
 
@@ -60,16 +63,16 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 			<Typography>Servings</Typography>
 			<Box sx={{ minWidth: 50, paddingBottom: "10px" }}>
 
-				{/* {console.log(servingSize)} */}
-
 				<FormControl fullWidth>
-					{/* <InputLabel id="select-serving-size" sx={{ borderRadius: "1rem" }}> Servings </InputLabel> */}
 					<Select
 						sx={{ color: "primary.dark", textAlign: "center" }}
 						id="serving-size"
 						size='small'
 						variant="standard"
-						value={value}
+						// value={selectedServings}
+						defaultValue="" //<-- This is the magic
+						renderValue={() => selectedServings ? selectedServings : recServings}
+						displayEmpty={true}
 						onChange={handleServingChange}
 					>
 						<MenuItem value={1}>1</MenuItem>
@@ -77,37 +80,16 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 						<MenuItem value={4}>4</MenuItem>
 						<MenuItem value={6}>6</MenuItem>
 						<MenuItem value={8}>8</MenuItem>
+
 					</Select>
 
 				</FormControl>
 
-			</Box >
+			</Box>
 			<Typography color="primary.dark">{displayIcons}</Typography>
 
 		</Toolbar>
 
-
-
-		// Slider?
-		// const servings = [
-		// 	{ value: 1, label: "1" },
-		// 	{ value: 2, label: "2" },
-		// 	{ value: 4, label: "4" },
-		// 	{ value: 6, label: "6" },
-		// 	{ value: 8, label: "8" }
-		// ]
-		// <Box sx={{ width: "20vmax", justifyContent: "center", alignContent: "center", marginInline: "auto", textAlign: "center" }}>
-
-		// 	<Typography > Serving Size </Typography>
-		// 	<Slider
-		// 		max={8}
-		// 		min={1}
-		// 		defaultValue={4}
-		// 		step={null}
-		// 		valueLabelDisplay="auto"
-		// 		marks={servings}
-		// 	/>
-		// </Box>
 	)
 }
 

@@ -24,8 +24,7 @@ import recipesState from "../atoms/recipesState";
 import { fetchIngredients, fetchRecipes } from "../javascript/fetchFromOwnAPI";
 import filterRecipes from "../javascript/filterRecipes";
 
-// TODO: Make a proper "recipe-preview" card/paper.
-// TODO: Text shadow
+// TODO: When searching in autocomplete box => when enter is pressed, select first autocomplete suggestion
 
 const Main = () => {
 	const [selectedIngredients, setSelectedIngredients] = useState([])

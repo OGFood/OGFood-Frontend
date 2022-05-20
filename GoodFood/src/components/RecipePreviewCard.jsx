@@ -99,7 +99,7 @@ const RecipePreviewCard = ({ recipe }) => {
 					</IconButton>
 				</Grid>
 			</CardActions>
-		</Card >
+		</Card>
 	);
 }
 
