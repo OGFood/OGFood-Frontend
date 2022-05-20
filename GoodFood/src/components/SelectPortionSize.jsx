@@ -45,11 +45,16 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 		changeIngredientsTest(e.target.value);
 	}
 
+	const labelFix = () => {
+		if (value !== recServings)
+			return recServings
+		return value;
+	}
+
+
 	const displayIcons =
-		[...Array(value)].map((elem, index) =>
-
+		[...Array(value ? value : recServings)].map((elem, index) =>
 			<span key={index} style={{ color: "primary.dark", verticalAlign: "center", display: "inline-block" }}><i className="fa-solid fa-bowl-rice fa-xl"></i></span>
-
 		)
 
 
@@ -60,10 +65,8 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 			<Typography>Servings</Typography>
 			<Box sx={{ minWidth: 50, paddingBottom: "10px" }}>
 
-				{/* {console.log(servingSize)} */}
-
 				<FormControl fullWidth>
-					{/* <InputLabel id="select-serving-size" sx={{ borderRadius: "1rem" }}> Servings </InputLabel> */}
+					<InputLabel id="select-serving-size" sx={{ borderRadius: "1rem" }}> {labelFix()}</InputLabel>
 					<Select
 						sx={{ color: "primary.dark", textAlign: "center" }}
 						id="serving-size"
@@ -86,28 +89,6 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 
 		</Toolbar>
 
-
-
-		// Slider?
-		// const servings = [
-		// 	{ value: 1, label: "1" },
-		// 	{ value: 2, label: "2" },
-		// 	{ value: 4, label: "4" },
-		// 	{ value: 6, label: "6" },
-		// 	{ value: 8, label: "8" }
-		// ]
-		// <Box sx={{ width: "20vmax", justifyContent: "center", alignContent: "center", marginInline: "auto", textAlign: "center" }}>
-
-		// 	<Typography > Serving Size </Typography>
-		// 	<Slider
-		// 		max={8}
-		// 		min={1}
-		// 		defaultValue={4}
-		// 		step={null}
-		// 		valueLabelDisplay="auto"
-		// 		marks={servings}
-		// 	/>
-		// </Box>
 	)
 }
 
