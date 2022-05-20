@@ -1,0 +1,45 @@
+import { atom } from 'recoil';
+
+const ingredientsState = atom({
+	key: 'ingredients',
+	default: [
+		{ id: "", name: "chicken" },
+		{ id: "", name: "tomato" },
+		{ id: "", name: "pasta" },
+		{ id: "", name: "fish sauce" },
+		{ id: "", name: "dough" },
+		{ id: "", name: "noodles" },
+		{ id: "", name: "cucumber" },
+		{ id: "", name: "creme fraiche" },
+		{ id: "", name: "salmon" },
+		{ id: "", name: "ground beef" },
+		{ id: "", name: "black pepper" },
+		{ id: "", name: "salt" },
+		{ id: "", name: "lime" },
+		{ id: "", name: "cheese" },
+		{ id: "", name: "milk" },
+		{ id: "", name: "water" },
+		{ id: "", name: "onion" },
+		{ id: "", name: "chili flakes" },
+		{ id: "", name: "chili" },
+		{ id: "", name: "Pizza sauce" },
+		{ id: "", name: "flour" },
+		{ id: "", name: "salami" },
+		{ id: "", name: "yeast" },
+		{ id: "", name: "eggs" },
+		{ id: "", name: "butter" },
+		{ id: "", name: "potatoes" },
+		{ id: "", name: "sour cream" },
+		{ id: "", name: "cream sauce" },
+		{ id: "", name: "garlic clove" },
+		{ id: "", name: "chicken broth" },
+		{ id: "", name: "tomato paste" },
+		{ id: "", name: "carrots" },
+		{ id: "", name: "shrimp" },
+		{ id: "", name: "sweet chili sauce" },
+		{ id: "", name: "peanuts" },
+		{ id: "", name: "smoked ham" },
+	]
+});
+
+export default ingredientsState;
