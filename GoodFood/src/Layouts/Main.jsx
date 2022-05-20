@@ -25,6 +25,7 @@ import { fetchIngredients, fetchRecipes } from "../javascript/fetchFromOwnAPI";
 import filterRecipes from "../javascript/filterRecipes";
 
 // TODO: When searching in autocomplete box => when enter is pressed, select first autocomplete suggestion
+// TODO: Pasta bolognese recipe has weird serving size for the pasta
 
 const Main = () => {
 	const [selectedIngredients, setSelectedIngredients] = useState([])
@@ -49,7 +50,6 @@ const Main = () => {
 
 	return (
 		<Container sx={{ bgcolor: "mainbg.main", paddingBottom: "5rem" }} maxWidth="xl" >
-			{console.log(selectedIngredients)}
 			<Box sx={{
 				backgroundImage: `url(${FoodBg})`,
 				bgcolor: "primary.light",

@@ -68,7 +68,8 @@ const RecipeModal = ({ recipe }) => {
 	return (
 		<Dialog
 
-			scroll="body"
+			scroll="paper"
+
 			fullWidth={true}
 			maxWidth={"md"}
 			open={open}
@@ -79,7 +80,7 @@ const RecipeModal = ({ recipe }) => {
 			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}
 		>
 
-			<Card sx={{ minHeight: "80vh" }}>
+			<Card sx={{ minHeight: 1000, overflow: "scroll" }} >
 				{!isScreenSizeSmall ?
 					<IconButton onClick={() => handleClose()} sx={{ color: "mainbg.main", position: "absolute", right: "0", fontSize: "4em" }}>
 						<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 4px black)" }}></CancelOutlinedIcon>
