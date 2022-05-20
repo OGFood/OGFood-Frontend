@@ -25,14 +25,12 @@ import SelectPortionSize from "./SelectPortionSize";
 
 
 
-const AmountHelperModal = () => {
+const AmountHelperModal = ({ open, setOpen }) => {
 
 
-
-
-	// const handleClose = () => {
-	// 	setOpen(false);
-	// };
+	const handleClose = () => {
+		setOpen(false);
+	};
 
 	return (
 		<Dialog

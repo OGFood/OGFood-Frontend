@@ -23,6 +23,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SelectPortionSize from "./SelectPortionSize";
+import AmountHelperModal from "./amountHelperModal";
 
 
 /**
@@ -46,7 +47,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 const RecipeModal = ({ recipe }) => {
 
 	const [open, setOpen] = useRecoilState(recipeModalState)
-
+	// const [openIngHelper, setOpenIngHelper] = useState(false)
 	const [recipeIngredients, setRecipeIngredients] = useState([])
 
 
@@ -123,10 +124,17 @@ const RecipeModal = ({ recipe }) => {
 								</Grid>
 							)}
 							<Grid item>
-								<IconButton sx={{ padding: "3px" }}>
+
+
+								{/* <IconButton onClick={setOpenIngHelper(true)} sx={{ padding: "3px" }}>
 									{<span style={{ color: "#A6B727" }}><i className="fa-solid fa-circle-question fa-lg"></i></span>}
-								</IconButton>
+								</IconButton> */}
+
+
 							</Grid>
+
+
+							{/* {openIngHelper && <AmountHelperModal open={openIngHelper} setOpen={setOpenIngHelper} />} */}
 
 						</Grid>
 
