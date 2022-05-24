@@ -4,9 +4,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Theme from './style/muitheme'
 import { ThemeProvider } from '@mui/material/styles'
-import Header from './layouts/Header'
-import Footer from "./layouts/Footer"
-import Main from "./layouts/Main"
+import Header from './Layouts/Header'
+import Footer from "./Layouts/Footer"
+import Main from "./Layouts/Main"
 import './App.css'
 import ScrollToTopButton from "./components/ScrollToTopButton";
 
