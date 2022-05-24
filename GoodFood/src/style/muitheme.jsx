@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material/styles"
+import { createTheme, responsiveFontSizes } from "@mui/material/styles"
 
 const defaultTheme = createTheme();
 
@@ -35,5 +35,7 @@ const theme = createTheme({
 		fontFamily: ["Open Sans", "Segoe UI", "Tahoma", "sans-serif"].join(",")
 	},
 })
+
+
 
 export default theme;
