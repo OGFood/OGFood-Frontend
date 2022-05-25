@@ -40,38 +40,39 @@ const AmountHelperModal = ({ open, setOpen }) => {
 	};
 
 	const units = [
-		{ unit: "liter", short: "l", correlation: "1 l = 10 dl = 100 cl = 1000 ml" },
-		{ unit: "deciliter", short: "dl", correlation: "1 dl = 10 cl = 100 ml" },
-		{ unit: "centiliter", short: "cl", correlation: "	1 cl = 10 ml" },
-		{ unit: "mililiter", short: "ml", correlation: "1 ml = 1 krm" },
-		{ unit: "matsked", short: "msk", correlation: "1 msk = 3 tsk = 15 ml" },
-		{ unit: "tesked", short: "tsk", correlation: "1 tsk = 5 krm = 5 ml" },
-		{ unit: "kryddmått", short: "krm", correlation: "1 krm = 1 ml" },
-		{ unit: "piece", short: "pc", correlation: "" },
+		{ unit: "Kilo", short: "kg", correlation: "1 kg = 1000 g" },
+		{ unit: "gram", short: "g", correlation: "1 g = 1/1000 kg" },
+		{ unit: "Liter", short: "l", correlation: "1 l = 10 dl = 100 cl = 1000 ml" },
+		{ unit: "Deciliter", short: "dl", correlation: "1 dl = 10 cl = 100 ml" },
+		{ unit: "Centiliter", short: "cl", correlation: "	1 cl = 10 ml" },
+		{ unit: "Mililiter", short: "ml", correlation: "1 ml = 1 krm" },
+		{ unit: "Matsked", short: "msk", correlation: "1 msk = 3 tsk = 15 ml" },
+		{ unit: "Tesked", short: "tsk", correlation: "1 tsk = 5 krm = 5 ml" },
+		{ unit: "Kryddmått", short: "krm", correlation: "1 krm = 1 ml" },
+		{ unit: "Piece", short: "pc", correlation: "" },
 	]
 
 	return (
 		<Dialog
 			scroll="body"
-			fullWidth={true}
-			maxWidth={"xs"}
+			fullWidth={false}
+			maxWidth="xs"
 			open={open}
 			keepMounted
-			sx={{}}
 
 			onClose={handleClose}
 			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}>
 
-			<TableContainer >
-				<TableRow>
-					<TableCell> Unit </TableCell>
-					<TableCell> Shortening </TableCell>
-					<TableCell> Correlation </TableCell>
+			<TableContainer sx={{ wordWrap: "" }}>
+				<TableRow >
+					<TableCell sx={{ fontWeight: "medium" }} > Unit </TableCell>
+					<TableCell sx={{ fontWeight: "medium" }}> Shortening </TableCell>
+					<TableCell sx={{ fontWeight: "medium" }}> Correlation </TableCell>
 				</TableRow>
 				{units.map((unit) => (
 					<TableRow>
-						<TableCell>{unit.unit}</TableCell>
-						<TableCell>{unit.short}</TableCell>
+						<TableCell >{unit.unit}</TableCell>
+						<TableCell >{unit.short}</TableCell>
 						<TableCell>{unit.correlation}</TableCell>
 					</TableRow>
 				))}
