@@ -41,6 +41,7 @@ import AmountHelperModal from "./amountHelperModal";
  */
 
 // TODO: Style scrollbar 
+// TODO: Cover more of the screen on smaller sizes
 
 const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
@@ -130,7 +131,7 @@ const RecipeModal = ({ recipe }) => {
 							<Grid item>
 
 
-								{/* <IconButton onClick={setOpenIngHelper(true)} sx={{ padding: "3px" }}>
+								{/* <IconButton onClick={() => setOpenIngHelper(true)} sx={{ padding: "3px" }}>
 									{<span style={{ color: "#A6B727" }}><i className="fa-solid fa-circle-question fa-lg"></i></span>}
 								</IconButton> */}
 

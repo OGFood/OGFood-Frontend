@@ -22,7 +22,7 @@ const Header = () => {
 	}
 
 	const isScreenSizeSmall = useMediaQuery(useTheme().breakpoints.down('sm'));
-	const smallerThan300px = useMediaQuery("(min-width:301px")
+
 
 	return (
 		<>
@@ -55,7 +55,9 @@ const Header = () => {
 				</Toolbar>
 
 			</AppBar>
+
 			<Toolbar sx={{ marginTop: "3rem" }} />
+
 			<MenuDrawer />
 		</>
 	)
