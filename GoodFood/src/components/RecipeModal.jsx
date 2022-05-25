@@ -23,7 +23,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SelectPortionSize from "./SelectPortionSize";
-import AmountHelperModal from "./amountHelperModal";
+import AmountHelperModal from "./AmountHelperModal";
 
 
 /**
@@ -41,6 +41,7 @@ import AmountHelperModal from "./amountHelperModal";
  */
 
 // TODO: Style scrollbar 
+// TODO: Cover more of the screen on smaller sizes
 
 const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
@@ -49,7 +50,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 const RecipeModal = ({ recipe }) => {
 
 	const [open, setOpen] = useRecoilState(recipeModalState)
-	// const [openIngHelper, setOpenIngHelper] = useState(false)
+	const [openIngHelper, setOpenIngHelper] = useState(false)
 	const [recipeIngredients, setRecipeIngredients] = useState([])
 
 
@@ -66,6 +67,7 @@ const RecipeModal = ({ recipe }) => {
 
 
 	const isScreenSizeSmall = useMediaQuery(useTheme().breakpoints.down('sm'));
+	const isScreenSizeMedium = useMediaQuery(useTheme().breakpoints.down('md'));
 
 	return (
 		<Dialog
@@ -73,7 +75,7 @@ const RecipeModal = ({ recipe }) => {
 			scroll="paper"
 
 			fullWidth={true}
-			maxWidth={"md"}
+			maxWidth={"lg"}
 			open={open}
 			TransitionComponent={Transition}
 			sx={{ minWidth: "100%" }}
@@ -82,7 +84,7 @@ const RecipeModal = ({ recipe }) => {
 			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}
 		>
 
-			<Card sx={{ minHeight: "1000px", overflowY: "auto" }} >
+			<Card sx={{ minHeight: "950px", overflowY: "auto" }} >
 				{!isScreenSizeSmall ?
 					<IconButton onClick={() => handleClose()} sx={{ color: "mainbg.main", position: "absolute", right: "0", fontSize: "4em" }}>
 						<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 4px black)" }}></CancelOutlinedIcon>
@@ -129,15 +131,15 @@ const RecipeModal = ({ recipe }) => {
 							<Grid item>
 
 
-								{/* <IconButton onClick={setOpenIngHelper(true)} sx={{ padding: "3px" }}>
+								<IconButton onClick={() => setOpenIngHelper(true)} sx={{ padding: "3px" }}>
 									{<span style={{ color: "#A6B727" }}><i className="fa-solid fa-circle-question fa-lg"></i></span>}
-								</IconButton> */}
+								</IconButton>
 
 
 							</Grid>
 
 
-							{/* {openIngHelper && <AmountHelperModal open={openIngHelper} setOpen={setOpenIngHelper} />} */}
+							{openIngHelper && <AmountHelperModal open={openIngHelper} setOpen={setOpenIngHelper} />}
 
 						</Grid>
 

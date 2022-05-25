@@ -1,10 +1,20 @@
-import { createTheme } from "@mui/material/styles"
+import { Dialog } from "@mui/material";
+import { createTheme, responsiveFontSizes } from "@mui/material/styles"
 
 const defaultTheme = createTheme();
 
 // Overrides the default MUI-theme. View the documentation for usage. Can be used to change default styling of components/palettes/typography/etc.
 
-const theme = createTheme({
+let theme = createTheme({
+	breakpoints: {
+		values: {
+			xs: 0,
+			sm: 600,	//600
+			md: 900,	//900
+			lg: 1200,	//1200
+			xl: 1536,
+		},
+	},
 	palette: {
 		primary: {
 			main: "#A6B727"
@@ -34,6 +44,31 @@ const theme = createTheme({
 		},
 		fontFamily: ["Open Sans", "Segoe UI", "Tahoma", "sans-serif"].join(",")
 	},
+	components: {
+		MuiCssBaseline: {
+			styleOverrides: {
+
+				body: {
+					"&::-webkit-scrollbar": {
+						backgroundColor: "#fff",
+						width: "15px"
+					},
+					"&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": { //the scroll thingy
+						borderRadius: 10,
+						backgroundColor: '#888',
+						border: "3px solid #fff",
+
+					},
+					'&::-webkit-scrollbar-thumb:hover': {
+						background: '#555'
+					}
+				}
+			}
+		}
+	}
 })
+
+theme = responsiveFontSizes(theme)
+
 
 export default theme;
