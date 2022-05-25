@@ -35,7 +35,7 @@ const MenuDrawer = () => {
 
 	const [openMenu, setOpenMenu] = useRecoilState(openMenuDrawerState)
 
-	const headerBreakpoint = useMediaQuery("(min-width:300px")
+	const headerBreakpoint = useMediaQuery("(min-width:285px")
 
 	const fullMenu = useMediaQuery("(min-width:321px")
 
@@ -49,7 +49,8 @@ const MenuDrawer = () => {
 
 	const menuItems = [
 		{ icon: <AccountCircleRoundedIcon />, label: "Login | Sign Up" },
-		{ icon: <ContactMailRoundedIcon />, label: "Contact Us" }
+		{ icon: <ContactMailRoundedIcon />, label: "Contact Us" },
+		{ icon: <ContactMailRoundedIcon />, label: "Anotherbutton" },
 	]
 	return (
 
@@ -68,35 +69,21 @@ const MenuDrawer = () => {
 			<Box maxWidth="100%" backgroundColor="" height="100%" flexDirection="column"
 				sx={{ outline: "1px solid black", outlineOffset: "-1px" }}
 			>
-				<Box padding="1rem">
+				<Box padding="1rem" >
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus vero unde eaque omnis officia, voluptate ipsa itaque similique nostrum cumque molestias laudantium consequuntur minus quis aspernatur esse! Possimus, distinctio vitae!
 				</Box>
 				<Box >
 					<List>
 						{menuItems.map((menuItem) => (
-							<ListItemButton key={menuItem.label} sx={{ borderBottom: "1px solid", borderRight: "1px solid", borderLeft: "1px solid", "&:first-child": { borderTop: "1px solid" } }}>
-								<ListItemIcon sx={{ color: "primary.light" }}>{menuItem.icon}</ListItemIcon>
+							<ListItemButton key={menuItem.label} sx={{ borderBottom: "1px solid", borderRight: "1px solid", borderLeft: "1px solid", "&:first-child": { borderTop: "1px solid" }, backgroundColor: "white", "&:hover": { backgroundColor: "primary.light", } }}>
+								<ListItemIcon sx={{ color: "primary.dark" }}>{menuItem.icon}</ListItemIcon>
 								<ListItemText primary={menuItem.label} primaryTypographyProps={{ fontWeight: "medium" }} />
 							</ListItemButton>
 						))}
-						{/* <ListItemButton sx={{ border: "1px solid" }}>
-							<ListItemIcon><AccountCircleRoundedIcon color="primary" /></ListItemIcon>
-							<ListItemText> Login | Create User  </ListItemText>
-						</ListItemButton>
-
-
-						<ListItemButton sx={{ border: "1px solid", borderTop: "none" }}>
-							<ListItemIcon ><ContactMailRoundedIcon color="primary" /></ListItemIcon>
-							<ListItemText> Contact Us </ListItemText>
-						</ListItemButton> */}
-
 					</List>
 				</Box>
-
-
 			</Box>
-
-			<Box sx={{ verticalAlign: "middle", justifyContent: "center", display: "flex", outline: "1px solid", outlineOffset: "-1px", boxShadow: " 0 -1px 0 #faf0e6" }}>
+			<Box sx={{ verticalAlign: "middle", justifyContent: "center", display: "flex", outline: "1px solid", outlineOffset: "-1px", boxShadow: " 0 -1px 0 #faf0e6", backgroundColor: "primary.light" }}>
 				<img src={CompanyLogo} height="45px" style={{ paddingBottom: "5px" }}></img>
 			</Box>
 		</Drawer>
