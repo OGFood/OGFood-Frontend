@@ -75,7 +75,7 @@ const MenuDrawer = () => {
 				<Box >
 					<List>
 						{menuItems.map((menuItem) => (
-							<ListItemButton key={menuItem.label} sx={{ borderBottom: "1px solid", borderRight: "1px solid", borderLeft: "1px solid", "&:first-child": { borderTop: "1px solid" }, backgroundColor: "white", "&:hover": { backgroundColor: "primary.light", } }}>
+							<ListItemButton key={menuItem.label} sx={{ borderBottom: "1px solid", borderRight: "1px solid", borderLeft: "1px solid", "&:first-of-type": { borderTop: "1px solid" }, backgroundColor: "white", "&:hover": { backgroundColor: "primary.light", } }}>
 								<ListItemIcon sx={{ color: "primary.dark" }}>{menuItem.icon}</ListItemIcon>
 								<ListItemText primary={menuItem.label} primaryTypographyProps={{ fontWeight: "medium" }} />
 							</ListItemButton>
