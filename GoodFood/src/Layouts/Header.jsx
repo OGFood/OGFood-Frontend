@@ -17,18 +17,18 @@ const Header = () => {
 
 	const [openMenu, setOpenMenu] = useRecoilState(openMenuDrawerState)
 
-	const handleOpenMenu = () => {
-		setOpenMenu(true)
+	const handleMenuToggle = () => {
+		setOpenMenu(!openMenu)
 	}
 
 	const isScreenSizeSmall = useMediaQuery(useTheme().breakpoints.down('sm'));
 
 	return (
 		<>
-			<AppBar position="static">
+			<AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, }}>
 
 				<Toolbar sx={{ justifyContent: "" }}>
-					{!isScreenSizeSmall && <IconButton onClick={() => handleOpenMenu()} size="large" sx={{ color: "white", fontSize: "2.5rem" }}>
+					{!isScreenSizeSmall && <IconButton onClick={() => handleMenuToggle()} size="large" sx={{ color: "white", fontSize: "2.5rem" }}>
 						<MenuIcon fontSize='5rem' />
 					</IconButton>}
 
@@ -46,11 +46,12 @@ const Header = () => {
 							God Food
 						</Typography>
 					</Box>
-					{isScreenSizeSmall && <IconButton size="md" onClick={() => handleOpenMenu()} sx={{ color: "white", fontSize: "2.5rem" }}>
+					{isScreenSizeSmall && <IconButton size="md" onClick={() => handleMenuToggle()} sx={{ color: "white", fontSize: "2.5rem" }}>
 						<MenuIcon fontSize='5rem' />
 					</IconButton>}
 				</Toolbar>
 			</AppBar>
+			<Toolbar sx={{ marginTop: "3rem" }} />
 			<MenuDrawer />
 		</>
 	)

@@ -24,16 +24,24 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
 
+
 const MenuDrawer = () => {
 
 	const [openMenu, setOpenMenu] = useRecoilState(openMenuDrawerState)
 
+	const drawerWidth = 300;
 
 	return (
 
 		<Drawer anchor="left"
 			open={openMenu}
-			onClose={() => setOpenMenu(false)}>
+			onClose={() => setOpenMenu(false)}
+			sx={{
+				width: drawerWidth,
+				flexShrink: 0,
+				[`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+			}}
+		>
 			<Typography> Hii </Typography>
 		</Drawer>
 	)
