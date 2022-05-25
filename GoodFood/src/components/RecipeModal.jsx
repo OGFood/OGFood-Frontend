@@ -40,6 +40,9 @@ import AmountHelperModal from "./amountHelperModal";
 		
  */
 
+// TODO: Style scrollbar 
+// TODO: Cover more of the screen on smaller sizes
+
 const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -64,6 +67,7 @@ const RecipeModal = ({ recipe }) => {
 
 
 	const isScreenSizeSmall = useMediaQuery(useTheme().breakpoints.down('sm'));
+	const isScreenSizeMedium = useMediaQuery(useTheme().breakpoints.down('md'));
 
 	return (
 		<Dialog
@@ -71,7 +75,7 @@ const RecipeModal = ({ recipe }) => {
 			scroll="paper"
 
 			fullWidth={true}
-			maxWidth={"md"}
+			maxWidth={"lg"}
 			open={open}
 			TransitionComponent={Transition}
 			sx={{ minWidth: "100%" }}
@@ -80,12 +84,12 @@ const RecipeModal = ({ recipe }) => {
 			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}
 		>
 
-			<Card sx={{ minHeight: 1000, overflow: "scroll" }} >
+			<Card sx={{ minHeight: "950px", overflowY: "auto" }} >
 				{!isScreenSizeSmall ?
 					<IconButton onClick={() => handleClose()} sx={{ color: "mainbg.main", position: "absolute", right: "0", fontSize: "4em" }}>
 						<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 4px black)" }}></CancelOutlinedIcon>
 					</IconButton> :
-					<IconButton onClick={() => handleClose()} sx={{ color: "primary.light", position: "absolute", right: "0", bottom: "0", fontSize: "4em" }}>
+					<IconButton onClick={() => handleClose()} sx={{ color: "primary.light", position: "fixed", right: "1px", bottom: "0px", fontSize: "3em" }}>
 						<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 1px black)" }}></CancelOutlinedIcon>
 					</IconButton>}
 				<CardMedia
@@ -127,7 +131,7 @@ const RecipeModal = ({ recipe }) => {
 							<Grid item>
 
 
-								{/* <IconButton onClick={setOpenIngHelper(true)} sx={{ padding: "3px" }}>
+								{/* <IconButton onClick={() => setOpenIngHelper(true)} sx={{ padding: "3px" }}>
 									{<span style={{ color: "#A6B727" }}><i className="fa-solid fa-circle-question fa-lg"></i></span>}
 								</IconButton> */}
 

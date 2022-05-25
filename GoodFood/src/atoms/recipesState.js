@@ -6,7 +6,7 @@ const recipesState = atom({
 		name: "Pasta Bolognese",
 		id: 1,
 		ingredients: [
-			{ ingredient: { id: "", name: "pasta" }, amount: 85, unit: "g" },
+			{ ingredient: { id: "", name: "pasta" }, amount: 300, unit: "g" },
 			{ ingredient: { id: "", name: "ground beef" }, amount: 400, unit: "g" },
 			{ ingredient: { id: "", name: "garlic clove" }, amount: 2, unit: "pc" },
 			{ ingredient: { id: "", name: "tomatoes" }, amount: 400, unit: "g" },
