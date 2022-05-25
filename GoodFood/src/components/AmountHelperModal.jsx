@@ -75,58 +75,6 @@ const AmountHelperModal = ({ open, setOpen }) => {
 						<TableCell>{unit.correlation}</TableCell>
 					</TableRow>
 				))}
-				{/* <table class="table">
-					<tbody><tr>
-						<th>Unit</th>
-						<th>Shortening</th>
-						<th>Samband</th>
-					</tr>
-						<tr>
-							<td>liter</td>
-							<td>l</td>
-							<td>1 l = 10 dl = 100 cl = 1000 ml</td>
-						</tr>
-						<tr>
-							<td>deciliter</td>
-							<td>dl</td>
-							<td>1 dl = 10 cl = 100 ml</td>
-						</tr>
-						<tr>
-							<td>centiliter</td>
-							<td>cl</td>
-							<td>1 cl = 10 ml</td>
-						</tr>
-						<tr>
-							<td>milliliter</td>
-							<td>ml</td>
-							<td>1 ml = 1 krm</td>
-						</tr>
-						<tr>
-							<td>matsked</td>
-							<td>msk</td>
-							<td>1 msk = 3 tsk = 15 ml</td>
-						</tr>
-						<tr>
-							<td>tesked</td>
-							<td>tsk</td>
-							<td>1 tsk = 5 krm = 5 ml</td>
-						</tr>
-						<tr>
-							<td>kryddmått</td>
-							<td>krm</td>
-							<td>1 krm = 1 ml</td>
-						</tr>
-						<tr>
-							<td>kaffekopp</td>
-							<td>kkp</td>
-							<td>1 kkp = 1,5 dl</td>
-						</tr>
-						<tr>
-							<td>glas</td>
-							<td>glas</td>
-							<td>1 glas = 2 dl</td>
-						</tr>
-					</tbody></table> */}
 			</TableContainer>
 		</Dialog>
 	)
