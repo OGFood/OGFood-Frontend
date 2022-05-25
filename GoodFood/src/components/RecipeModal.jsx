@@ -82,7 +82,7 @@ const RecipeModal = ({ recipe }) => {
 			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}
 		>
 
-			<Card sx={{ minHeight: "1000px", overflowY: "auto" }} >
+			<Card sx={{ minHeight: "950px", overflowY: "auto" }} >
 				{!isScreenSizeSmall ?
 					<IconButton onClick={() => handleClose()} sx={{ color: "mainbg.main", position: "absolute", right: "0", fontSize: "4em" }}>
 						<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 4px black)" }}></CancelOutlinedIcon>

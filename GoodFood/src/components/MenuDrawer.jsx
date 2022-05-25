@@ -22,6 +22,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import Toolbar from '@mui/material/Toolbar';
 
 
 
@@ -29,6 +30,7 @@ const MenuDrawer = () => {
 
 	const [openMenu, setOpenMenu] = useRecoilState(openMenuDrawerState)
 
+	const smallerThan300px = useMediaQuery("(min-width:300px")
 	const drawerWidth = 300;
 
 	return (
@@ -37,12 +39,20 @@ const MenuDrawer = () => {
 			open={openMenu}
 			onClose={() => setOpenMenu(false)}
 			sx={{
-				width: drawerWidth,
-				flexShrink: 0,
-				[`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+				width: drawerWidth, flexShrink: 0,
+				[`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', backgroundColor: "mainbg.main" },
+
 			}}
 		>
+			{smallerThan300px ? <Toolbar sx={{ paddingTop: "8rem" }} /> : <Toolbar sx={{ paddingTop: "10rem" }} />}
+
+			{/* <Box maxWidth="99%" backgroundColor="" height="100%" boxShadow="5px 5px 5px inset black" sx={{ flexDirection: "column", whiteSpace: "normal" }}> */}
 			<Typography> Hii </Typography>
+			<Typography> Hii </Typography>
+			<Typography> Hii </Typography>
+			<Typography> Hii </Typography>
+			{/* </Box> */}
+
 		</Drawer>
 	)
 }

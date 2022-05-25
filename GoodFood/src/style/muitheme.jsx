@@ -1,3 +1,4 @@
+import { Dialog } from "@mui/material";
 import { createTheme, responsiveFontSizes } from "@mui/material/styles"
 
 const defaultTheme = createTheme();
@@ -34,6 +35,28 @@ let theme = createTheme({
 		},
 		fontFamily: ["Open Sans", "Segoe UI", "Tahoma", "sans-serif"].join(",")
 	},
+	components: {
+		MuiCssBaseline: {
+			styleOverrides: {
+
+				body: {
+					"&::-webkit-scrollbar": {
+						backgroundColor: "#fff",
+						width: "15px"
+					},
+					"&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": { //the scroll thingy
+						borderRadius: 10,
+						backgroundColor: '#888',
+						border: "3px solid #fff",
+
+					},
+					'&::-webkit-scrollbar-thumb:hover': {
+						background: '#555'
+					}
+				}
+			}
+		}
+	}
 })
 
 theme = responsiveFontSizes(theme)
