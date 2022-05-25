@@ -33,7 +33,7 @@ const MenuDrawer = () => {
 
 	const [openMenu, setOpenMenu] = useRecoilState(openMenuDrawerState)
 
-	const smallerThan300px = useMediaQuery("(min-width:300px")
+	const headerBreakpoint = useMediaQuery("(min-width:288px")
 	const drawerWidth = 300;
 
 	return (
@@ -47,10 +47,10 @@ const MenuDrawer = () => {
 
 			}}
 		>
-			{/* {smallerThan300px ? <Toolbar sx={{ paddingTop: "8rem" }} /> : <Toolbar sx={{ paddingTop: "10rem" }} />} */}
+			{!headerBreakpoint ? <Toolbar sx={{ paddingTop: "7.5rem" }} /> : <Toolbar sx={{ paddingTop: "4.7rem" }} />}
 
 			<Box maxWidth="100%" backgroundColor="" height="100%" flexDirection="column"
-				sx={{ marginTop: { xs: "7.9rem", sm: "5.3em" }, boxShadow: "5px 5px 5px inset black, -5px -5px 5px inset black" }}
+				sx={{ boxShadow: "5px 5px 5px inset black, -5px -5px 5px inset black" }}
 			>
 				<Box padding="1rem">
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus vero unde eaque omnis officia, voluptate ipsa itaque similique nostrum cumque molestias laudantium consequuntur minus quis aspernatur esse! Possimus, distinctio vitae!

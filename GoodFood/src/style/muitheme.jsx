@@ -9,9 +9,9 @@ let theme = createTheme({
 	breakpoints: {
 		values: {
 			xs: 0,
-			sm: 340,
-			md: 600,
-			lg: 900,
+			sm: 600,	//600
+			md: 900,	//900
+			lg: 1200,	//1200
 			xl: 1536,
 		},
 	},

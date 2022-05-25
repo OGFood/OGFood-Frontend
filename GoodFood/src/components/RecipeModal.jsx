@@ -65,7 +65,8 @@ const RecipeModal = ({ recipe }) => {
 	}, [recipe])
 
 
-	const isScreenSizeSmall = useMediaQuery(useTheme().breakpoints.down('md'));
+	const isScreenSizeSmall = useMediaQuery(useTheme().breakpoints.down('sm'));
+	const isScreenSizeMedium = useMediaQuery(useTheme().breakpoints.down('md'));
 
 	return (
 		<Dialog

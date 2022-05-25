@@ -22,6 +22,7 @@ const Header = () => {
 	}
 
 	const isScreenSizeSmall = useMediaQuery(useTheme().breakpoints.down('sm'));
+	const smallerThan300px = useMediaQuery("(min-width:301px")
 
 	return (
 		<>
@@ -39,10 +40,12 @@ const Header = () => {
 							component="h1"
 							textAlign={"center"}
 							color={"white"}
+							sx={{ textAlign: { xs: "left", sm: "center" }, verticalAlign: "middle" }}
+
 						>
-							<IconButton size='small' disableRipple={true} focusRipple={false} sx={{ ":hover": { cursor: "inherit" } }}>
-								{!isScreenSizeSmall ? <img src={Logo} alt="God food logo" ></img> : <img src={Logo} style={{ maxWidth: "70px" }} alt="God food logo" ></img>}
-							</IconButton>
+
+							{!isScreenSizeSmall ? <img src={Logo} style={{ verticalAlign: "middle" }} alt="God food logo" ></img> : <img src={Logo} style={{ maxWidth: "75px", verticalAlign: "middle" }} alt="God food logo" ></img>}
+
 							God Food
 						</Typography>
 					</Box>
