@@ -31,12 +31,12 @@ const Header = () => {
 						color={"white"}
 					>
 						<IconButton size='small' disableRipple={true} focusRipple={false} sx={{ ":hover": { cursor: "inherit" } }}>
-							<img src={Logo} ></img>
+							{!isScreenSizeSmall ? <img src={Logo} alt="God food logo" ></img> : <img src={Logo} style={{ maxWidth: "70px" }} alt="God food logo" ></img>}
 						</IconButton>
 						God Food
 					</Typography>
 				</Box>
-				{isScreenSizeSmall && <IconButton size="large" sx={{ color: "white", fontSize: "2.5rem" }}>
+				{isScreenSizeSmall && <IconButton size="md" sx={{ color: "white", fontSize: "2.5rem" }}>
 					<MenuIcon fontSize='5rem' />
 				</IconButton>}
 			</Toolbar>
