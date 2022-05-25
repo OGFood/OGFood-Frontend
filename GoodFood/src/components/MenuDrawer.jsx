@@ -31,8 +31,10 @@ const MenuDrawer = () => {
 
 	return (
 
-		<Drawer anchor="left">
-
+		<Drawer anchor="left"
+			open={openMenu}
+			onClose={() => setOpenMenu(false)}>
+			<Typography> Hii </Typography>
 		</Drawer>
 	)
 }

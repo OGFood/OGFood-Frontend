@@ -8,39 +8,51 @@ import Logo from "../assets/images/logo-notext-white-small.png"
 import MenuIcon from '@mui/icons-material/Menu';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import MenuDrawer from "../components/MenuDrawer"
+import { useRecoilState } from "recoil";
+import openMenuDrawerState from "../atoms/openMenuDrawerState";
 
 // TODO: Add Menu Icon + Drawer when more functionality is in place (ex login/user information)
 const Header = () => {
 
+	const [openMenu, setOpenMenu] = useRecoilState(openMenuDrawerState)
+
+	const handleOpenMenu = () => {
+		setOpenMenu(true)
+	}
+
 	const isScreenSizeSmall = useMediaQuery(useTheme().breakpoints.down('sm'));
 
 	return (
-		<AppBar position="static">
+		<>
+			<AppBar position="static">
 
-			<Toolbar sx={{ justifyContent: "" }}>
-				{!isScreenSizeSmall && <IconButton size="large" sx={{ color: "white", fontSize: "2.5rem" }}>
-					<MenuIcon fontSize='5rem' />
-				</IconButton>}
+				<Toolbar sx={{ justifyContent: "" }}>
+					{!isScreenSizeSmall && <IconButton onClick={() => handleOpenMenu()} size="large" sx={{ color: "white", fontSize: "2.5rem" }}>
+						<MenuIcon fontSize='5rem' />
+					</IconButton>}
 
-				<Box flexDirection="column" flexGrow="1" justifyContent="center" alignItems="center">
+					<Box flexDirection="column" flexGrow="1" justifyContent="center" alignItems="center">
 
-					<Typography
-						variant="h2"
-						component="h1"
-						textAlign={"center"}
-						color={"white"}
-					>
-						<IconButton size='small' disableRipple={true} focusRipple={false} sx={{ ":hover": { cursor: "inherit" } }}>
-							{!isScreenSizeSmall ? <img src={Logo} alt="God food logo" ></img> : <img src={Logo} style={{ maxWidth: "70px" }} alt="God food logo" ></img>}
-						</IconButton>
-						God Food
-					</Typography>
-				</Box>
-				{isScreenSizeSmall && <IconButton size="md" sx={{ color: "white", fontSize: "2.5rem" }}>
-					<MenuIcon fontSize='5rem' />
-				</IconButton>}
-			</Toolbar>
-		</AppBar>
+						<Typography
+							variant="h2"
+							component="h1"
+							textAlign={"center"}
+							color={"white"}
+						>
+							<IconButton size='small' disableRipple={true} focusRipple={false} sx={{ ":hover": { cursor: "inherit" } }}>
+								{!isScreenSizeSmall ? <img src={Logo} alt="God food logo" ></img> : <img src={Logo} style={{ maxWidth: "70px" }} alt="God food logo" ></img>}
+							</IconButton>
+							God Food
+						</Typography>
+					</Box>
+					{isScreenSizeSmall && <IconButton size="md" onClick={() => handleOpenMenu()} sx={{ color: "white", fontSize: "2.5rem" }}>
+						<MenuIcon fontSize='5rem' />
+					</IconButton>}
+				</Toolbar>
+			</AppBar>
+			<MenuDrawer />
+		</>
 	)
 
 
