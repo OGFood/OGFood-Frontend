@@ -10,8 +10,8 @@ let theme = createTheme({
 		values: {
 			xs: 0,
 			sm: 340,
-			md: 900,
-			lg: 1200,
+			md: 600,
+			lg: 900,
 			xl: 1536,
 		},
 	},

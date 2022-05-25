@@ -65,7 +65,7 @@ const RecipeModal = ({ recipe }) => {
 	}, [recipe])
 
 
-	const isScreenSizeSmall = useMediaQuery(useTheme().breakpoints.down('sm'));
+	const isScreenSizeSmall = useMediaQuery(useTheme().breakpoints.down('md'));
 
 	return (
 		<Dialog
@@ -73,7 +73,7 @@ const RecipeModal = ({ recipe }) => {
 			scroll="paper"
 
 			fullWidth={true}
-			maxWidth={"md"}
+			maxWidth={"lg"}
 			open={open}
 			TransitionComponent={Transition}
 			sx={{ minWidth: "100%" }}
