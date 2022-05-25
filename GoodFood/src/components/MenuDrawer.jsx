@@ -28,6 +28,8 @@ import Toolbar from '@mui/material/Toolbar';
 
 const MenuDrawer = () => {
 
+	//TODO: Temporary on small screen sizes, permanent on larger screen sizes
+
 	const [openMenu, setOpenMenu] = useRecoilState(openMenuDrawerState)
 
 	const smallerThan300px = useMediaQuery("(min-width:300px")
