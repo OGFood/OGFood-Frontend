@@ -23,6 +23,7 @@ import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
+import CompanyLogo from "../assets/images/c-logo.png"
 
 
 
@@ -46,15 +47,26 @@ const MenuDrawer = () => {
 
 			}}
 		>
-			{smallerThan300px ? <Toolbar sx={{ paddingTop: "8rem" }} /> : <Toolbar sx={{ paddingTop: "10rem" }} />}
+			{/* {smallerThan300px ? <Toolbar sx={{ paddingTop: "8rem" }} /> : <Toolbar sx={{ paddingTop: "10rem" }} />} */}
 
-			{/* <Box maxWidth="99%" backgroundColor="" height="100%" boxShadow="5px 5px 5px inset black" sx={{ flexDirection: "column", whiteSpace: "normal" }}> */}
-			<Typography> Hii </Typography>
-			<Typography> Hii </Typography>
-			<Typography> Hii </Typography>
-			<Typography> Hii </Typography>
-			{/* </Box> */}
+			<Box maxWidth="100%" backgroundColor="" height="100%" flexDirection="column"
+				sx={{ marginTop: { xs: "7.9rem", sm: "5.3em" }, boxShadow: "5px 5px 5px inset black, -5px -5px 5px inset black" }}
+			>
+				<Box padding="1rem">
+					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus vero unde eaque omnis officia, voluptate ipsa itaque similique nostrum cumque molestias laudantium consequuntur minus quis aspernatur esse! Possimus, distinctio vitae!
+				</Box>
+				<Box paddingLeft="1rem">
+					<Typography> Item 1 </Typography>
+					<Typography> Item 2 </Typography>
+					<Typography> Item 3 </Typography>
+				</Box>
 
+
+			</Box>
+
+			<Box sx={{ verticalAlign: "middle", justifyContent: "center", display: "flex" }}>
+				<img src={CompanyLogo} height="45px" style={{ paddingBottom: "5px" }}></img>
+			</Box>
 		</Drawer>
 	)
 }

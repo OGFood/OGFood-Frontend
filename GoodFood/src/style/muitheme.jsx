@@ -6,6 +6,15 @@ const defaultTheme = createTheme();
 // Overrides the default MUI-theme. View the documentation for usage. Can be used to change default styling of components/palettes/typography/etc.
 
 let theme = createTheme({
+	breakpoints: {
+		values: {
+			xs: 0,
+			sm: 340,
+			md: 900,
+			lg: 1200,
+			xl: 1536,
+		},
+	},
 	palette: {
 		primary: {
 			main: "#A6B727"
