@@ -10,6 +10,8 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { useRecoilState } from 'recoil';
+import userLoggedInState from '../atoms/userLoggedInState';
 
 
 
@@ -18,6 +20,10 @@ import Container from '@mui/material/Container';
 
 const LoginForm = () => {
 
+	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
+
+
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
@@ -25,8 +31,15 @@ const LoginForm = () => {
 			email: data.get('email'),
 			password: data.get('password'),
 		})
+		setUserLoggedIn(true)
+		console.log("user is signed in")
 	};
 
+	const handleLogout = (e) => {
+		e.preventDefault();
+		setUserLoggedIn(false)
+		console.log("user is logged out")
+	}
 
 	return (
 		<Box
@@ -65,14 +78,25 @@ const LoginForm = () => {
 					autoComplete="new-password"
 				/>
 
-				<Button
-					type="submit"
-					fullWidth
-					variant="contained"
-					sx={{ mt: 3, mb: 2 }}
-				>
-					Sign In
-				</Button>
+				{!userLoggedIn
+					? <Button
+						type="submit"
+						fullWidth
+						variant="contained"
+						sx={{ mt: 3, mb: 2 }}
+					>
+						Sign In
+					</Button>
+					: <Button
+						type=""
+						onClick={(e) => handleLogout(e)}
+						fullWidth
+						variant="contained"
+						sx={{ mt: 3, mb: 2 }}
+					>
+						Log out
+					</Button>}
+
 				<Box container textAlign="center">
 					<Link href="#" variant="body2">
 						Forgot your password?

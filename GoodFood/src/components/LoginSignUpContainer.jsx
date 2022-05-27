@@ -23,7 +23,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Paper from "@mui/material/Paper"
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-
+import userLoggedInState from '../atoms/userLoggedInState';
 
 const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="left" ref={ref} {...props} />;
@@ -51,7 +51,7 @@ function TabPanel(props) {
 }
 
 const LoginSignUpContainer = () => {
-
+	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
 	const [openContainer, setOpenContainer] = useRecoilState(openLoginSignUpState)
 	const [value, setValue] = useState(1);
 
@@ -82,11 +82,12 @@ const LoginSignUpContainer = () => {
 			<Paper sx={{ minHeight: "550px" }} >
 				<Tabs centered value={value} onChange={handleChange}>
 					<Tab label="Sign In" value={1} />
-					<Tab label="Sign Up" value={2} />
+					{userLoggedIn ? <Tab label="Settings" value={2} /> : <Tab label="Sign Up" value={2} />}
 				</Tabs>
 				<TabPanel value={value} index={1}>
 					<LoginForm />
 				</TabPanel>
+
 				<TabPanel value={value} index={2}>
 					<SignUpForm />
 				</TabPanel>

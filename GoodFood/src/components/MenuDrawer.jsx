@@ -28,7 +28,7 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import ContactMailRoundedIcon from '@mui/icons-material/ContactMailRounded';
 import openLoginSignUpState from "../atoms/openLoginSignUpState";
 import LoginSignUpContainer from "./LoginSignUpContainer";
-
+import userLoggedInState from '../atoms/userLoggedInState';
 
 
 const MenuDrawer = () => {
@@ -37,7 +37,7 @@ const MenuDrawer = () => {
 
 	const [openMenu, setOpenMenu] = useRecoilState(openMenuDrawerState)
 	const [openContainer, setOpenContainer] = useRecoilState(openLoginSignUpState)
-
+	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
 
 	const headerBreakpoint = useMediaQuery("(min-width:285px")
 	const fullMenu = useMediaQuery("(min-width:321px")
@@ -54,8 +54,10 @@ const MenuDrawer = () => {
 		setOpenContainer(true)
 	}
 
+	const switchLabel = userLoggedIn ? "Sign out | Settings" : "Sign In | Sign Up"
+
 	const menuItems = [
-		{ icon: <AccountCircleRoundedIcon style={{ fontSize: "32px" }} />, label: "Sign In | Sign Up", func: handleOpenLoginContainer },
+		{ icon: <AccountCircleRoundedIcon style={{ fontSize: "32px" }} />, label: switchLabel, func: handleOpenLoginContainer },
 		{ icon: <ContactMailRoundedIcon style={{ fontSize: "32px" }} />, label: "Contact Us", },
 	]
 

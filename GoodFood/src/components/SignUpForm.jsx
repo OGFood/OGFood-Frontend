@@ -11,6 +11,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import userLoggedInState from '../atoms/userLoggedInState';
+import { useRecoilState } from 'recoil';
 
 
 
@@ -18,6 +20,8 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
 
 const SignUpForm = () => {
+
+	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
 
 
 
