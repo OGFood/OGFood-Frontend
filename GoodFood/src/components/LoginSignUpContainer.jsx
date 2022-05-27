@@ -24,6 +24,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 
+
 const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="left" ref={ref} {...props} />;
 });
@@ -59,9 +60,10 @@ const LoginSignUpContainer = () => {
 		>
 
 			<Tabs value={value} onChange={handleChange}>
-				<Tab label="Login" />
-				<Tab label="Sign Up" />
+				<Tab label="Login" value={1} />
+				<Tab label="Sign Up" value={2} />
 			</Tabs>
+
 
 
 		</Dialog>
