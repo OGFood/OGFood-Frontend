@@ -55,7 +55,7 @@ const MenuDrawer = () => {
 	}
 
 	const menuItems = [
-		{ icon: <AccountCircleRoundedIcon style={{ fontSize: "32px" }} />, label: "Login | Sign Up", func: handleOpenLoginContainer },
+		{ icon: <AccountCircleRoundedIcon style={{ fontSize: "32px" }} />, label: "Sign In | Sign Up", func: handleOpenLoginContainer },
 		{ icon: <ContactMailRoundedIcon style={{ fontSize: "32px" }} />, label: "Contact Us", },
 	]
 
