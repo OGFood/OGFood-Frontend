@@ -26,6 +26,8 @@ import Toolbar from '@mui/material/Toolbar';
 import CompanyLogo from "../assets/images/c-logo.png"
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import ContactMailRoundedIcon from '@mui/icons-material/ContactMailRounded';
+import openLoginSignUpState from "../atoms/openLoginSignUpState";
+import LoginSignUpContainer from "./LoginSignUpContainer";
 
 
 
@@ -34,11 +36,11 @@ const MenuDrawer = () => {
 	//TODO: Temporary on small screen sizes, permanent on larger screen sizes
 
 	const [openMenu, setOpenMenu] = useRecoilState(openMenuDrawerState)
+	const [openContainer, setOpenContainer] = useRecoilState(openLoginSignUpState)
+
 
 	const headerBreakpoint = useMediaQuery("(min-width:285px")
-
 	const fullMenu = useMediaQuery("(min-width:321px")
-
 	const drawerWidth = () => {
 		if (!fullMenu) {
 			return "100%";
@@ -47,10 +49,18 @@ const MenuDrawer = () => {
 	}
 
 
+	const handleOpenLoginContainer = () => {
+		console.log("click")
+		setOpenContainer(true)
+	}
+
 	const menuItems = [
-		{ icon: <AccountCircleRoundedIcon style={{ fontSize: "32px" }} />, label: "Login | Sign Up" },
-		{ icon: <ContactMailRoundedIcon style={{ fontSize: "32px" }} />, label: "Contact Us" },
+		{ icon: <AccountCircleRoundedIcon style={{ fontSize: "32px" }} />, label: "Login | Sign Up", func: handleOpenLoginContainer },
+		{ icon: <ContactMailRoundedIcon style={{ fontSize: "32px" }} />, label: "Contact Us", },
 	]
+
+
+
 	return (
 
 		<Drawer anchor="left"
@@ -66,7 +76,7 @@ const MenuDrawer = () => {
 			{!headerBreakpoint ? <Toolbar sx={{ paddingTop: "7.6rem" }} /> : <Toolbar sx={{ paddingTop: "4.7rem" }} />}
 
 			<Box maxWidth="100%" backgroundColor="" height="100%" flexDirection="column"
-				sx={{ outline: "1px solid black", outlineOffset: "-1px" }}
+				sx={{ outline: "1px solid black", outlineOffset: "-1px", borderLeft: "none" }}
 			>
 				<Box padding="1rem" >
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus vero unde eaque omnis officia, voluptate ipsa itaque similique nostrum cumque molestias laudantium consequuntur minus quis aspernatur esse! Possimus, distinctio vitae!
@@ -74,7 +84,7 @@ const MenuDrawer = () => {
 				<Box >
 					<List>
 						{menuItems.map((menuItem) => (
-							<ListItemButton key={menuItem.label} sx={{ borderBottom: "1px solid", borderRight: "1px solid", borderLeft: "1px solid", "&:first-of-type": { borderTop: "1px solid" }, backgroundColor: "white", "&:hover": { backgroundColor: "primary.light", } }}>
+							<ListItemButton onClick={() => menuItem.func()} key={menuItem.label} sx={{ borderBottom: "1px solid", borderRight: "1px solid", borderLeft: "1px solid", "&:first-of-type": { borderTop: "1px solid" }, backgroundColor: "white", "&:hover": { backgroundColor: "primary.light", } }}>
 								<ListItemIcon sx={{ color: "primary.dark" }}>{menuItem.icon}</ListItemIcon>
 								<ListItemText primary={menuItem.label} primaryTypographyProps={{ fontWeight: "medium" }} />
 							</ListItemButton>
