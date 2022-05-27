@@ -24,7 +24,6 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 
-
 const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="left" ref={ref} {...props} />;
 });
