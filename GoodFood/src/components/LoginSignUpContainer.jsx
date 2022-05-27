@@ -24,9 +24,10 @@ import Paper from "@mui/material/Paper"
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import userLoggedInState from '../atoms/userLoggedInState';
+import UserInfoPage from "./UserInfoPage";
 
 const Transition = forwardRef(function Transition(props, ref) {
-	return <Slide direction="left" ref={ref} {...props} />;
+	return <Slide direction="down" ref={ref} {...props} />;
 });
 
 // Boilerplate from Mui-Tabs
@@ -49,6 +50,11 @@ function TabPanel(props) {
 		</div>
 	);
 }
+
+
+//TODO: Add alert when login failed/ signup failed with info about what failed
+//TODO: Display new information on logout page ex "logged in as..". Display new stuff on "Sign up"-tab when logged in, ex "change password"
+
 
 const LoginSignUpContainer = () => {
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
@@ -81,11 +87,11 @@ const LoginSignUpContainer = () => {
 		>
 			<Paper sx={{ minHeight: "550px" }} >
 				<Tabs centered value={value} onChange={handleChange}>
-					<Tab label="Sign In" value={1} />
+					<Tab label={!userLoggedIn ? "Log in" : "User"} value={1} />
 					{userLoggedIn ? <Tab label="Settings" value={2} /> : <Tab label="Sign Up" value={2} />}
 				</Tabs>
 				<TabPanel value={value} index={1}>
-					<LoginForm />
+					{userLoggedIn ? <UserInfoPage /> : <LoginForm />}
 				</TabPanel>
 
 				<TabPanel value={value} index={2}>

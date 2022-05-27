@@ -54,7 +54,7 @@ const MenuDrawer = () => {
 		setOpenContainer(true)
 	}
 
-	const switchLabel = userLoggedIn ? "Sign out | Settings" : "Sign In | Sign Up"
+	const switchLabel = userLoggedIn ? "User Settings" : "Sign In | Sign Up"
 
 	const menuItems = [
 		{ icon: <AccountCircleRoundedIcon style={{ fontSize: "32px" }} />, label: switchLabel, func: handleOpenLoginContainer },
@@ -78,7 +78,7 @@ const MenuDrawer = () => {
 			{!headerBreakpoint ? <Toolbar sx={{ paddingTop: "7.6rem" }} /> : <Toolbar sx={{ paddingTop: "4.7rem" }} />}
 
 			<Box maxWidth="100%" backgroundColor="" height="100%" flexDirection="column"
-				sx={{ outline: "1px solid black", outlineOffset: "-1px", borderLeft: "none" }}
+				sx={{ outline: "1px solid black", outlineOffset: "-1px" }}
 			>
 				<Box padding="1rem" >
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus vero unde eaque omnis officia, voluptate ipsa itaque similique nostrum cumque molestias laudantium consequuntur minus quis aspernatur esse! Possimus, distinctio vitae!

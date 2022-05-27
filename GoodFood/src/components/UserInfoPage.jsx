@@ -15,22 +15,10 @@ import userLoggedInState from '../atoms/userLoggedInState';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
 
-const LoginForm = () => {
+const UserInfoPage = () => {
 
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
 
-
-
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const data = new FormData(event.currentTarget);
-		console.log({
-			email: data.get('email'),
-			password: data.get('password'),
-		})
-		setUserLoggedIn(true)
-		console.log("user is signed in")
-	};
 
 	const handleLogout = (e) => {
 		e.preventDefault();
@@ -48,62 +36,17 @@ const LoginForm = () => {
 			}}
 		>
 			<Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-				{userLoggedIn ? <AccountCircleRoundedIcon /> : <LockOutlinedIcon />}
+				<AccountCircleRoundedIcon />
 			</Avatar>
 			<Typography component="h1" variant="h5">
-				{userLoggedIn ? "USERNAME" : "lala"}
+				"USERNAME"
 			</Typography>
 
-			{!userLoggedIn && <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-				<TextField
-					margin="normal"
-					required
-					fullWidth
-					id="email"
-					label="Email Address"
-					name="email"
-					autoComplete="off"
-					autoFocus
-				/>
-				<TextField
-					margin="normal"
-					required
-					fullWidth
-					name="password"
-					label="Password"
-					type="password"
-					id="password"
-					autoComplete="new-password"
-				/>
+			<Box component="div" sx={{ mt: 1 }}>
 
-				{!userLoggedIn
-					? <Button
-						type="submit"
-						fullWidth
-						variant="contained"
-						sx={{ mt: 3, mb: 2 }}
-					>
-						Sign In
-					</Button>
-					: <Button
-						type=""
-						onClick={(e) => handleLogout(e)}
-						fullWidth
-						variant="contained"
-						sx={{ mt: 3, mb: 2 }}
-					>
-						Log out
-					</Button>}
+			</Box>
 
-				<Box container textAlign="center">
-					<Link href="#" variant="body2">
-						Forgot your password?
-					</Link>
-
-				</Box>
-			</Box>}
-
-			{userLoggedIn && <Box sx={{ mt: 1 }}>
+			<Box sx={{ mt: 1 }}>
 
 				<Typography> Welcome, USER</Typography>
 				<Button
@@ -115,9 +58,9 @@ const LoginForm = () => {
 				>
 					Log out
 				</Button>
-			</Box>}
+			</Box>
 		</Box>
 	)
 }
 
-export default LoginForm
+export default UserInfoPage

@@ -75,7 +75,7 @@ const RecipeModal = ({ recipe }) => {
 			scroll="paper"
 
 			fullWidth={true}
-			maxWidth={"lg"}
+			maxWidth={"md"}
 			open={open}
 			TransitionComponent={Transition}
 			sx={{ minWidth: "100%" }}
