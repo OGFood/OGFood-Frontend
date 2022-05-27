@@ -48,7 +48,7 @@ const UserInfoPage = () => {
 
 			<Box sx={{ mt: 1 }}>
 
-				<Typography> Welcome, USER</Typography>
+				<Typography> Welcome, "USERNAME"</Typography>
 				<Button
 					type=""
 					onClick={(e) => handleLogout(e)}

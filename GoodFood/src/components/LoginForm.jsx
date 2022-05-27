@@ -51,10 +51,10 @@ const LoginForm = () => {
 				{userLoggedIn ? <AccountCircleRoundedIcon /> : <LockOutlinedIcon />}
 			</Avatar>
 			<Typography component="h1" variant="h5">
-				{userLoggedIn ? "USERNAME" : "lala"}
+				Sign In
 			</Typography>
 
-			{!userLoggedIn && <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+			<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
 				<TextField
 					margin="normal"
 					required
@@ -76,24 +76,15 @@ const LoginForm = () => {
 					autoComplete="new-password"
 				/>
 
-				{!userLoggedIn
-					? <Button
-						type="submit"
-						fullWidth
-						variant="contained"
-						sx={{ mt: 3, mb: 2 }}
-					>
-						Sign In
-					</Button>
-					: <Button
-						type=""
-						onClick={(e) => handleLogout(e)}
-						fullWidth
-						variant="contained"
-						sx={{ mt: 3, mb: 2 }}
-					>
-						Log out
-					</Button>}
+
+				<Button
+					type="submit"
+					fullWidth
+					variant="contained"
+					sx={{ mt: 3, mb: 2 }}
+				>
+					Sign In
+				</Button>
 
 				<Box container textAlign="center">
 					<Link href="#" variant="body2">
@@ -101,21 +92,8 @@ const LoginForm = () => {
 					</Link>
 
 				</Box>
-			</Box>}
+			</Box>
 
-			{userLoggedIn && <Box sx={{ mt: 1 }}>
-
-				<Typography> Welcome, USER</Typography>
-				<Button
-					type=""
-					onClick={(e) => handleLogout(e)}
-					fullWidth
-					variant="contained"
-					sx={{ mt: 3, mb: 2 }}
-				>
-					Log out
-				</Button>
-			</Box>}
 		</Box>
 	)
 }
