@@ -46,4 +46,6 @@ const emailErrorMessage = (email) => {
 const usernameErrorMessage = () => {
 	return null
 }
-export { minPasswordLength, maxPasswordLength, validatePassword, validateEmail, isNotEmpty, passwordErrorMessage, emailErrorMessage, usernameErrorMessage }
+
+const userNotFoundMessage = "A user with that name could not be found."
+export { minPasswordLength, maxPasswordLength, validatePassword, validateEmail, isNotEmpty, passwordErrorMessage, emailErrorMessage, usernameErrorMessage, userNotFoundMessage }

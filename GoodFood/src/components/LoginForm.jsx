@@ -14,7 +14,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import userLoggedInState from '../atoms/userLoggedInState';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useEffect, useRef, useState } from 'react';
-import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessage } from '../Auth/UserValidation';
+import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessage, userNotFoundMessage } from '../Auth/UserValidation';
 import offlineUsersState from '../atoms/offlineUsersState';
 import currentUserState from '../atoms/currentUserState';
 
@@ -32,29 +32,32 @@ const LoginForm = () => {
 	const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
 
 
-	const [dbErrorPlaceholder, setDbErrorPlaceholder] = useState(false)
 
-
-
+	const [userNotFound, setUserNotFound] = useState(false)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const data = new FormData(e.currentTarget);
-		console.log({
+		console.log("Field Data:", {
 			email: data.get('email'),
 			password: data.get('password'),
 		})
-		//temp test
-		const user = offlineUserList.find(user => data.get("email") === user.email && data.get("password") === user.password)
-		if (user !== null) {
-			setCurrentUser(user)
+		const email = data.get("email")
+		const password = data.get("password")
+
+		//temp login test using offline data, replace with db stuff
+		const userMatch = offlineUserList.find(user => email === user.email && password === user.password)
+		console.log(userMatch)
+		if (userMatch !== undefined) {
+			setCurrentUser(userMatch)
 			setUserLoggedIn(true)
+			console.log("found match")
 		}
-
-
-		console.log("user is signed in")
+		else {
+			setUserNotFound(true)
+			console.log("no match")
+		}
 		// if email+password valid, send to backend, if user is logged in, set userloggedin state to true to change ui element visuals
-
 		// Handle wrong username/password/usernotfound etc from db
 	};
 
@@ -84,6 +87,7 @@ const LoginForm = () => {
 					id="email"
 					label="Email Address"
 					name="email"
+					onFocus={() => setUserNotFound(false)}
 					error={emailField !== "" && !validateEmail(emailField)}
 					autoComplete="off"
 					onChange={(e) => setEmailField(e.target.value)}
@@ -97,13 +101,14 @@ const LoginForm = () => {
 					label="Password"
 					type="password"
 					id="password"
+					onFocus={() => setUserNotFound(false)}
 					error={passwordField !== "" && !validatePassword(passwordField)}
 					autoComplete="new-password"
 					onChange={(e) => setPasswordField(e.target.value)}
 					helperText={passwordErrorMessage(passwordField)}
 				/>
 
-				{dbErrorPlaceholder && <Typography color="red" textAlign="center">Wrong user/password etc message</Typography>}
+				{userNotFound && <Typography color="red" textAlign="center">{userNotFoundMessage}</Typography>}
 
 				<Button
 					type="submit"
