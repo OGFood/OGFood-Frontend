@@ -19,12 +19,8 @@ import { useEffect, useRef, useState } from 'react';
 import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessage, usernameErrorMessage, usernameAlreadyExists, emailAlreadyInUse } from '../Auth/UserValidation';
 
 
-// TODO: Username already exists error message
-
-
 const SignUpForm = () => {
 
-	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
 	const [users, setUsers] = useRecoilState(offlineUsersState)
 
 	const [userField, setUserField] = useState("")
@@ -32,7 +28,7 @@ const SignUpForm = () => {
 	const [passwordField, setPasswordField] = useState("")
 
 	const [successfulSignUp, setSuccessfulSignUp] = useState(false)
-	// const [dbErrorPlaceholder, setDbErrorPlaceholder] = useState(false)
+
 	const [infoMessage, setInfoMessage] = useState("")
 
 	const usernameRef = useRef()

@@ -23,8 +23,6 @@ const UserInfoPage = () => {
 
 	const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
 
-	// load in active user from db, show username instead of placeholder
-
 	const handleLogout = async (e) => {
 		e.preventDefault();
 		setCurrentUser("")

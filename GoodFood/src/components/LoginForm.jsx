@@ -19,7 +19,7 @@ import offlineUsersState from '../atoms/offlineUsersState';
 import currentUserState from '../atoms/currentUserState';
 
 //TODO: Maybe change email to username?
-//TODO: Forgotten password functionality
+//TODO: Forgotten password functionality?
 
 const LoginForm = () => {
 

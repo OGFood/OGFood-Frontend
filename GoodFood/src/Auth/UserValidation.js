@@ -25,8 +25,6 @@ const validateEmail = (email) => {
  * @param   {string[]} userList The array to search through.
  */
 const usernameAlreadyExists = (userNameSearch, userList) => {
-	// const search = userList.find(user => userNameSearch === user.username)
-	// if (search !== undefined)
 	return userList.find(user => userNameSearch === user.username)
 }
 
@@ -37,8 +35,6 @@ const usernameAlreadyExists = (userNameSearch, userList) => {
  * @param   {string[]} userList The array to search through.
  */
 const emailAlreadyInUse = (emailSearch, userList) => {
-	// const search = userList.find(user => emailSearch === user.email)
-	// if (search !== undefined)
 	return userList.find(user => emailSearch === user.email)
 }
 
