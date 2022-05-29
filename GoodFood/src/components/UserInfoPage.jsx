@@ -10,17 +10,19 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useRecoilState } from 'recoil';
+import Divider from "@mui/material/Divider"
+import { useRecoilState, useRecoilValue } from 'recoil';
 import userLoggedInState from '../atoms/userLoggedInState';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-
+import currentUsernameState from '../atoms/currentUsernameState';
 
 const UserInfoPage = () => {
 
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
+	const currentUsername = useRecoilValue(currentUsernameState)
+	// load in active user from db, show username instead of placeholder
 
-
-	const handleLogout = (e) => {
+	const handleLogout = async (e) => {
 		e.preventDefault();
 		setUserLoggedIn(false)
 		console.log("user is logged out")
@@ -39,27 +41,31 @@ const UserInfoPage = () => {
 				<AccountCircleRoundedIcon />
 			</Avatar>
 			<Typography component="h1" variant="h5">
-				"USERNAME"
+				{currentUsername}
 			</Typography>
 
-			<Box component="div" sx={{ mt: 1 }}>
-
+			<Box component="div" sx={{ paddingTop: "3rem", textAlign: "center" }}>
+				<Typography gutterBottom textAlign="center"> Welcome, {currentUsername} </Typography>
+				<Divider></Divider>
+				<Typography> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab mollitia omnis ipsum. Libero, quaerat harum!</Typography>
 			</Box>
 
-			<Box sx={{ mt: 1 }}>
 
-				<Typography> Welcome, "USERNAME"</Typography>
-				<Button
-					type=""
-					onClick={(e) => handleLogout(e)}
-					fullWidth
-					variant="contained"
-					sx={{ mt: 3, mb: 2 }}
-				>
-					Log out
-				</Button>
-			</Box>
-		</Box>
+
+
+			<Button
+				type=""
+				onClick={(e) => handleLogout(e)}
+				fullWidth
+				variant="contained"
+				sx={{ mt: 3, mb: 2, position: "absolute", maxWidth: 175, bottom: "3rem", }}
+			>
+				Log out
+			</Button>
+
+
+
+		</Box >
 	)
 }
 

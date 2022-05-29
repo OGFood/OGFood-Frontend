@@ -82,7 +82,7 @@ const MenuDrawer = () => {
 			{!headerBreakpoint ? <Toolbar sx={{ paddingTop: "7.6rem" }} /> : <Toolbar sx={{ paddingTop: "4.7rem" }} />}
 
 			<Box maxWidth="100%" backgroundColor="" height="100%" flexDirection="column"
-				sx={{ outline: "1px solid black", outlineOffset: "-1px" }}
+				sx={{ border: "1px solid", borderLeft: "none" }}
 			>
 				<Box padding="1rem" backgroundColor="mainbg.main" paddingBottom="2rem" >
 					<Typography>
@@ -90,7 +90,7 @@ const MenuDrawer = () => {
 					</Typography>
 				</Box>
 				<Box >
-					<List sx={{ backgroundColor: "mainbg.main", paddingTop: "0", paddingBottom: "1rem", borderRight: "1px solid", borderLeft: "1px solid", "&:first-of-type": { borderTop: "1px solid" } }}>
+					<List sx={{ backgroundColor: "mainbg.main", paddingTop: "0", paddingBottom: "1rem", "&:first-of-type": { borderTop: "1px solid" } }}>
 						{menuItems.map((menuItem) => (
 							<ListItemButton onClick={() => menuItem.func()} key={menuItem.label} sx={{ backgroundColor: "white", "&:hover": { backgroundColor: "primary.light", }, borderBottom: "1px solid" }}>
 								<ListItemIcon sx={{ color: "primary.dark" }}>{menuItem.icon}</ListItemIcon>
@@ -102,7 +102,7 @@ const MenuDrawer = () => {
 				</Box>
 			</Box>
 
-			<Box sx={{ verticalAlign: "middle", justifyContent: "center", display: "flex", outline: "1px solid", outlineOffset: "-1px", boxShadow: " 0 -1px 0 #faf0e6", backgroundColor: "primary.light" }}>
+			<Box sx={{ verticalAlign: "middle", justifyContent: "center", display: "flex", borderRight: "1px solid", backgroundColor: "primary.light" }}>
 				<img src={CompanyLogo} height="45px" style={{ paddingBottom: "5px" }}></img>
 			</Box>
 		</Drawer>

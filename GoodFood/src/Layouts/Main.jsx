@@ -26,6 +26,7 @@ import filterRecipes from "../javascript/filterRecipes";
 import LoginSignUpContainer from "../components/LoginSignUpContainer";
 
 // TODO: When searching in autocomplete box => when enter is pressed, select first autocomplete suggestion
+// TODO: Autocompletebox => onchange, sync with logged in user ingredients db?
 
 const Main = () => {
 	const [selectedIngredients, setSelectedIngredients] = useState([])

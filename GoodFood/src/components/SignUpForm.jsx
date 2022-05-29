@@ -13,7 +13,8 @@ import Container from '@mui/material/Container';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import userLoggedInState from '../atoms/userLoggedInState';
 import { useRecoilState } from 'recoil';
-
+import { useEffect, useRef, useState } from 'react';
+import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessage, usernameErrorMessage } from '../Auth/UserValidation';
 
 
 
@@ -23,16 +24,27 @@ const SignUpForm = () => {
 
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
 
+	const [userField, setUserField] = useState("")
+	const [emailField, setEmailField] = useState("")
+	const [passwordField, setPasswordField] = useState("")
 
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const data = new FormData(event.currentTarget);
+	const [dbErrorPlaceholder, setDbErrorPlaceholder] = useState(false)
+
+
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const data = new FormData(e.currentTarget);
+		const username = data.get("username")
+		const email = data.get("email")
+		const password = data.get("password")
 		console.log({
 			username: data.get("username"),
 			email: data.get('email'),
 			password: data.get('password'),
 		});
+
 	};
 
 
@@ -63,6 +75,8 @@ const SignUpForm = () => {
 							id="username"
 							label="Username"
 							autoFocus
+							onChange={(e) => setUserField(e.target.value)}
+							helperText={usernameErrorMessage(userField)}
 						/>
 					</Grid>
 					<Grid item xs={12}>
@@ -73,6 +87,9 @@ const SignUpForm = () => {
 							id="email"
 							label="Email Address"
 							name="email"
+							error={emailField !== "" & !validateEmail(emailField)}
+							onChange={(e) => setEmailField(e.target.value)}
+							helperText={emailErrorMessage(emailField)}
 						/>
 					</Grid>
 					<Grid item xs={12}>
@@ -84,13 +101,18 @@ const SignUpForm = () => {
 							type="password"
 							id="password"
 							autoComplete="new-password"
+							error={passwordField !== "" && !validatePassword(passwordField)}
+							onChange={(e) => setPasswordField(e.target.value)}
+							helperText={passwordErrorMessage(passwordField)}
 						/>
 					</Grid>
 				</Grid>
+				{dbErrorPlaceholder && <Typography color="red" textAlign="center">Wrong user/password etc message</Typography>}
 				<Button
 					type="submit"
 					fullWidth
 					variant="contained"
+					disabled={!validatePassword(passwordField) || !validateEmail(emailField)}
 					sx={{ mt: 3, mb: 2 }}
 				>
 					Sign Up

@@ -52,8 +52,10 @@ function TabPanel(props) {
 }
 
 
-//TODO: Add alert when login failed/ signup failed with info about what failed
+
 //TODO: Display new information on logout page ex "logged in as..". Display new stuff on "Sign up"-tab when logged in, ex "change password"
+
+//TODO: Login - Validate login info: check if username/mail(?) exists using db stuff / check if password is valid. Error text under field. When logged in, load ingredients from user db into ingredients state?
 
 
 const LoginSignUpContainer = () => {
@@ -88,14 +90,14 @@ const LoginSignUpContainer = () => {
 			<Paper sx={{ minHeight: "550px" }} >
 				<Tabs centered value={value} onChange={handleChange}>
 					<Tab label={!userLoggedIn ? "Log in" : "User"} value={1} />
-					{userLoggedIn ? <Tab label="Settings" value={2} /> : <Tab label="Sign Up" value={2} />}
+					{!userLoggedIn && <Tab label="Sign Up" value={2} />}
 				</Tabs>
 				<TabPanel value={value} index={1}>
 					{userLoggedIn ? <UserInfoPage /> : <LoginForm />}
 				</TabPanel>
 
 				<TabPanel value={value} index={2}>
-					<SignUpForm />
+					{!userLoggedIn && <SignUpForm />}
 				</TabPanel>
 			</Paper>
 		</Dialog>

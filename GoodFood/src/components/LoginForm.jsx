@@ -12,31 +12,46 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { useRecoilState } from 'recoil';
 import userLoggedInState from '../atoms/userLoggedInState';
+import currentUsernameState from '../atoms/currentUsernameState';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import { useEffect, useRef, useState } from 'react';
+import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessage } from '../Auth/UserValidation';
 
+//TODO: Maybe change email to username?
+//TODO: Forgotten password functionality
 
 const LoginForm = () => {
 
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
 
+	// Gets username manually, placeholder until proper db communication with a whole user objet?
+	const [currentUsername, setCurrentUsername] = useRecoilState(currentUsernameState)
+
+	const [emailField, setEmailField] = useState("")
+	const [passwordField, setPasswordField] = useState("")
+
+	// const [emailFieldTouched, setEmailFieldTouched] = useState(false)
+	// const [passFieldTouched, setPassFieldTouched] = useState(false)
+
+	const [dbErrorPlaceholder, setDbErrorPlaceholder] = useState(false)
 
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const data = new FormData(event.currentTarget);
+
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const data = new FormData(e.currentTarget);
 		console.log({
 			email: data.get('email'),
 			password: data.get('password'),
 		})
+		// if email+password valid, send to backend, if user is logged in, set userloggedin state to true to change ui element visuals
+		setCurrentUsername(data.get("email"))
 		setUserLoggedIn(true)
 		console.log("user is signed in")
+		// Handle wrong username/password/usernotfound etc from db
 	};
 
-	const handleLogout = (e) => {
-		e.preventDefault();
-		setUserLoggedIn(false)
-		console.log("user is logged out")
-	}
 
 	return (
 		<Box
@@ -56,14 +71,20 @@ const LoginForm = () => {
 
 			<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
 				<TextField
+					autoFocus
 					margin="normal"
 					required
 					fullWidth
 					id="email"
 					label="Email Address"
 					name="email"
+
+					// onFocus={() => setEmailFieldTouched(true)}
+					// onBlur={() => setEmailFieldTouched(false)}
+					error={emailField !== "" & !validateEmail(emailField)}
 					autoComplete="off"
-					autoFocus
+					onChange={(e) => setEmailField(e.target.value)}
+					helperText={emailErrorMessage(emailField)}
 				/>
 				<TextField
 					margin="normal"
@@ -73,15 +94,22 @@ const LoginForm = () => {
 					label="Password"
 					type="password"
 					id="password"
+					// onFocus={() => setPassFieldTouched(true)}
+					// onBlur={() => setPassFieldTouched(false)}
+					error={passwordField !== "" && !validatePassword(passwordField)}
 					autoComplete="new-password"
+					onChange={(e) => setPasswordField(e.target.value)}
+					helperText={passwordErrorMessage(passwordField)}
 				/>
 
+				{dbErrorPlaceholder && <Typography color="red" textAlign="center">Wrong user/password etc message</Typography>}
 
 				<Button
 					type="submit"
 					fullWidth
 					variant="contained"
 					sx={{ mt: 3, mb: 2 }}
+					disabled={!validatePassword(passwordField) || !validateEmail(emailField)}
 				>
 					Sign In
 				</Button>
