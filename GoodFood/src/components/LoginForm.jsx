@@ -10,12 +10,13 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import userLoggedInState from '../atoms/userLoggedInState';
-import currentUsernameState from '../atoms/currentUsernameState';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useEffect, useRef, useState } from 'react';
 import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessage } from '../Auth/UserValidation';
+import offlineUsersState from '../atoms/offlineUsersState';
+import currentUserState from '../atoms/currentUserState';
 
 //TODO: Maybe change email to username?
 //TODO: Forgotten password functionality
@@ -23,15 +24,13 @@ import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessag
 const LoginForm = () => {
 
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
-
-	// Gets username manually, placeholder until proper db communication with a whole user objet?
-	const [currentUsername, setCurrentUsername] = useRecoilState(currentUsernameState)
-
 	const [emailField, setEmailField] = useState("")
 	const [passwordField, setPasswordField] = useState("")
 
-	// const [emailFieldTouched, setEmailFieldTouched] = useState(false)
-	// const [passFieldTouched, setPassFieldTouched] = useState(false)
+	// Offline test
+	const offlineUserList = useRecoilValue(offlineUsersState)
+	const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
+
 
 	const [dbErrorPlaceholder, setDbErrorPlaceholder] = useState(false)
 
@@ -45,10 +44,17 @@ const LoginForm = () => {
 			email: data.get('email'),
 			password: data.get('password'),
 		})
-		// if email+password valid, send to backend, if user is logged in, set userloggedin state to true to change ui element visuals
-		setCurrentUsername(data.get("email"))
-		setUserLoggedIn(true)
+		//temp test
+		const user = offlineUserList.find(user => data.get("email") === user.email && data.get("password") === user.password)
+		if (user !== null) {
+			setCurrentUser(user)
+			setUserLoggedIn(true)
+		}
+
+
 		console.log("user is signed in")
+		// if email+password valid, send to backend, if user is logged in, set userloggedin state to true to change ui element visuals
+
 		// Handle wrong username/password/usernotfound etc from db
 	};
 
@@ -78,10 +84,7 @@ const LoginForm = () => {
 					id="email"
 					label="Email Address"
 					name="email"
-
-					// onFocus={() => setEmailFieldTouched(true)}
-					// onBlur={() => setEmailFieldTouched(false)}
-					error={emailField !== "" & !validateEmail(emailField)}
+					error={emailField !== "" && !validateEmail(emailField)}
 					autoComplete="off"
 					onChange={(e) => setEmailField(e.target.value)}
 					helperText={emailErrorMessage(emailField)}
@@ -94,8 +97,6 @@ const LoginForm = () => {
 					label="Password"
 					type="password"
 					id="password"
-					// onFocus={() => setPassFieldTouched(true)}
-					// onBlur={() => setPassFieldTouched(false)}
 					error={passwordField !== "" && !validatePassword(passwordField)}
 					autoComplete="new-password"
 					onChange={(e) => setPasswordField(e.target.value)}

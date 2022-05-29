@@ -14,19 +14,25 @@ import Divider from "@mui/material/Divider"
 import { useRecoilState, useRecoilValue } from 'recoil';
 import userLoggedInState from '../atoms/userLoggedInState';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-import currentUsernameState from '../atoms/currentUsernameState';
+import currentUserState from '../atoms/currentUserState';
+import { useEffect, useState } from 'react';
 
 const UserInfoPage = () => {
 
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
-	const currentUsername = useRecoilValue(currentUsernameState)
+
+	const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
+
 	// load in active user from db, show username instead of placeholder
 
 	const handleLogout = async (e) => {
 		e.preventDefault();
+		setCurrentUser("")
 		setUserLoggedIn(false)
 		console.log("user is logged out")
 	}
+
+
 
 	return (
 		<Box
@@ -41,11 +47,11 @@ const UserInfoPage = () => {
 				<AccountCircleRoundedIcon />
 			</Avatar>
 			<Typography component="h1" variant="h5">
-				{currentUsername}
+				{currentUser.username}
 			</Typography>
 
 			<Box component="div" sx={{ paddingTop: "3rem", textAlign: "center" }}>
-				<Typography gutterBottom textAlign="center"> Welcome, {currentUsername} </Typography>
+				<Typography gutterBottom textAlign="center"> Welcome, {currentUser.username} </Typography>
 				<Divider></Divider>
 				<Typography> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab mollitia omnis ipsum. Libero, quaerat harum!</Typography>
 			</Box>

@@ -87,7 +87,7 @@ const SignUpForm = () => {
 							id="email"
 							label="Email Address"
 							name="email"
-							error={emailField !== "" & !validateEmail(emailField)}
+							error={emailField !== "" && !validateEmail(emailField)}
 							onChange={(e) => setEmailField(e.target.value)}
 							helperText={emailErrorMessage(emailField)}
 						/>
