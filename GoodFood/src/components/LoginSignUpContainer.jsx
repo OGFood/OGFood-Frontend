@@ -53,9 +53,10 @@ function TabPanel(props) {
 
 
 
-//TODO: Display new information on logout page ex "logged in as..". Display new stuff on "Sign up"-tab when logged in, ex "change password"
+//TODO: Display new information on logout page ex "logged in as..". Display new stuff on "Sign up"-tab when logged in, ex "change password"?
 
 //TODO: Login - Validate login info: check if username/mail(?) exists using db stuff / check if password is valid. Error text under field. When logged in, load ingredients from user db into ingredients state?
+
 
 
 const LoginSignUpContainer = () => {

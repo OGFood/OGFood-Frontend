@@ -32,8 +32,6 @@ const UserInfoPage = () => {
 		console.log("user is logged out")
 	}
 
-
-
 	return (
 		<Box
 			sx={{

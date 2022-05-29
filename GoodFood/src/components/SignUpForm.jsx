@@ -12,26 +12,38 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import userLoggedInState from '../atoms/userLoggedInState';
+import offlineUsersState from '../atoms/offlineUsersState';
+import currentUserState from '../atoms/currentUserState';
 import { useRecoilState } from 'recoil';
 import { useEffect, useRef, useState } from 'react';
-import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessage, usernameErrorMessage } from '../Auth/UserValidation';
+import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessage, usernameErrorMessage, usernameAlreadyExists, emailAlreadyInUse } from '../Auth/UserValidation';
 
 
-
+// TODO: Username already exists error message
 
 
 const SignUpForm = () => {
 
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
+	const [users, setUsers] = useRecoilState(offlineUsersState)
 
 	const [userField, setUserField] = useState("")
 	const [emailField, setEmailField] = useState("")
 	const [passwordField, setPasswordField] = useState("")
 
+	const [successfulSignUp, setSuccessfulSignUp] = useState(false)
+	// const [dbErrorPlaceholder, setDbErrorPlaceholder] = useState(false)
+	const [infoMessage, setInfoMessage] = useState("")
 
-	const [dbErrorPlaceholder, setDbErrorPlaceholder] = useState(false)
+	const usernameRef = useRef()
+	const emailRef = useRef()
+	const passRef = useRef()
 
-
+	const resetTextFields = () => {
+		usernameRef.current.value = ""
+		emailRef.current.value = ""
+		passRef.current.value = ""
+	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -39,13 +51,29 @@ const SignUpForm = () => {
 		const username = data.get("username")
 		const email = data.get("email")
 		const password = data.get("password")
-		console.log({
-			username: data.get("username"),
-			email: data.get('email'),
-			password: data.get('password'),
-		});
 
+		if (usernameAlreadyExists(username, users)) {
+			setSuccessfulSignUp(false)
+			setInfoMessage("A user with that username already exists.")
+		}
+		else if (emailAlreadyInUse(email, users)) {
+			setSuccessfulSignUp(false)
+			setInfoMessage("The chosen email adress is already in use.")
+		}
+		else {
+			setSuccessfulSignUp(true)
+			setInfoMessage("Succesfully signed up!")
+
+			setUsers([...users,
+			{ username: username, email: email, password: password }])
+
+			resetTextFields()
+
+		}
+
+		console.log(users)
 	};
+
 
 
 
@@ -75,8 +103,10 @@ const SignUpForm = () => {
 							id="username"
 							label="Username"
 							autoFocus
+							onFocus={() => setInfoMessage("")}
 							onChange={(e) => setUserField(e.target.value)}
 							helperText={usernameErrorMessage(userField)}
+							inputRef={usernameRef}
 						/>
 					</Grid>
 					<Grid item xs={12}>
@@ -87,9 +117,11 @@ const SignUpForm = () => {
 							id="email"
 							label="Email Address"
 							name="email"
+							onFocus={() => setInfoMessage("")}
 							error={emailField !== "" && !validateEmail(emailField)}
 							onChange={(e) => setEmailField(e.target.value)}
 							helperText={emailErrorMessage(emailField)}
+							inputRef={emailRef}
 						/>
 					</Grid>
 					<Grid item xs={12}>
@@ -104,10 +136,14 @@ const SignUpForm = () => {
 							error={passwordField !== "" && !validatePassword(passwordField)}
 							onChange={(e) => setPasswordField(e.target.value)}
 							helperText={passwordErrorMessage(passwordField)}
+							inputRef={passRef}
 						/>
 					</Grid>
 				</Grid>
-				{dbErrorPlaceholder && <Typography color="red" textAlign="center">Wrong user/password etc message</Typography>}
+
+				<Typography marginTop="1rem" color={successfulSignUp ? "success.light" : "error.light"} textAlign="center">{infoMessage}</Typography>
+
+
 				<Button
 					type="submit"
 					fullWidth

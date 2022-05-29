@@ -9,9 +9,6 @@ const maxPasswordLength = 12
 const isNotEmpty = (str) => {
 	return str.length > 0;
 }
-const validateUsername = (username) => {
-
-}
 
 const validatePassword = (pass) => {
 	return pass.length >= minPasswordLength && pass.length <= maxPasswordLength && isNotEmpty(pass)
@@ -21,15 +18,28 @@ const validateEmail = (email) => {
 	return email.includes("@") && email.includes(".") && isNotEmpty(email)
 }
 
-
-
-
-const validLoginForm = () => {
-
+/**
+ * Searches for a matching username, returns true if found.
+ *
+ * @param   {string}   userNameSearch The username to search for
+ * @param   {string[]} userList The array to search through.
+ */
+const usernameAlreadyExists = (userNameSearch, userList) => {
+	// const search = userList.find(user => userNameSearch === user.username)
+	// if (search !== undefined)
+	return userList.find(user => userNameSearch === user.username)
 }
 
-const validSignUpForm = () => {
-
+/**
+ * Searches for a matching username, returns true if found.
+ *
+ * @param   {string}   emailSearch The email to search for
+ * @param   {string[]} userList The array to search through.
+ */
+const emailAlreadyInUse = (emailSearch, userList) => {
+	// const search = userList.find(user => emailSearch === user.email)
+	// if (search !== undefined)
+	return userList.find(user => emailSearch === user.email)
 }
 
 const passwordErrorMessage = (pass) => {
@@ -48,4 +58,4 @@ const usernameErrorMessage = () => {
 }
 
 const userNotFoundMessage = "A user with that name could not be found."
-export { minPasswordLength, maxPasswordLength, validatePassword, validateEmail, isNotEmpty, passwordErrorMessage, emailErrorMessage, usernameErrorMessage, userNotFoundMessage }
+export { minPasswordLength, maxPasswordLength, validatePassword, validateEmail, isNotEmpty, passwordErrorMessage, emailErrorMessage, usernameErrorMessage, userNotFoundMessage, usernameAlreadyExists, emailAlreadyInUse }
