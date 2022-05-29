@@ -26,19 +26,21 @@ import Toolbar from '@mui/material/Toolbar';
 import CompanyLogo from "../assets/images/c-logo.png"
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import ContactMailRoundedIcon from '@mui/icons-material/ContactMailRounded';
-
-
+import openLoginSignUpState from "../atoms/openLoginSignUpState";
+import LoginSignUpContainer from "./LoginSignUpContainer";
+import userLoggedInState from '../atoms/userLoggedInState';
+import FoodBg from "../assets/images/foodbg.png"
 
 const MenuDrawer = () => {
 
 	//TODO: Temporary on small screen sizes, permanent on larger screen sizes
 
 	const [openMenu, setOpenMenu] = useRecoilState(openMenuDrawerState)
+	const [openContainer, setOpenContainer] = useRecoilState(openLoginSignUpState)
+	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
 
 	const headerBreakpoint = useMediaQuery("(min-width:285px")
-
 	const fullMenu = useMediaQuery("(min-width:321px")
-
 	const drawerWidth = () => {
 		if (!fullMenu) {
 			return "100%";
@@ -47,10 +49,24 @@ const MenuDrawer = () => {
 	}
 
 
+	const handleOpenLoginContainer = () => {
+		console.log("click")
+		setOpenContainer(true)
+	}
+
+	const handleOpenContactForm = () => {
+		console.log("ayoo")
+	}
+
+	const switchLabel = userLoggedIn ? "User Settings" : "Sign In | Sign Up"
+
 	const menuItems = [
-		{ icon: <AccountCircleRoundedIcon style={{ fontSize: "32px" }} />, label: "Login | Sign Up" },
-		{ icon: <ContactMailRoundedIcon style={{ fontSize: "32px" }} />, label: "Contact Us" },
+		{ icon: <AccountCircleRoundedIcon style={{ fontSize: "32px" }} />, label: switchLabel, func: handleOpenLoginContainer },
+		{ icon: <ContactMailRoundedIcon style={{ fontSize: "32px" }} />, label: "Contact Us", func: handleOpenContactForm },
 	]
+
+
+
 	return (
 
 		<Drawer anchor="left"
@@ -59,30 +75,34 @@ const MenuDrawer = () => {
 			onClose={() => setOpenMenu(false)}
 			sx={{
 				width: drawerWidth, flexShrink: 0,
-				[`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', backgroundColor: "mainbg.main" },
+				[`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', backgroundColor: "mainbg.main", backgroundImage: `url(${FoodBg})` },
 
 			}}
 		>
 			{!headerBreakpoint ? <Toolbar sx={{ paddingTop: "7.6rem" }} /> : <Toolbar sx={{ paddingTop: "4.7rem" }} />}
 
 			<Box maxWidth="100%" backgroundColor="" height="100%" flexDirection="column"
-				sx={{ outline: "1px solid black", outlineOffset: "-1px" }}
+				sx={{ border: "1px solid", borderLeft: "none" }}
 			>
-				<Box padding="1rem" >
-					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus vero unde eaque omnis officia, voluptate ipsa itaque similique nostrum cumque molestias laudantium consequuntur minus quis aspernatur esse! Possimus, distinctio vitae!
+				<Box padding="1rem" backgroundColor="mainbg.main" paddingBottom="2rem" >
+					<Typography>
+						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus vero unde eaque omnis officia, voluptate ipsa itaque similique nostrum cumque molestias laudantium consequuntur minus quis aspernatur esse! Possimus, distinctio vitae!
+					</Typography>
 				</Box>
 				<Box >
-					<List>
+					<List sx={{ backgroundColor: "mainbg.main", paddingTop: "0", paddingBottom: "1rem", "&:first-of-type": { borderTop: "1px solid" } }}>
 						{menuItems.map((menuItem) => (
-							<ListItemButton key={menuItem.label} sx={{ borderBottom: "1px solid", borderRight: "1px solid", borderLeft: "1px solid", "&:first-of-type": { borderTop: "1px solid" }, backgroundColor: "white", "&:hover": { backgroundColor: "primary.light", } }}>
+							<ListItemButton onClick={() => menuItem.func()} key={menuItem.label} sx={{ backgroundColor: "white", "&:hover": { backgroundColor: "primary.light", }, borderBottom: "1px solid" }}>
 								<ListItemIcon sx={{ color: "primary.dark" }}>{menuItem.icon}</ListItemIcon>
 								<ListItemText primary={menuItem.label} primaryTypographyProps={{ fontWeight: "medium" }} />
 							</ListItemButton>
 						))}
 					</List>
+
 				</Box>
 			</Box>
-			<Box sx={{ verticalAlign: "middle", justifyContent: "center", display: "flex", outline: "1px solid", outlineOffset: "-1px", boxShadow: " 0 -1px 0 #faf0e6", backgroundColor: "primary.light" }}>
+
+			<Box sx={{ verticalAlign: "middle", justifyContent: "center", display: "flex", borderRight: "1px solid", backgroundColor: "primary.light" }}>
 				<img src={CompanyLogo} height="45px" style={{ paddingBottom: "5px" }}></img>
 			</Box>
 		</Drawer>

@@ -1,10 +1,4 @@
-import { useState, forwardRef, useEffect } from "react";
-import Card from '@mui/material/Card';
 import Paper from "@mui/material/Paper"
-import CardActions from '@mui/material/CardActions';
-import Box from "@mui/material/Box";
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -12,16 +6,6 @@ import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
 import Collapse from '@mui/material/Collapse';
 import Dialog from "@mui/material/Dialog";
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
-import { IconButton, Toolbar } from "@mui/material";
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import SelectPortionSize from "./SelectPortionSize";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -41,10 +25,10 @@ const AmountHelperModal = ({ open, setOpen }) => {
 
 	const units = [
 		{ unit: "Kilo", short: "kg", correlation: "1 kg = 1000 g" },
-		{ unit: "gram", short: "g", correlation: "1 g = 1/1000 kg" },
+		{ unit: "Gram", short: "g", correlation: "1 g = 1/1000 kg" },
 		{ unit: "Liter", short: "l", correlation: "1 l = 10 dl = 100 cl = 1000 ml" },
 		{ unit: "Deciliter", short: "dl", correlation: "1 dl = 10 cl = 100 ml" },
-		{ unit: "Centiliter", short: "cl", correlation: "	1 cl = 10 ml" },
+		{ unit: "Centiliter", short: "cl", correlation: "1 cl = 10 ml" },
 		{ unit: "Mililiter", short: "ml", correlation: "1 ml = 1 krm" },
 		{ unit: "Matsked", short: "msk", correlation: "1 msk = 3 tsk = 15 ml" },
 		{ unit: "Tesked", short: "tsk", correlation: "1 tsk = 5 krm = 5 ml" },
