@@ -108,7 +108,7 @@ const LoginForm = () => {
 					helperText={passwordErrorMessage(passwordField)}
 				/>
 
-				{userNotFound && <Typography color="red" textAlign="center">{userNotFoundMessage}</Typography>}
+				{userNotFound && <Typography color="error.light" textAlign="center">{userNotFoundMessage}</Typography>}
 
 				<Button
 					type="submit"
