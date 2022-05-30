@@ -29,6 +29,7 @@ import ContactMailRoundedIcon from '@mui/icons-material/ContactMailRounded';
 import openLoginSignUpState from "../atoms/openLoginSignUpState";
 import LoginSignUpContainer from "./LoginSignUpContainer";
 import userLoggedInState from '../atoms/userLoggedInState';
+import openContactFormState from "../atoms/openContactFormState";
 import FoodBg from "../assets/images/foodbg.png"
 
 const MenuDrawer = () => {
@@ -37,6 +38,7 @@ const MenuDrawer = () => {
 
 	const [openMenu, setOpenMenu] = useRecoilState(openMenuDrawerState)
 	const [openContainer, setOpenContainer] = useRecoilState(openLoginSignUpState)
+	const [openContactForm, setOpenContactForm] = useRecoilState(openContactFormState)
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
 
 	const headerBreakpoint = useMediaQuery("(min-width:285px")
@@ -55,7 +57,8 @@ const MenuDrawer = () => {
 	}
 
 	const handleOpenContactForm = () => {
-		console.log("ayoo")
+		console.log("click")
+		setOpenContactForm(true)
 	}
 
 	const switchLabel = userLoggedIn ? "User Settings" : "Sign In | Sign Up"

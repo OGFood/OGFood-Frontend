@@ -24,6 +24,7 @@ import recipesState from "../atoms/recipesState";
 import { fetchIngredients, fetchRecipes } from "../javascript/fetchFromOwnAPI";
 import filterRecipes from "../javascript/filterRecipes";
 import LoginSignUpContainer from "../components/LoginSignUpContainer";
+import ContactForm from "../components/ContactForm";
 
 // TODO: When searching in autocomplete box => when enter is pressed, select first autocomplete suggestion
 // TODO: Autocompletebox => onchange, sync with logged in user ingredients db?
@@ -61,6 +62,7 @@ const Main = () => {
 				marginTop: "2rem"
 			}}>
 				<LoginSignUpContainer />
+				<ContactForm />
 				<Toolbar sx={{ bgcolor: "", justifyContent: "center", flexDirection: "column" }} >
 					<Typography variant='h4' component="h2" color="white" gutterBottom fontWeight="700" sx={{ textShadow: "0px 1px 6px black" }}>
 						No inspiration? No problem!
