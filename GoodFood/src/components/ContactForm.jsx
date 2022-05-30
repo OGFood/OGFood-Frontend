@@ -39,6 +39,8 @@ import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessag
  */
 
 
+//TODO: Register a real email for more permanent use
+
 const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
 });
