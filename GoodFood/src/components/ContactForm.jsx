@@ -24,6 +24,7 @@ import Paper from "@mui/material/Paper"
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Container from "@mui/material/Container"
 import Link from '@mui/material/Link';
 import userLoggedInState from '../atoms/userLoggedInState';
 import currentUserState from '../atoms/currentUserState';
@@ -99,88 +100,89 @@ const ContactForm = () => {
 			onClose={handleClose}
 			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}
 		>
-			<Box
-				sx={{
-					marginTop: 2,
-					mb: 2,
-					display: 'flex',
-					flexDirection: 'column',
-					alignItems: 'center',
-				}}
-			>
+			<Container>
+				<Box
+					sx={{
+						marginTop: 2,
+						mb: 2,
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+					}}
+				>
 
 
-				<Typography component="h1" variant="h5">
-					Contact Us
-				</Typography>
-				<Typography gutterBottom>
-					<span style={{ color: "#A6B727", fontSize: "3rem" }}><i className="fa-solid fa-envelope-open-text fa-xl"></i></span>
-				</Typography>
-				<Typography gutterBottom mt="1rem">
-					Do you have a question regarding our site or what we do, or perhaps a suggestion for improvement?
-				</Typography>
-				<Typography>
-					Send us a message at <Link href="mailto:godfood@theplate.com">godfood@theplate.com</Link> or use the contact form below.
+					<Typography component="h1" variant="h5">
+						Contact Us
+					</Typography>
+					<Typography gutterBottom>
+						<span style={{ color: "#A6B727", fontSize: "3rem" }}><i className="fa-solid fa-envelope-open-text fa-xl"></i></span>
+					</Typography>
+					<Typography gutterBottom mt="1rem">
+						Do you have a question regarding our site or what we do, or perhaps a suggestion for improvement?
+					</Typography>
+					<Typography>
+						Send us a message at <Link href="mailto:godfood@theplate.com">godfood@theplate.com</Link> or use the contact form below.
 
-				</Typography>
+					</Typography>
 
-				<Box component="form" target="_blank" action="https://formsubmit.co/93fb459e6390c9820be22957756d070c " method="POST" noValidate sx={{ mt: 1 }}>
-					<TextField
-						autoFocus
-						margin="normal"
-						required
-						fullWidth
-						value={emailField}
-						id="email-sender"
-						label="Your email address"
-						name="email-sender"
-						error={emailField !== "" && !validateEmail(emailField)}
-						autoComplete="off"
-						onChange={(e) => setEmailField(e.target.value)}
-						helperText={emailErrorMessage(emailField)}
-					/>
-					<TextField
-						margin="normal"
-						required
-						fullWidth
-						name="contact-title"
-						label="Title"
-						id="contact-title"
-						autoComplete="new-password"
-						onChange={(e) => setMessageTitleField(e.target.value)}
+					<Box component="form" target="_blank" action="https://formsubmit.co/93fb459e6390c9820be22957756d070c " method="POST" noValidate sx={{ mt: 1 }}>
+						<TextField
+							autoFocus
+							margin="normal"
+							required
+							fullWidth
+							value={emailField}
+							id="email-sender"
+							label="Your email address"
+							name="email-sender"
+							error={emailField !== "" && !validateEmail(emailField)}
+							autoComplete="off"
+							onChange={(e) => setEmailField(e.target.value)}
+							helperText={emailErrorMessage(emailField)}
+						/>
+						<TextField
+							margin="normal"
+							required
+							fullWidth
+							name="contact-title"
+							label="Title"
+							id="contact-title"
+							autoComplete="new-password"
+							onChange={(e) => setMessageTitleField(e.target.value)}
 
-					/>
+						/>
 
-					<TextField
-						multiline
-						rows={6}
-						margin="normal"
-						required
-						fullWidth
-						name="contact-message"
-						label="Message"
-						id="contact-message"
-						autoComplete="new-password"
-						onChange={(e) => setMessageBodyField(e.target.value)}
+						<TextField
+							multiline
+							rows={6}
+							margin="normal"
+							required
+							fullWidth
+							name="contact-message"
+							label="Message"
+							id="contact-message"
+							autoComplete="new-password"
+							onChange={(e) => setMessageBodyField(e.target.value)}
 
-					/>
+						/>
 
-					<Button
-						type="submit"
-						fullWidth
-						variant="contained"
-						sx={{ mt: 3, mb: 2, }}
-						disabled={messageTitleField === "" || messageBodyField === "" || !validateEmail(emailField)}
-					>
-						Send message
-					</Button>
+						<Button
+							type="submit"
+							fullWidth
+							variant="contained"
+							sx={{ mt: 3, mb: 2, }}
+							disabled={messageTitleField === "" || messageBodyField === "" || !validateEmail(emailField)}
+						>
+							Send message
+						</Button>
 
-					<Box container textAlign="center">
+						<Box container textAlign="center">
 
+						</Box>
 					</Box>
 				</Box>
-
-			</Box>
+			</Container>
 		</Dialog >
 	)
 }
