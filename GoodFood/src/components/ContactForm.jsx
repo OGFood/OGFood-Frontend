@@ -32,14 +32,13 @@ import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessag
 
 
 /**
- * Email form - Replace the email adress in the <Box component="form" action = "https://formsubmit.co/your@email.com" with any mail (a tempmail works, eg https://temp-mail.org/en/ ).
+ * How to change email adressed used to receive messages from the form:
+ * Replace the email adress in the <Box component="form" action = "https://formsubmit.co/your@email.com" with any mail (a tempmail works, eg https://temp-mail.org/en/ ).
  * When sending the message the first time, the email you used will receive an activation link and a code it tells you to use.
  * When you have the code, replace the email in the formsubmit.co link with the code. Like so "https://formsubmit.co/7e99bc6dc945bb0aa431020cc4947cd8"
  * Any mail sent through the GodFood contact form will be sent to the tempmail or normal mail you signed up with.
  */
 
-
-//TODO: Register a real email for more permanent use
 
 const Transition = forwardRef(function Transition(props, ref) {
 	return <Slide direction="down" ref={ref} {...props} />;
@@ -66,13 +65,13 @@ const ContactForm = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const data = new FormData(e.currentTarget);
+		// const data = new FormData(e.currentTarget);
 
-		console.log("Field Data:", {
-			sender: data.get('email-sender'),
-			title: data.get('contact-title'),
-			message: data.get('contact-message'),
-		})
+		// console.log("Field Data:", {
+		// 	sender: data.get('email-sender'),
+		// 	title: data.get('contact-title'),
+		// 	message: data.get('contact-message'),
+		// })
 
 	};
 
@@ -84,6 +83,7 @@ const ContactForm = () => {
 		else
 			setEmailField("")
 	}, [userLoggedIn])
+
 	return (
 		<Dialog
 
@@ -111,19 +111,20 @@ const ContactForm = () => {
 
 
 				<Typography component="h1" variant="h5">
-					Contact us
+					Contact Us
 				</Typography>
 				<Typography gutterBottom>
-					<span style={{ color: "#A6B727", fontSize: "2rem" }}><i className="fa-solid fa-envelope-open-text fa-xl"></i></span>
+					<span style={{ color: "#A6B727", fontSize: "3rem" }}><i className="fa-solid fa-envelope-open-text fa-xl"></i></span>
 				</Typography>
-				<Typography gutterBottom>
+				<Typography gutterBottom mt="1rem">
 					Do you have a question regarding our site or what we do, or perhaps a suggestion for improvement?
 				</Typography>
 				<Typography>
-					Send us a message at [EMAIL], or use the contact form below.
+					Send us a message at <Link href="mailto:godfood@theplate.com">godfood@theplate.com</Link> or use the contact form below.
+
 				</Typography>
 
-				<Box component="form" onSubmit={handleSubmit} target="_blank" action="https://formsubmit.co/your@email.com " method="POST" noValidate sx={{ mt: 1 }}>
+				<Box component="form" target="_blank" action="https://formsubmit.co/93fb459e6390c9820be22957756d070c " method="POST" noValidate sx={{ mt: 1 }}>
 					<TextField
 						autoFocus
 						margin="normal"

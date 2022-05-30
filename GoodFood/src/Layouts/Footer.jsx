@@ -7,6 +7,7 @@ import Container from "@mui/material/Container"
 import Logo from "../assets/images/logo-notext-white-small.png"
 import MenuIcon from '@mui/icons-material/Menu';
 import CompanyLogo from "../assets/images/c-logo.png"
+import Link from "@mui/material/Link"
 
 
 const Footer = () => {
@@ -17,7 +18,7 @@ const Footer = () => {
 					©  2022
 				</Typography>
 				<Box sx={{ verticalAlign: "middle" }}>
-					<img src={CompanyLogo} height="45px" style={{ paddingBottom: "5px" }}></img>
+					<Link href="mailto:godfood@theplate.com"><img src={CompanyLogo} height="45px" style={{ paddingBottom: "2px" }}></img></Link>
 				</Box>
 			</Toolbar>
 		</Container>
