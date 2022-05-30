@@ -29,8 +29,14 @@ import userLoggedInState from '../atoms/userLoggedInState';
 import currentUserState from '../atoms/currentUserState';
 import openContactFormState from "../atoms/openContactFormState";
 import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessage, userNotFoundMessage } from '../Auth/UserValidation';
-import axios from "axios";
 
+
+/**
+ * Email form - Replace the email adress in the <Box component="form" action = "https://formsubmit.co/your@email.com" with any mail (a tempmail works, eg https://temp-mail.org/en/ ).
+ * When sending the message the first time, the email you used will receive an activation link and a code it tells you to use.
+ * When you have the code, replace the email in the formsubmit.co link with the code. Like so "https://formsubmit.co/7e99bc6dc945bb0aa431020cc4947cd8"
+ * Any mail sent through the GodFood contact form will be sent to the tempmail or normal mail you signed up with.
+ */
 
 
 const Transition = forwardRef(function Transition(props, ref) {
@@ -58,30 +64,6 @@ const ContactForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const data = new FormData(e.currentTarget);
-
-		// const sendContactInfo = async (data) => {
-		// 	await fetch("https://formsubmit.co/el/rinece", {
-		// 		method: "POST",
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 			'Accept': 'application/json'
-		// 		},
-		// 		body: JSON.stringify({
-		// 			data
-		// 		})
-		// 	}).then(response => response.json())
-		// 		.then(data => console.log(data))
-		// 		.catch(error => console.log(error));
-		// }
-		// sendContactInfo(data);
-
-		axios.defaults.headers.post['Content-Type'] = 'application/json';
-		axios.post('https://formsubmit.co/el/rinece', {
-			name: "FormSubmit",
-			message: "Test"
-		})
-			.then(response => console.log(response))
-			.catch(error => console.log(error));
 
 		console.log("Field Data:", {
 			sender: data.get('email-sender'),
@@ -132,7 +114,8 @@ const ContactForm = () => {
 				<Typography>
 					Send us a message at [EMAIL], or use the contact form below
 				</Typography>
-				<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+
+				<Box component="form" onSubmit={handleSubmit} target="_blank" action="https://formsubmit.co/your@email.com " method="POST" noValidate sx={{ mt: 1 }}>
 					<TextField
 						autoFocus
 						margin="normal"
