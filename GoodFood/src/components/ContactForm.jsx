@@ -47,6 +47,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 
 
+
 const ContactForm = () => {
 
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
@@ -101,20 +102,25 @@ const ContactForm = () => {
 			<Box
 				sx={{
 					marginTop: 2,
+					mb: 2,
 					display: 'flex',
 					flexDirection: 'column',
 					alignItems: 'center',
 				}}
 			>
 
+
 				<Typography component="h1" variant="h5">
-					Contact us!
+					Contact us
+				</Typography>
+				<Typography gutterBottom>
+					<span style={{ color: "#A6B727", fontSize: "2rem" }}><i className="fa-solid fa-envelope-open-text fa-xl"></i></span>
 				</Typography>
 				<Typography gutterBottom>
 					Do you have a question regarding our site or what we do, or perhaps a suggestion for improvement?
 				</Typography>
 				<Typography>
-					Send us a message at [EMAIL], or use the contact form below
+					Send us a message at [EMAIL], or use the contact form below.
 				</Typography>
 
 				<Box component="form" onSubmit={handleSubmit} target="_blank" action="https://formsubmit.co/your@email.com " method="POST" noValidate sx={{ mt: 1 }}>
@@ -162,7 +168,7 @@ const ContactForm = () => {
 						type="submit"
 						fullWidth
 						variant="contained"
-						sx={{ mt: 3, mb: 2 }}
+						sx={{ mt: 3, mb: 2, }}
 						disabled={messageTitleField === "" || messageBodyField === "" || !validateEmail(emailField)}
 					>
 						Send message
