@@ -43,11 +43,11 @@ const UserInfoPage = () => {
 				<AccountCircleRoundedIcon />
 			</Avatar>
 			<Typography component="h1" variant="h5">
-				{currentUser.username}
+				{currentUser.name}
 			</Typography>
 
 			<Box component="div" sx={{ paddingTop: "3rem", textAlign: "center" }}>
-				<Typography gutterBottom textAlign="center"> Welcome, {currentUser.username} </Typography>
+				<Typography gutterBottom textAlign="center"> Welcome, {currentUser.name} </Typography>
 				<Divider></Divider>
 				<Typography> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab mollitia omnis ipsum. Libero, quaerat harum!</Typography>
 			</Box>

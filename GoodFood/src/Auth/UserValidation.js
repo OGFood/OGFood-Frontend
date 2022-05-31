@@ -1,7 +1,7 @@
 
 
 const minPasswordLength = 6
-const maxPasswordLength = 12
+const maxPasswordLength = 16
 
 // const minUsernameLength
 // const maxUsernameLength
@@ -15,7 +15,7 @@ const validatePassword = (pass) => {
 }
 
 const validateEmail = (email) => {
-	return email.includes("@") && email.includes(".") && isNotEmpty(email)
+	return /*email.includes("@") && email.includes(".") && */isNotEmpty(email)
 }
 
 /**

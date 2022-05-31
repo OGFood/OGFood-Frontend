@@ -18,13 +18,13 @@ import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessag
 import offlineUsersState from '../atoms/offlineUsersState';
 import currentUserState from '../atoms/currentUserState';
 
-//TODO: Maybe change email to username?
+//TODO: Maybe change name to username?
 //TODO: Forgotten password functionality?
 
 const LoginForm = () => {
 
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
-	const [emailField, setEmailField] = useState("")
+	const [nameField, setnameField] = useState("")
 	const [passwordField, setPasswordField] = useState("")
 
 	// Offline test
@@ -39,14 +39,16 @@ const LoginForm = () => {
 		e.preventDefault();
 		const data = new FormData(e.currentTarget);
 		console.log("Field Data:", {
-			email: data.get('email'),
+			name: data.get('name'),
 			password: data.get('password'),
 		})
-		const email = data.get("email")
+		const name = data.get("name")
 		const password = data.get("password")
 
 		//temp login test using offline data, replace with db stuff
-		const userMatch = offlineUserList.find(user => email === user.email && password === user.password)
+		//const userMatch = offlineUserList.find(user => name === user.name && password === user.password)
+		const fetchedUserData = await fetch(`https://localhost:7144/api/user/${name}/${password}`)
+		const userMatch = JSON.parse(await fetchedUserData.text())
 		console.log(userMatch)
 		if (userMatch !== undefined) {
 			setCurrentUser(userMatch)
@@ -57,7 +59,7 @@ const LoginForm = () => {
 			setUserNotFound(true)
 			console.log("no match")
 		}
-		// if email+password valid, send to backend, if user is logged in, set userloggedin state to true to change ui element visuals
+		// if name+password valid, send to backend, if user is logged in, set userloggedin state to true to change ui element visuals
 		// Handle wrong username/password/usernotfound etc from db
 	};
 
@@ -84,14 +86,14 @@ const LoginForm = () => {
 					margin="normal"
 					required
 					fullWidth
-					id="email"
-					label="Email Address"
-					name="email"
+					id="name"
+					label="Username"
+					name="name"
 					onFocus={() => setUserNotFound(false)}
-					error={emailField !== "" && !validateEmail(emailField)}
+					error={nameField !== "" && !validateEmail(nameField)}
 					autoComplete="off"
-					onChange={(e) => setEmailField(e.target.value)}
-					helperText={emailErrorMessage(emailField)}
+					onChange={(e) => setnameField(e.target.value)}
+					helperText={emailErrorMessage(nameField)}
 				/>
 				<TextField
 					margin="normal"
@@ -115,7 +117,7 @@ const LoginForm = () => {
 					fullWidth
 					variant="contained"
 					sx={{ mt: 3, mb: 2 }}
-					disabled={!validatePassword(passwordField) || !validateEmail(emailField)}
+					disabled={!validatePassword(passwordField) || !validateEmail(nameField)}
 				>
 					Sign In
 				</Button>
