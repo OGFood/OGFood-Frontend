@@ -80,7 +80,7 @@ const ContactForm = () => {
 
 	useEffect(() => {
 		if (userLoggedIn)
-			setEmailField(currentUser.mail)
+			setEmailField(currentUser.email)
 		else
 			setEmailField("")
 	}, [userLoggedIn])

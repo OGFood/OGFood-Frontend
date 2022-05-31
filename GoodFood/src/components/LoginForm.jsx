@@ -14,7 +14,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import userLoggedInState from '../atoms/userLoggedInState';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useEffect, useRef, useState } from 'react';
-import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessage, userNotFoundMessage } from '../Auth/UserValidation';
+import { validatePassword, validateEmail, validateUsername, passwordErrorMessage, emailErrorMessage, userNotFoundMessage, usernameErrorMessage } from '../Auth/UserValidation';
 import offlineUsersState from '../atoms/offlineUsersState';
 import currentUserState from '../atoms/currentUserState';
 
@@ -45,14 +45,16 @@ const LoginForm = () => {
 		const password = data.get("password")
 
 		//temp login test using offline data, replace with db stuff
-		//const userMatch = offlineUserList.find(user => name === user.name && password === user.password)
+		const userMatch = offlineUserList.find(user => name === user.username && password === user.password)
+		console.log(userMatch)
 
 		// TODO: If fetchedUserData fails, make it use the offline version
-		const fetchedUserData = await fetch(`https://localhost:7144/api/user/${name}/${password}`)
+
+		// const fetchedUserData = await fetch(`https://localhost:7144/api/user/${name}/${password}`)
 		// console.log(fetchedUserData)
+
 		// if (fetchedUserData.ok)
-		// 	setUserMatch(JSON.parse(await fetchedUserData.text()))
-		const userMatch = JSON.parse(await fetchedUserData.text())
+		// const userMatch = JSON.parse(await fetchedUserData.text())
 
 
 
@@ -100,10 +102,10 @@ const LoginForm = () => {
 					label="Username"
 					name="name"
 					onFocus={() => setUserNotFound(false)}
-					error={nameField !== "" && !validateEmail(nameField)}
+					error={nameField !== "" && !validateUsername(nameField)}
 					autoComplete="off"
 					onChange={(e) => setnameField(e.target.value)}
-					helperText={emailErrorMessage(nameField)}
+					helperText={usernameErrorMessage(nameField)}
 				/>
 				<TextField
 					margin="normal"
@@ -127,7 +129,7 @@ const LoginForm = () => {
 					fullWidth
 					variant="contained"
 					sx={{ mt: 3, mb: 2 }}
-					disabled={!validatePassword(passwordField) || !validateEmail(nameField)}
+					disabled={!validatePassword(passwordField) || !validateUsername(nameField)}
 				>
 					Sign In
 				</Button>
