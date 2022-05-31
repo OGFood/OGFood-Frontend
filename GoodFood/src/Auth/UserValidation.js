@@ -2,6 +2,7 @@
 
 const minPasswordLength = 6
 const maxPasswordLength = 16
+const maxUsernameLength = 21
 
 // const minUsernameLength
 // const maxUsernameLength
@@ -16,6 +17,10 @@ const validatePassword = (pass) => {
 
 const validateEmail = (email) => {
 	return /*email.includes("@") && email.includes(".") && */isNotEmpty(email)
+}
+
+const validateUsername = (username) => {
+	return username.length <= maxUsernameLength && isNotEmpty(username)
 }
 
 /**
@@ -53,5 +58,5 @@ const usernameErrorMessage = () => {
 	return null
 }
 
-const userNotFoundMessage = "Could not find a user with that email adress."
+const userNotFoundMessage = "Could not find a user with that username."
 export { minPasswordLength, maxPasswordLength, validatePassword, validateEmail, isNotEmpty, passwordErrorMessage, emailErrorMessage, usernameErrorMessage, userNotFoundMessage, usernameAlreadyExists, emailAlreadyInUse }
