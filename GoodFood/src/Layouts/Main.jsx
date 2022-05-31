@@ -25,6 +25,7 @@ import { fetchIngredients, fetchRecipes } from "../javascript/fetchFromOwnAPI";
 import filterRecipes from "../javascript/filterRecipes";
 import LoginSignUpContainer from "../components/LoginSignUpContainer";
 import ContactForm from "../components/ContactForm";
+import currentUserState from "../atoms/currentUserState";
 
 // TODO: When searching in autocomplete box => when enter is pressed, select first autocomplete suggestion
 // TODO: Autocompletebox => onchange, sync with logged in user ingredients db?
@@ -32,6 +33,7 @@ import ContactForm from "../components/ContactForm";
 const Main = () => {
 	const [selectedIngredients, setSelectedIngredients] = useState([])
 	const [ingredientsList, setIngredientsList] = useRecoilState(ingredientsState);
+	const [user, setUser] = useRecoilState(currentUserState);
 	const [recipes, setRecipes] = useRecoilState(recipesState);
 	const [filteredRecipes, setFilteredRecipes] = useState(recipes);
 
@@ -49,6 +51,13 @@ const Main = () => {
 	useEffect(() => {
 		filterRecipes(recipes, setFilteredRecipes, selectedIngredients);
 	}, [selectedIngredients])
+
+	useEffect(() => {
+		console.log("Currentuser Changed");
+		const cupboard = user.cupboard.map(i => i.name);
+		console.log("CupBoard: ", cupboard);
+		setSelectedIngredients(cupboard);
+	}, [user])
 
 	return (
 		<Container sx={{ bgcolor: "mainbg.main", paddingBottom: "5rem" }} maxWidth="xl" >
@@ -78,6 +87,7 @@ const Main = () => {
 						id="ingredients"
 						options={ingredientsList.map(x => x.name)} // The autocomplete data
 						disableCloseOnSelect
+						defaultValue={user.cupboard.map(i => i.name)}
 						renderOption={(props, option, { selected }) => (
 							<li {...props}>
 								<Checkbox
