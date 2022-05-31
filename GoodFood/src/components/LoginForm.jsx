@@ -47,15 +47,15 @@ const LoginForm = () => {
 
 		//temp login test using offline data, replace with db stuff
 		//--------offline version-----
-		const userMatch = offlineUserList.find(user => name === user.name && password === user.password)
-		console.log(userMatch)
+		// const userMatch = offlineUserList.find(user => name === user.name && password === user.password)
+		// console.log(userMatch)
 		//-----------------------
 
 		// TODO: If fetchedUserData fails, make it use the offline version
 		//---------DB version-----------
-		// const fetchedUserData = await fetch(`https://localhost:7144/api/user/${name}/${password}`)
-		// console.log(fetchedUserData)
-		// const userMatch = JSON.parse(await fetchedUserData.text())
+		const fetchedUserData = await fetch(`https://localhost:7144/api/user/${name}/${password}`)
+		console.log(fetchedUserData)
+		const userMatch = JSON.parse(await fetchedUserData.text())
 		//--------------------------
 
 
