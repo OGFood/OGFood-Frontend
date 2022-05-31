@@ -22,7 +22,7 @@ const ingredientsState = atom({
 		{ id: "", name: "onion" },
 		{ id: "", name: "chili flakes" },
 		{ id: "", name: "chili" },
-		{ id: "", name: "Pizza sauce" },
+		{ id: "", name: "pizza sauce" },
 		{ id: "", name: "flour" },
 		{ id: "", name: "salami" },
 		{ id: "", name: "yeast" },
