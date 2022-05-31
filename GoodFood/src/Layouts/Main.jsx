@@ -67,6 +67,9 @@ const Main = () => {
 		if (user.cupboard !== undefined) {
 			setAutocompleteValue(user.cupboard.map((x) => x.name.toLocaleLowerCase()))
 		}
+		else {
+			setAutocompleteValue([])
+		}
 	}, [user])
 
 	return (
