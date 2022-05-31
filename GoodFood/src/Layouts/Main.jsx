@@ -64,7 +64,7 @@ const Main = () => {
 	useEffect(() => {
 		console.log("Currentuser Changed");
 
-		if (user.cupboard.length !== 0) {
+		if (user.cupboard !== undefined) {
 			setAutocompleteValue(user.cupboard.map((x) => x.name.toLocaleLowerCase()))
 		}
 	}, [user])
