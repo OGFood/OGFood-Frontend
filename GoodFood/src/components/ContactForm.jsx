@@ -54,7 +54,7 @@ const ContactForm = () => {
 	const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
 
 	const [openContactForm, setOpenContactForm] = useRecoilState(openContactFormState)
-	const [emailField, setEmailField] = useState(currentUser.email || "")
+	const [emailField, setEmailField] = useState(currentUser.mail || "")
 	const [messageTitleField, setMessageTitleField] = useState("")
 	const [messageBodyField, setMessageBodyField] = useState("")
 
@@ -80,7 +80,7 @@ const ContactForm = () => {
 
 	useEffect(() => {
 		if (userLoggedIn)
-			setEmailField(currentUser.email)
+			setEmailField(currentUser.mail)
 		else
 			setEmailField("")
 	}, [userLoggedIn])

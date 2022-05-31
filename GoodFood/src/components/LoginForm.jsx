@@ -25,14 +25,15 @@ const LoginForm = () => {
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
 	const [nameField, setnameField] = useState("")
 	const [passwordField, setPasswordField] = useState("")
-
-	// Offline test
-	const offlineUserList = useRecoilValue(offlineUsersState)
 	const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
+
+	const offlineUserList = useRecoilValue(offlineUsersState)
 
 	const [userNotFound, setUserNotFound] = useState(false)
 
+	const [infoMessage, setInfoMessage] = useState("")
 
+	// const [userMatch, setUserMatch] = useState("")
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -45,21 +46,42 @@ const LoginForm = () => {
 		const password = data.get("password")
 
 		//temp login test using offline data, replace with db stuff
-		const userMatch = offlineUserList.find(user => name === user.username && password === user.password)
+		//--------offline version-----
+		const userMatch = offlineUserList.find(user => name === user.name && password === user.password)
 		console.log(userMatch)
+		//-----------------------
 
 		// TODO: If fetchedUserData fails, make it use the offline version
-
+		//---------DB version-----------
 		// const fetchedUserData = await fetch(`https://localhost:7144/api/user/${name}/${password}`)
 		// console.log(fetchedUserData)
-
-		// if (fetchedUserData.ok)
 		// const userMatch = JSON.parse(await fetchedUserData.text())
+		//--------------------------
 
 
+		//------Test----
+		// let userMatch;
+		// const userRequest = new Request(`https://localhost:7144/api/user/${name}/${password}`)
+		// fetch(userRequest)
+		// 	.then((response) => {
+		// 		if (!response.ok) {
+		// 			console.log("EROORROR")
+		// 		}
+		// 		return response.text();
+		// 	})
+		// 	.then((response) => {
+		// 		console.log(response)
+		// 		userMatch = response
+		// 	}).catch(error => {
+		// 		console.log(error)
+		// 		setInfoMessage("DB offline, trying offline")
+		// 		const offlineSearch = offlineUserList.find(user => name === user.name && password === user.password)
+		// 		userMatch = offlineSearch
+		// 	});
+		//--------------
 
-		console.log(userMatch)
-		//TODO: The if check doesn't work when using the fetcheduserData version?
+		// console.log(userMatch)
+		// //TODO: The if check doesn't work when using the fetcheduserData version?
 		if (userMatch !== undefined) {
 			setCurrentUser(userMatch)
 			setUserLoggedIn(true)
@@ -122,7 +144,7 @@ const LoginForm = () => {
 					helperText={passwordErrorMessage(passwordField)}
 				/>
 
-				{userNotFound && <Typography color="error.light" textAlign="center">{userNotFoundMessage}</Typography>}
+				<Typography color="error.light" textAlign="center">{userNotFound ? userNotFoundMessage : infoMessage}</Typography>
 
 				<Button
 					type="submit"
