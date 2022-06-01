@@ -47,6 +47,9 @@ const Main = () => {
 		</Grid>
 	));
 
+	const updateDbUserCupboard = async () => {
+
+	}
 
 	useEffect(() => {
 		fetchIngredients(setIngredientsList);

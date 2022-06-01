@@ -81,17 +81,15 @@ const RecipeModal = ({ recipe }) => {
 			sx={{ minWidth: "100%" }}
 			keepMounted
 			onClose={handleClose}
-			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" } }}
+			BackdropProps={{ style: { backgroundColor: "rgba(0,0,0,0.1)" }, }}
 		>
 
 			<Card sx={{ minHeight: "950px", overflowY: "auto" }} >
-				{!isScreenSizeSmall ?
+				{!isScreenSizeSmall &&
 					<IconButton onClick={() => handleClose()} sx={{ color: "mainbg.main", position: "absolute", right: "0", fontSize: "4em" }}>
 						<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 4px black)" }}></CancelOutlinedIcon>
-					</IconButton> :
-					<IconButton onClick={() => handleClose()} sx={{ color: "primary.light", position: "fixed", right: "1px", bottom: "0px", fontSize: "3em" }}>
-						<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 1px black)" }}></CancelOutlinedIcon>
 					</IconButton>}
+
 				<CardMedia
 					component="img"
 					height="300"
@@ -158,6 +156,9 @@ const RecipeModal = ({ recipe }) => {
 					<Divider sx={{ marginBottom: "1rem" }} />
 
 				</CardContent>
+				{isScreenSizeSmall && <IconButton onClick={() => handleClose()} sx={{ color: "primary.light", position: "fixed", right: "1px", bottom: "0px", fontSize: "3em" }}>
+					<CancelOutlinedIcon fontSize="4em" sx={{ filter: "drop-shadow(0 0 1px black)" }}></CancelOutlinedIcon>
+				</IconButton>}
 			</Card>
 		</Dialog>
 	);

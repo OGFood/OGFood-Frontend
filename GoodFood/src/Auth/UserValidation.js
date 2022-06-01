@@ -17,7 +17,7 @@ const validatePassword = (pass) => {
 }
 
 const validateEmail = (email) => {
-	return /*email.includes("@") && email.includes(".") && */isNotEmpty(email)
+	return email.includes("@") && email.includes(".") && isNotEmpty(email)
 }
 
 const validateUsername = (username) => {
