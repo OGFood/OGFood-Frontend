@@ -30,26 +30,35 @@ const UserInfoPage = () => {
 		console.log("user is logged out")
 	}
 
+
 	return (
 		<Box
 			sx={{
-				marginTop: 2,
+				marginTop: 1,
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
 			}}
 		>
-			<Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-				<AccountCircleRoundedIcon />
+			<Avatar sx={{ m: 1, bgcolor: 'primary.main', height: "55px", width: "55px" }}>
+				<AccountCircleRoundedIcon sx={{ height: "50px", width: "50px" }} />
 			</Avatar>
-			<Typography component="h1" variant="h5">
+			<Typography component="p" variant="h4" color="primary.dark">
 				{currentUser.name}
 			</Typography>
 
+			<Typography component="p" variant="h6" color="primary.dark">
+				{currentUser.mail}
+			</Typography>
+			<Typography component="p" variant="body1">
+
+			</Typography>
 			<Box component="div" sx={{ paddingTop: "3rem", textAlign: "center" }}>
 				<Typography gutterBottom textAlign="center"> Welcome, {currentUser.name} </Typography>
 				<Divider></Divider>
-				<Typography> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab mollitia omnis ipsum. Libero, quaerat harum!</Typography>
+				<Typography mt="10px" mb="5px"> Quote of The Day</Typography>
+				<Typography fontStyle="italic"> I cook with wine, sometimes I even add it to the food.</Typography>
+				<Typography > - W.C. Fields</Typography>
 			</Box>
 
 
