@@ -1,7 +1,7 @@
 
 
-const minPasswordLength = 6
-const maxPasswordLength = 16
+const minPasswordLength = 8
+const maxPasswordLength = 20
 const minUsernameLength = 3
 const maxUsernameLength = 21
 
@@ -47,8 +47,8 @@ const emailAlreadyInUse = (emailSearch, userList) => {
 const passwordErrorMessage = (pass) => {
 	const tooShort = pass.length < minPasswordLength && isNotEmpty(pass)
 	const tooLong = pass.length > maxPasswordLength && isNotEmpty(pass)
-	if (tooShort) return "Password must be longer than 5 character"
-	if (tooLong) return "Password cannot be longer than 12 characters"
+	if (tooShort) return `Password must be longer than ${minPasswordLength} character`
+	if (tooLong) return `Password cannot be longer than ${maxPasswordLength} characters`
 }
 
 const emailErrorMessage = (email) => {
