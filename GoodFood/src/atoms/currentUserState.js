@@ -3,7 +3,7 @@ import { atom } from 'recoil';
 const currentUserState = atom({
 	key: 'currentUser',
 	default:
-		{ username: "", email: "", password: "", cupboard: "" }
+		{ name: "", mail: "", password: "", cupboard: [] }
 
 });
 

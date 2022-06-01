@@ -14,50 +14,86 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import userLoggedInState from '../atoms/userLoggedInState';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useEffect, useRef, useState } from 'react';
-import { validatePassword, validateEmail, passwordErrorMessage, emailErrorMessage, userNotFoundMessage } from '../Auth/UserValidation';
+import { validatePassword, validateEmail, validateUsername, passwordErrorMessage, emailErrorMessage, userNotFoundMessage, usernameErrorMessage } from '../Auth/UserValidation';
 import offlineUsersState from '../atoms/offlineUsersState';
 import currentUserState from '../atoms/currentUserState';
 
-//TODO: Maybe change email to username?
 //TODO: Forgotten password functionality?
 
 const LoginForm = () => {
 
 	const [userLoggedIn, setUserLoggedIn] = useRecoilState(userLoggedInState)
-	const [emailField, setEmailField] = useState("")
+	const [nameField, setnameField] = useState("")
 	const [passwordField, setPasswordField] = useState("")
-
-	// Offline test
-	const offlineUserList = useRecoilValue(offlineUsersState)
 	const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
 
-
+	const offlineUserList = useRecoilValue(offlineUsersState)
 
 	const [userNotFound, setUserNotFound] = useState(false)
+
+	const [infoMessage, setInfoMessage] = useState("")
+
+	// const [userMatch, setUserMatch] = useState("")
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const data = new FormData(e.currentTarget);
 		console.log("Field Data:", {
-			email: data.get('email'),
+			name: data.get('name'),
 			password: data.get('password'),
 		})
-		const email = data.get("email")
+		const name = data.get("name")
 		const password = data.get("password")
 
 		//temp login test using offline data, replace with db stuff
-		const userMatch = offlineUserList.find(user => email === user.email && password === user.password)
-		console.log(userMatch)
+		//--------offline version-----
+		// const userMatch = offlineUserList.find(user => name.toLocaleLowerCase() === user.name.toLocaleLowerCase() && password === user.password)
+		// console.log(userMatch)
+		//-----------------------
+
+		// TODO: If fetchedUserData fails, make it use the offline version
+		//---------DB version-----------
+		const fetchedUserData = await fetch(`https://localhost:7144/api/user/${name}/${password}`)
+		console.log(fetchedUserData)
+		const userMatch = JSON.parse(await fetchedUserData.text())
+		//--------------------------
+
+
+		//------Test----
+		// let userMatch;
+		// const userRequest = new Request(`https://localhost:7144/api/user/${name}/${password}`)
+		// fetch(userRequest)
+		// 	.then((response) => {
+		// 		if (!response.ok) {
+		// 			console.log("EROORROR")
+		// 		}
+		// 		return response.text();
+		// 	})
+		// 	.then((response) => {
+		// 		console.log(response)
+		// 		userMatch = response
+		// 	}).catch(error => {
+		// 		console.log(error)
+		// 		setInfoMessage("DB offline, trying offline")
+		// 		const offlineSearch = offlineUserList.find(user => name === user.name && password === user.password)
+		// 		userMatch = offlineSearch
+		// 	});
+		//--------------
+
+		// console.log(userMatch)
+		// //TODO: The if check doesn't work when using the fetcheduserData version?
 		if (userMatch !== undefined) {
 			setCurrentUser(userMatch)
 			setUserLoggedIn(true)
 			console.log("found match")
+			console.log(currentUser)
 		}
 		else {
 			setUserNotFound(true)
 			console.log("no match")
+			console.log(currentUser)
 		}
-		// if email+password valid, send to backend, if user is logged in, set userloggedin state to true to change ui element visuals
+		// if name+password valid, send to backend, if user is logged in, set userloggedin state to true to change ui element visuals
 		// Handle wrong username/password/usernotfound etc from db
 	};
 
@@ -84,14 +120,14 @@ const LoginForm = () => {
 					margin="normal"
 					required
 					fullWidth
-					id="email"
-					label="Email Address"
-					name="email"
+					id="name"
+					label="Username"
+					name="name"
 					onFocus={() => setUserNotFound(false)}
-					error={emailField !== "" && !validateEmail(emailField)}
+					error={nameField !== "" && !validateUsername(nameField)}
 					autoComplete="off"
-					onChange={(e) => setEmailField(e.target.value)}
-					helperText={emailErrorMessage(emailField)}
+					onChange={(e) => setnameField(e.target.value)}
+					helperText={usernameErrorMessage(nameField)}
 				/>
 				<TextField
 					margin="normal"
@@ -108,24 +144,24 @@ const LoginForm = () => {
 					helperText={passwordErrorMessage(passwordField)}
 				/>
 
-				{userNotFound && <Typography color="error.light" textAlign="center">{userNotFoundMessage}</Typography>}
+				<Typography color="error.light" textAlign="center">{userNotFound ? userNotFoundMessage : infoMessage}</Typography>
 
 				<Button
 					type="submit"
 					fullWidth
 					variant="contained"
 					sx={{ mt: 3, mb: 2 }}
-					disabled={!validatePassword(passwordField) || !validateEmail(emailField)}
+					disabled={!validatePassword(passwordField) || !validateUsername(nameField)}
 				>
 					Sign In
 				</Button>
 
-				<Box container textAlign="center">
+				{/* <Box container textAlign="center">
 					<Link href="#" variant="body2">
 						Forgot your password?
 					</Link>
 
-				</Box>
+				</Box> */}
 			</Box>
 
 		</Box>

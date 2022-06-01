@@ -1,7 +1,9 @@
 
 
-const minPasswordLength = 6
-const maxPasswordLength = 12
+const minPasswordLength = 8
+const maxPasswordLength = 20
+const minUsernameLength = 3
+const maxUsernameLength = 21
 
 // const minUsernameLength
 // const maxUsernameLength
@@ -15,7 +17,11 @@ const validatePassword = (pass) => {
 }
 
 const validateEmail = (email) => {
-	return email.includes("@") && email.includes(".") && isNotEmpty(email)
+	return /*email.includes("@") && email.includes(".") && */isNotEmpty(email)
+}
+
+const validateUsername = (username) => {
+	return username.length <= maxUsernameLength && isNotEmpty(username) && username.length > 2
 }
 
 /**
@@ -41,17 +47,20 @@ const emailAlreadyInUse = (emailSearch, userList) => {
 const passwordErrorMessage = (pass) => {
 	const tooShort = pass.length < minPasswordLength && isNotEmpty(pass)
 	const tooLong = pass.length > maxPasswordLength && isNotEmpty(pass)
-	if (tooShort) return "Password must be longer than 5 character"
-	if (tooLong) return "Password cannot be longer than 12 characters"
+	if (tooShort) return `Password must be longer than ${minPasswordLength} character`
+	if (tooLong) return `Password cannot be longer than ${maxPasswordLength} characters`
 }
 
 const emailErrorMessage = (email) => {
 	if (!validateEmail(email) && isNotEmpty(email)) return "Please enter a valid email"
 }
 
-const usernameErrorMessage = () => {
-	return null
+const usernameErrorMessage = (username) => {
+	const tooShort = username.length < minUsernameLength && isNotEmpty(username)
+	const tooLong = username.length > maxUsernameLength && isNotEmpty(username)
+	if (tooShort) return `Username must be longer than ${minUsernameLength} character`
+	if (tooLong) return `Username cannot be longer than ${maxUsernameLength} characters`
 }
 
-const userNotFoundMessage = "Could not find a user with that email adress."
-export { minPasswordLength, maxPasswordLength, validatePassword, validateEmail, isNotEmpty, passwordErrorMessage, emailErrorMessage, usernameErrorMessage, userNotFoundMessage, usernameAlreadyExists, emailAlreadyInUse }
+const userNotFoundMessage = "Could not find a user with that username."
+export { minPasswordLength, maxPasswordLength, validatePassword, validateEmail, isNotEmpty, passwordErrorMessage, emailErrorMessage, usernameErrorMessage, userNotFoundMessage, usernameAlreadyExists, emailAlreadyInUse, validateUsername }

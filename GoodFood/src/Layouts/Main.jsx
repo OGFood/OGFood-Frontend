@@ -25,15 +25,21 @@ import { fetchIngredients, fetchRecipes } from "../javascript/fetchFromOwnAPI";
 import filterRecipes from "../javascript/filterRecipes";
 import LoginSignUpContainer from "../components/LoginSignUpContainer";
 import ContactForm from "../components/ContactForm";
+import currentUserState from "../atoms/currentUserState";
 
 // TODO: When searching in autocomplete box => when enter is pressed, select first autocomplete suggestion
 // TODO: Autocompletebox => onchange, sync with logged in user ingredients db?
 
 const Main = () => {
-	const [selectedIngredients, setSelectedIngredients] = useState([])
+	const [autocompleteValue, setAutocompleteValue] = useState([]) // Autocomplete lådan får sitt eget state för sitt värde så att den kontrollerar sig själv
+
+	const [selectedIngredients, setSelectedIngredients] = useState([]) // SelectedIngredients sätts till autocompletes värde när autocomplete ändras, istället för direkt från värdet
 	const [ingredientsList, setIngredientsList] = useRecoilState(ingredientsState);
+	const [user, setUser] = useRecoilState(currentUserState);
 	const [recipes, setRecipes] = useRecoilState(recipesState);
 	const [filteredRecipes, setFilteredRecipes] = useState(recipes);
+
+
 
 	const displayRecipes = filteredRecipes.map((recipe, i) => (
 		<Grid item xs={12} sm={6} lg={4} key={i}>
@@ -41,17 +47,35 @@ const Main = () => {
 		</Grid>
 	));
 
+
 	useEffect(() => {
 		fetchIngredients(setIngredientsList);
 		fetchRecipes(setRecipes, setFilteredRecipes);
 	}, []);
 
 	useEffect(() => {
+		setSelectedIngredients(autocompleteValue)
+	}, [autocompleteValue])
+
+	useEffect(() => {
 		filterRecipes(recipes, setFilteredRecipes, selectedIngredients);
 	}, [selectedIngredients])
 
+	useEffect(() => {
+		console.log("Currentuser Changed");
+
+		if (user.cupboard !== undefined) {
+			setAutocompleteValue(user.cupboard.map((x) => x.name.toLocaleLowerCase()))
+		}
+		else {
+			setAutocompleteValue([])
+		}
+	}, [user])
+
 	return (
+
 		<Container sx={{ bgcolor: "mainbg.main", paddingBottom: "5rem" }} maxWidth="xl" >
+			{console.log("User Cupboard: ", user.cupboard)}
 			<Box sx={{
 				backgroundImage: `url(${FoodBg})`,
 				bgcolor: "primary.light",
@@ -73,11 +97,14 @@ const Main = () => {
 
 					<Autocomplete
 						ListboxProps={{ style: { maxHeight: "15rem" } }}
-						onChange={(e, value) => setSelectedIngredients(value)}
+						// onChange={(e, value) => setSelectedIngredients(value)}
+						onChange={(e, value) => setAutocompleteValue(value)}
+						value={autocompleteValue}
 						multiple
 						id="ingredients"
-						options={ingredientsList.map(x => x.name)} // The autocomplete data
+						options={ingredientsList.map(x => x.name.toLocaleLowerCase())} // The autocomplete data
 						disableCloseOnSelect
+
 						renderOption={(props, option, { selected }) => (
 							<li {...props}>
 								<Checkbox
