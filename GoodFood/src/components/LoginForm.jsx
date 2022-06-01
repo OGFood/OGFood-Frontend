@@ -47,7 +47,7 @@ const LoginForm = () => {
 
 		//temp login test using offline data, replace with db stuff
 		//--------offline version-----
-		// const userMatch = offlineUserList.find(user => name === user.name && password === user.password)
+		// const userMatch = offlineUserList.find(user => name.toLocaleLowerCase() === user.name.toLocaleLowerCase() && password === user.password)
 		// console.log(userMatch)
 		//-----------------------
 

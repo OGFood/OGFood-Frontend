@@ -88,12 +88,14 @@ const MenuDrawer = () => {
 				sx={{ border: "1px solid", borderLeft: "none" }}
 			>
 				<Box padding="1rem" backgroundColor="mainbg.main" paddingBottom="2rem" >
-					<Typography>
-						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus vero unde eaque omnis officia, voluptate ipsa itaque similique nostrum cumque molestias laudantium consequuntur minus quis aspernatur esse! Possimus, distinctio vitae!
+					<Typography gutterBottom fontFamily="dacasa" variant="h3" textAlign="center"> God Food is Good Mat</Typography>
+					<Typography >
+						{/* Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus vero unde eaque omnis officia, voluptate ipsa itaque similique nostrum cumque molestias laudantium consequuntur minus quis aspernatur esse! Possimus, distinctio vitae! */}
+						Feel free to create an account and log in to store your ingredients for your next visit!
 					</Typography>
 				</Box>
 				<Box >
-					<List sx={{ backgroundColor: "mainbg.main", paddingTop: "0", paddingBottom: "1rem", "&:first-of-type": { borderTop: "1px solid" } }}>
+					<List sx={{ backgroundColor: "mainbg.main", paddingTop: "0", paddingBottom: "2px", "&:first-of-type": { borderTop: "1px solid" } }}>
 						{menuItems.map((menuItem) => (
 							<ListItemButton onClick={() => menuItem.func()} key={menuItem.label} sx={{ backgroundColor: "white", "&:hover": { backgroundColor: "primary.light", }, borderBottom: "1px solid" }}>
 								<ListItemIcon sx={{ color: "primary.dark" }}>{menuItem.icon}</ListItemIcon>

@@ -48,6 +48,7 @@ const SignUpForm = () => {
 		const email = data.get("email")
 		const password = data.get("password")
 
+		//TODO: Check if username exists in db 
 		if (usernameAlreadyExists(username, users)) {
 			setSuccessfulSignUp(false)
 			setInfoMessage("A user with that username already exists.")
@@ -60,14 +61,15 @@ const SignUpForm = () => {
 			setSuccessfulSignUp(true)
 			setInfoMessage("Succesfully signed up!")
 
-				const newUser = JSON.stringify({ Name: username, Mail: email, Password: password, Salt: "", CupBoard: [{Id: "62752775d119403fdea76b63", Name: "Paprika"}] })
-				const requestOptions = {
+			const newUser = JSON.stringify({ Name: username, Mail: email, Password: password, Salt: "", CupBoard: [{ Id: "62752775d119403fdea76b63", Name: "Paprika" }] })
+			const requestOptions = {
 				method: 'POST',
-				headers: { 
+				headers: {
 					'Accept': 'application/json',
-					'Content-Type': 'application/json' 
+					'Content-Type': 'application/json'
 				},
-				body: newUser};
+				body: newUser
+			};
 
 			fetch('https://localhost:7144/api/user/', requestOptions)
 				.then(response => console.log(response.json()))
