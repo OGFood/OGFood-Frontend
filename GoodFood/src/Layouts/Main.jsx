@@ -55,8 +55,18 @@ const Main = () => {
 		const username = user.name
 		const email = user.mail
 		const password = user.password
-		const cupboard = [...autocompleteValue];
 
+		if (user === "")
+			return
+
+		let output = null
+		autocompleteValue.forEach(ingredient => {
+			if (output === null) output = [ingredientsList.find(x => x.name == ingredient)]
+			else
+				output = [...output, ingredientsList.find(x => x.name == ingredient)]
+		})
+
+		const cupboard = output;
 
 		const newUser = JSON.stringify({ Id: id, Name: username, Mail: email, Password: password, Salt: "", CupBoard: cupboard })
 
@@ -77,6 +87,7 @@ const Main = () => {
 		console.log("All ingredients:", ingredientsList)
 	}
 
+
 	useEffect(() => {
 		fetchIngredients(setIngredientsList);
 		fetchRecipes(setRecipes, setFilteredRecipes);
@@ -91,9 +102,10 @@ const Main = () => {
 	}, [selectedIngredients])
 
 	useEffect(() => {
-		console.log("Currentuser Changed");
+		console.log("Currentuser Changed", user);
 
-		if (user.cupboard !== undefined) {
+		if (user !== null && user !== "" && user.name !== "") {
+			console.log("user is:", user)
 			setAutocompleteValue(user.cupboard.map((x) => x.name))
 		}
 		else {
@@ -125,29 +137,30 @@ const Main = () => {
 
 					<Autocomplete
 						ListboxProps={{ style: { maxHeight: "15rem" } }}
-						onBlur={updateDbUserCupboard}
-						onChange={(e, value) => setAutocompleteValue(value)}
+						onBlur={() => updateDbUserCupboard()}
+						onChange={(e, value) => { setAutocompleteValue(value); updateDbUserCupboard() }}
 						value={autocompleteValue}
-
 						multiple
 						id="ingredients"
-						options={ingredientsList} // The autocomplete data
+						// options={ingredientsList} // The autocomplete data
+						options={ingredientsList.map(x => x.name.toLocaleLowerCase())}
 						disableCloseOnSelect
-						getOptionLabel={option => option.name}
+						// getOptionLabel={option => option.name}
 						renderOption={(props, option, { selected }) => (
 							<li {...props}>
 								<Checkbox
+
 									icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
 									checkedIcon={<CheckBoxIcon fontSize="small" />}
 									style={{ marginRight: 8 }}
 									checked={selected}
 								/>
-								{option.name}
+								{option}
 							</li>
 						)}
 						style={{ minWidth: "79vmin" }}
 						renderInput={(params) => (
-							<TextField {...params} variant="outlined" label="Ingredients" placeholder="Search & Select ingredients" color="primary"
+							<TextField  {...params} variant="outlined" label="Ingredients" placeholder="Search & Select ingredients" color="primary"
 								sx={{
 									"& .MuiOutlinedInput-root": {
 										bgcolor: "white",
