@@ -58,7 +58,6 @@ const SignUpForm = () => {
 			body: newUser
 		};
 		let json = null;
-
 		fetch("https://godfoodapi.azurewebsites.net/api/user/", requestOptions)
 			.then((response) => {
 				console.log(response)

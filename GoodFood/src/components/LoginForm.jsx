@@ -43,10 +43,11 @@ const LoginForm = () => {
 		const name = data.get("name")
 		const password = data.get("password")
 		const fetchedUserData = await fetch(`https://godfoodapi.azurewebsites.net/api/user/${name}/${password}`)
-		const foundUser = JSON.parse(await fetchedUserData.text())
+		let foundUser = JSON.parse(await fetchedUserData.text())
 
 
 		if (foundUser !== undefined && foundUser !== "" && foundUser.name !== "") {
+			foundUser.password = password;
 			setCurrentUser(foundUser)
 			setUserLoggedIn(true)
 			console.log("found match")
