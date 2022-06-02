@@ -27,8 +27,6 @@ import LoginSignUpContainer from "../components/LoginSignUpContainer";
 import ContactForm from "../components/ContactForm";
 import currentUserState from "../atoms/currentUserState";
 
-// TODO: When searching in autocomplete box => when enter is pressed, select first autocomplete suggestion
-// TODO: Autocompletebox => onchange, sync with logged in user ingredients db?
 
 const Main = () => {
 	const [autocompleteValue, setAutocompleteValue] = useState([]) // Autocomplete lådan får sitt eget state för sitt värde så att den kontrollerar sig själv
@@ -47,6 +45,14 @@ const Main = () => {
 		</Grid>
 	));
 
+	// Is run when the user leaves the autocomplete/ingredients field. TODO: Replace the current users cupboard[] with an array consisting of ingredients where the ingredient name === autocomplete values
+	const updateDbUserCupboard = async () => {
+		const matchingIngredients = ingredientsList.filter((ingredient) => {
+
+		})
+		console.log(autocompleteValue)
+		console.log(ingredientsList)
+	}
 
 	useEffect(() => {
 		fetchIngredients(setIngredientsList);
@@ -75,7 +81,6 @@ const Main = () => {
 	return (
 
 		<Container sx={{ bgcolor: "mainbg.main", paddingBottom: "5rem" }} maxWidth="xl" >
-			{console.log("User Cupboard: ", user.cupboard)}
 			<Box sx={{
 				backgroundImage: `url(${FoodBg})`,
 				bgcolor: "primary.light",
@@ -97,7 +102,7 @@ const Main = () => {
 
 					<Autocomplete
 						ListboxProps={{ style: { maxHeight: "15rem" } }}
-						// onChange={(e, value) => setSelectedIngredients(value)}
+						onBlur={updateDbUserCupboard}
 						onChange={(e, value) => setAutocompleteValue(value)}
 						value={autocompleteValue}
 						multiple

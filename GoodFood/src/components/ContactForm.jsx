@@ -79,7 +79,7 @@ const ContactForm = () => {
 
 
 	useEffect(() => {
-		if (userLoggedIn)
+		if (userLoggedIn && currentUser.mail !== undefined)
 			setEmailField(currentUser.mail)
 		else
 			setEmailField("")

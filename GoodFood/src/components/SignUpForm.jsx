@@ -48,41 +48,36 @@ const SignUpForm = () => {
 		const email = data.get("email")
 		const password = data.get("password")
 
-		//TODO: Check if username exists in db 
-		if (usernameAlreadyExists(username, users)) {
-			setSuccessfulSignUp(false)
-			setInfoMessage("A user with that username already exists.")
-		}
-		else if (emailAlreadyInUse(email, users)) {
-			setSuccessfulSignUp(false)
-			setInfoMessage("The chosen email adress is already in use.")
-		}
-		else {
-			setSuccessfulSignUp(true)
-			setInfoMessage("Succesfully signed up!")
 
-			const newUser = JSON.stringify({ Name: username, Mail: email, Password: password, Salt: "", CupBoard: [{ Id: "62752775d119403fdea76b63", Name: "Paprika" }] })
-			const requestOptions = {
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: newUser
-			};
+		const newUser = JSON.stringify({ Name: username, Mail: email, Password: password, Salt: "", CupBoard: [] })
+		const requestOptions = {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: newUser
+		};
+		let json = null;
 
-			fetch('https://localhost:7144/api/user/', requestOptions)
-				.then(response => console.log(response.json()))
+		fetch("https://godfoodapi.azurewebsites.net/api/user/", requestOptions)
+			.then((response) => {
+				console.log(response)
+				if (response.status === 400) {
+					console.log("status is 400")
+					setSuccessfulSignUp(false)
+					setInfoMessage("Could not sign up using the chosen username / email")
+				}
+				if (response.status === 200) {
+					console.log("status is 200")
+					setSuccessfulSignUp(true)
+					setInfoMessage("Succesfully signed up!")
+					resetTextFields()
+				}
+			})
 
 
-			setUsers([...users,
-			{ username: username, email: email, password: password }])
 
-			resetTextFields()
-
-		}
-
-		console.log(users)
 	};
 
 

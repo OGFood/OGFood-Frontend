@@ -47,7 +47,7 @@ const UserInfoPage = () => {
 				{currentUser.name}
 			</Typography>
 
-			<Typography component="p" variant="h6" color="primary.dark">
+			<Typography component="p" variant="h6" color="dark.light">
 				{currentUser.mail}
 			</Typography>
 			<Typography component="p" variant="body1">
