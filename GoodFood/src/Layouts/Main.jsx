@@ -47,8 +47,13 @@ const Main = () => {
 		</Grid>
 	));
 
+	// Is run when the user leaves the autocomplete/ingredients field. TODO: Replace the current users cupboard[] with an array consisting of ingredients where the ingredient name === autocomplete values
 	const updateDbUserCupboard = async () => {
+		const matchingIngredients = ingredientsList.filter((ingredient) => {
 
+		})
+		console.log(autocompleteValue)
+		console.log(ingredientsList)
 	}
 
 	useEffect(() => {
@@ -99,7 +104,7 @@ const Main = () => {
 
 					<Autocomplete
 						ListboxProps={{ style: { maxHeight: "15rem" } }}
-
+						onBlur={updateDbUserCupboard}
 						onChange={(e, value) => setAutocompleteValue(value)}
 						value={autocompleteValue}
 						multiple
