@@ -69,7 +69,7 @@ const Main = () => {
 		const cupboard = output;
 
 		const newUser = JSON.stringify({ Id: id, Name: username, Mail: email, Password: password, Salt: "", CupBoard: cupboard })
-
+		// console.log(newUser)
 		const requestOptions = {
 			method: 'PUT',
 			headers: {
