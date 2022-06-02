@@ -62,7 +62,7 @@ const SignUpForm = () => {
 		fetch('https://localhost:7144/api/user/', requestOptions)
 			.then(response => console.log(response.json()))
 
-		//TODO: Check if username exists in db 
+		//TODO: Check if username exists in db / email in use from db. use response codes
 		if (usernameAlreadyExists(username, users)) {
 			setSuccessfulSignUp(false)
 			setInfoMessage("A user with that username already exists.")
@@ -74,15 +74,6 @@ const SignUpForm = () => {
 		else {
 			setSuccessfulSignUp(true)
 			setInfoMessage("Succesfully signed up!")
-
-
-
-
-
-
-			// Only used for offline user list
-			// setUsers([...users,
-			// { username: username, email: email, password: password }])
 
 			resetTextFields()
 

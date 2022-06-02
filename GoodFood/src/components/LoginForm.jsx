@@ -18,7 +18,6 @@ import { validatePassword, validateEmail, validateUsername, passwordErrorMessage
 import offlineUsersState from '../atoms/offlineUsersState';
 import currentUserState from '../atoms/currentUserState';
 
-//TODO: Forgotten password functionality?
 
 const LoginForm = () => {
 
@@ -35,6 +34,7 @@ const LoginForm = () => {
 
 	// const [userMatch, setUserMatch] = useState("")
 
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const data = new FormData(e.currentTarget);
@@ -45,29 +45,44 @@ const LoginForm = () => {
 		const name = data.get("name")
 		const password = data.get("password")
 
-		//temp login test using offline data, replace with db stuff
-		//--------offline version-----
-		// const userMatch = offlineUserList.find(user => name.toLocaleLowerCase() === user.name.toLocaleLowerCase() && password === user.password)
-		// console.log(userMatch)
-		//-----------------------
+		// const fetchedUserData = await fetch(`https://godfoodapi.azurewebsites.net/api/user/${name}/${password}`)
+		// 	.then(response => {
+		// 		if (response.ok) {
+		// 			console.log(response)
+		// 		} else {
+		// 			console.log("error")
+		// 		}
+		// 	}).then(data => {
+		// 		console.log(data)
+		// 	})
+		// 	.catch(error => console.log(error));
 
-		// TODO: If fetchedUserData fails, make it use the offline version
-		//---------DB version-----------
-		const fetchedUserData = await fetch(`https://localhost:7144/api/user/${name}/${password}`)
-		console.log(fetchedUserData)
-		const userMatch = JSON.parse(await fetchedUserData.text())
-		//--------------------------
+		// console.log(fetchedUserData)
+		// else {
+		// 	console.log(fetchedUserData)
+		// const foundUser = JSON.parse(await fetchedUserData.text())
+		// setUserMatch(foundUser)
+		// }
 
 
-		//------Test----
+		// const fetchedUserData = await fetch(`https://godfoodapi.azurewebsites.net/api/user/${name}/${password}`)
+		// .then(response)
+		// const foundUser = JSON.parse(await fetchedUserData.text())
+		// console.log(foundUser)
+		// setUserMatch(foundUser)
+
+		// ------Test----
 		// let userMatch;
-		// const userRequest = new Request(`https://localhost:7144/api/user/${name}/${password}`)
+		// const userRequest = new Request(`https://godfoodapi.azurewebsites.net/api/user/${name}/${password}`)
 		// fetch(userRequest)
 		// 	.then((response) => {
 		// 		if (!response.ok) {
-		// 			console.log("EROORROR")
+		// 			console.log("Error")
 		// 		}
-		// 		return response.text();
+		// 		else {
+		// 			return response.text();
+		// 		}
+
 		// 	})
 		// 	.then((response) => {
 		// 		console.log(response)
@@ -78,12 +93,18 @@ const LoginForm = () => {
 		// 		const offlineSearch = offlineUserList.find(user => name === user.name && password === user.password)
 		// 		userMatch = offlineSearch
 		// 	});
-		//--------------
+		// --------------
 
-		// console.log(userMatch)
+
+
+		const fetchedUserData = await fetch(`https://godfoodapi.azurewebsites.net/api/user/${name}/${password}`)
+		const foundUser = JSON.parse(await fetchedUserData.text())
+
+
 		// //TODO: The if check doesn't work when using the fetcheduserData version?
-		if (userMatch !== undefined) {
-			setCurrentUser(userMatch)
+		// TODO: Handle wrong username/password/usernotfound etc from db
+		if (foundUser !== undefined && foundUser !== "" && foundUser.name !== "") {
+			setCurrentUser(foundUser)
 			setUserLoggedIn(true)
 			console.log("found match")
 			console.log(currentUser)
@@ -93,8 +114,7 @@ const LoginForm = () => {
 			console.log("no match")
 			console.log(currentUser)
 		}
-		// if name+password valid, send to backend, if user is logged in, set userloggedin state to true to change ui element visuals
-		// Handle wrong username/password/usernotfound etc from db
+
 	};
 
 

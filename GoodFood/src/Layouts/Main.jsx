@@ -78,7 +78,6 @@ const Main = () => {
 	return (
 
 		<Container sx={{ bgcolor: "mainbg.main", paddingBottom: "5rem" }} maxWidth="xl" >
-			{console.log("User Cupboard: ", user.cupboard)}
 			<Box sx={{
 				backgroundImage: `url(${FoodBg})`,
 				bgcolor: "primary.light",
@@ -100,7 +99,7 @@ const Main = () => {
 
 					<Autocomplete
 						ListboxProps={{ style: { maxHeight: "15rem" } }}
-						// onChange={(e, value) => setSelectedIngredients(value)}
+
 						onChange={(e, value) => setAutocompleteValue(value)}
 						value={autocompleteValue}
 						multiple
