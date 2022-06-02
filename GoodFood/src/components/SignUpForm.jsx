@@ -48,7 +48,6 @@ const SignUpForm = () => {
 		const email = data.get("email")
 		const password = data.get("password")
 
-
 		const newUser = JSON.stringify({ Name: username, Mail: email, Password: password, Salt: "", CupBoard: [] })
 		const requestOptions = {
 			method: 'POST',
@@ -75,9 +74,6 @@ const SignUpForm = () => {
 					resetTextFields()
 				}
 			})
-
-
-
 	};
 
 
