@@ -56,7 +56,7 @@ const Main = () => {
 		const email = user.mail
 		const password = user.password
 
-		if (user === "")
+		if (user === "" || user.name === "")
 			return
 
 		let output = null
