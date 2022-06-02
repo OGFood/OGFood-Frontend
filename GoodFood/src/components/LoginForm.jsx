@@ -48,10 +48,17 @@ const LoginForm = () => {
 
 		if (foundUser !== undefined && foundUser !== "" && foundUser.name !== "") {
 			foundUser.password = password;
+			console.log(foundUser)
+			for (let i = 0; i < foundUser.cupboard.length; i++) {
+				console.log(foundUser.cupboard[i])
+				if (foundUser.cupboard[i] === null)
+					foundUser.cupboard[i] = { id: "6282a9fde17091813da536b3", name: "salt" }
+			}
+			console.log("founduser after:", foundUser)
 			setCurrentUser(foundUser)
 			setUserLoggedIn(true)
 			// console.log("found match")
-			// console.log(currentUser)
+
 		}
 		else {
 			setUserNotFound(true)
