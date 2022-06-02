@@ -102,7 +102,7 @@ const Main = () => {
 	}, [selectedIngredients])
 
 	useEffect(() => {
-		// console.log("Currentuser Changed", user);
+		console.log("Currentuser Changed", user);
 
 		if (user !== null && user !== "" && user.name !== "") {
 			// console.log("user is:", user)
