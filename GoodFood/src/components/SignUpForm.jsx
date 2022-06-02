@@ -49,7 +49,7 @@ const SignUpForm = () => {
 		const password = data.get("password")
 
 
-		const newUser = JSON.stringify({ Name: username, Mail: email, Password: password, Salt: "", CupBoard: [{ Id: "62752775d119403fdea76b63", Name: "Paprika" }] })
+		const newUser = JSON.stringify({ Name: username, Mail: email, Password: password, Salt: "", CupBoard: [] })
 		const requestOptions = {
 			method: 'POST',
 			headers: {
