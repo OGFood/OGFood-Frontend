@@ -50,7 +50,7 @@ const LoginForm = () => {
 			foundUser.password = password;
 			// if a cupboard item is null, change it to salt to prevent crash
 			for (let i = 0; i < foundUser.cupboard.length; i++) {
-				console.log(foundUser.cupboard[i])
+				// console.log(foundUser.cupboard[i])
 				if (foundUser.cupboard[i] === null)
 					foundUser.cupboard[i] = { id: "6282a9fde17091813da536b3", name: "salt" }
 			}
