@@ -42,7 +42,6 @@ const LoginForm = () => {
 		})
 		const name = data.get("name")
 		const password = data.get("password")
-
 		const fetchedUserData = await fetch(`https://godfoodapi.azurewebsites.net/api/user/${name}/${password}`)
 		let foundUser = JSON.parse(await fetchedUserData.text())
 
