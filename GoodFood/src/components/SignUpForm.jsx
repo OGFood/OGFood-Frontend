@@ -60,14 +60,14 @@ const SignUpForm = () => {
 		let json = null;
 		fetch("https://godfoodapi.azurewebsites.net/api/user/", requestOptions)
 			.then((response) => {
-				console.log(response)
+				// console.log(response)
 				if (response.status === 400) {
-					console.log("status is 400")
+					// console.log("status is 400")
 					setSuccessfulSignUp(false)
 					setInfoMessage("Could not sign up using the chosen username / email")
 				}
 				if (response.status === 200) {
-					console.log("status is 200")
+					// console.log("status is 200")
 					setSuccessfulSignUp(true)
 					setInfoMessage("Succesfully signed up!")
 					resetTextFields()

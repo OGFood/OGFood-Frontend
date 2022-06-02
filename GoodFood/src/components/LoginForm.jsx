@@ -36,10 +36,10 @@ const LoginForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const data = new FormData(e.currentTarget);
-		console.log("Field Data:", {
-			name: data.get('name'),
-			password: data.get('password'),
-		})
+		// console.log("Field Data:", {
+		// 	name: data.get('name'),
+		// 	password: data.get('password'),
+		// })
 		const name = data.get("name")
 		const password = data.get("password")
 		const fetchedUserData = await fetch(`https://godfoodapi.azurewebsites.net/api/user/${name}/${password}`)
@@ -50,13 +50,13 @@ const LoginForm = () => {
 			foundUser.password = password;
 			setCurrentUser(foundUser)
 			setUserLoggedIn(true)
-			console.log("found match")
-			console.log(currentUser)
+			// console.log("found match")
+			// console.log(currentUser)
 		}
 		else {
 			setUserNotFound(true)
-			console.log("no match")
-			console.log(currentUser)
+			// console.log("no match")
+			// console.log(currentUser)
 		}
 
 	};
