@@ -59,6 +59,9 @@ const SignUpForm = () => {
 			body: newUser
 		};
 
+		fetch('https://localhost:7144/api/user/', requestOptions)
+			.then(response => console.log(response.json()))
+
 		//TODO: Check if username exists in db 
 		if (usernameAlreadyExists(username, users)) {
 			setSuccessfulSignUp(false)
@@ -73,8 +76,7 @@ const SignUpForm = () => {
 			setInfoMessage("Succesfully signed up!")
 
 
-			fetch('https://localhost:7144/api/user/', requestOptions)
-				.then(response => console.log(response.json()))
+
 
 
 
