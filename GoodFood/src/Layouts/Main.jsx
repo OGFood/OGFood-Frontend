@@ -27,8 +27,6 @@ import LoginSignUpContainer from "../components/LoginSignUpContainer";
 import ContactForm from "../components/ContactForm";
 import currentUserState from "../atoms/currentUserState";
 
-// TODO: When searching in autocomplete box => when enter is pressed, select first autocomplete suggestion
-// TODO: Autocompletebox => onchange, sync with logged in user ingredients db?
 
 const Main = () => {
 	const [autocompleteValue, setAutocompleteValue] = useState([]) // Autocomplete lådan får sitt eget state för sitt värde så att den kontrollerar sig själv
