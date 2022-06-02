@@ -32,8 +32,6 @@ const LoginForm = () => {
 
 	const [infoMessage, setInfoMessage] = useState("")
 
-	// const [userMatch, setUserMatch] = useState("")
-
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -45,64 +43,10 @@ const LoginForm = () => {
 		const name = data.get("name")
 		const password = data.get("password")
 
-		// const fetchedUserData = await fetch(`https://godfoodapi.azurewebsites.net/api/user/${name}/${password}`)
-		// 	.then(response => {
-		// 		if (response.ok) {
-		// 			console.log(response)
-		// 		} else {
-		// 			console.log("error")
-		// 		}
-		// 	}).then(data => {
-		// 		console.log(data)
-		// 	})
-		// 	.catch(error => console.log(error));
-
-		// console.log(fetchedUserData)
-		// else {
-		// 	console.log(fetchedUserData)
-		// const foundUser = JSON.parse(await fetchedUserData.text())
-		// setUserMatch(foundUser)
-		// }
-
-
-		// const fetchedUserData = await fetch(`https://godfoodapi.azurewebsites.net/api/user/${name}/${password}`)
-		// .then(response)
-		// const foundUser = JSON.parse(await fetchedUserData.text())
-		// console.log(foundUser)
-		// setUserMatch(foundUser)
-
-		// ------Test----
-		// let userMatch;
-		// const userRequest = new Request(`https://godfoodapi.azurewebsites.net/api/user/${name}/${password}`)
-		// fetch(userRequest)
-		// 	.then((response) => {
-		// 		if (!response.ok) {
-		// 			console.log("Error")
-		// 		}
-		// 		else {
-		// 			return response.text();
-		// 		}
-
-		// 	})
-		// 	.then((response) => {
-		// 		console.log(response)
-		// 		userMatch = response
-		// 	}).catch(error => {
-		// 		console.log(error)
-		// 		setInfoMessage("DB offline, trying offline")
-		// 		const offlineSearch = offlineUserList.find(user => name === user.name && password === user.password)
-		// 		userMatch = offlineSearch
-		// 	});
-		// --------------
-
-
-
 		const fetchedUserData = await fetch(`https://godfoodapi.azurewebsites.net/api/user/${name}/${password}`)
 		const foundUser = JSON.parse(await fetchedUserData.text())
 
 
-		// //TODO: The if check doesn't work when using the fetcheduserData version?
-		// TODO: Handle wrong username/password/usernotfound etc from db
 		if (foundUser !== undefined && foundUser !== "" && foundUser.name !== "") {
 			setCurrentUser(foundUser)
 			setUserLoggedIn(true)
