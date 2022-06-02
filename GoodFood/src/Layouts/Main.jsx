@@ -46,12 +46,35 @@ const Main = () => {
 	));
 
 	// Is run when the user leaves the autocomplete/ingredients field. TODO: Replace the current users cupboard[] with an array consisting of ingredients where the ingredient name === autocomplete values
+	/**
+	 * Autocomplete värde = namn
+	 * Jämför namn med ingredientslist.ingredient.name
+	 */
 	const updateDbUserCupboard = async () => {
-		const matchingIngredients = ingredientsList.filter((ingredient) => {
+		const id = user.id;
+		const username = user.name
+		const email = user.mail
+		const password = user.password
+		const cupboard = [...autocompleteValue];
 
-		})
-		console.log(autocompleteValue)
-		console.log(ingredientsList)
+
+		const newUser = JSON.stringify({ Id: id, Name: username, Mail: email, Password: password, Salt: "", CupBoard: cupboard })
+
+		const requestOptions = {
+			method: 'PUT',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: newUser
+		};
+		console.log(requestOptions);
+		fetch("https://godfoodapi.azurewebsites.net/api/user/", requestOptions)
+			.then(response => console.log(response));
+
+
+		console.log("Autocomplete Value:", autocompleteValue)
+		console.log("All ingredients:", ingredientsList)
 	}
 
 	useEffect(() => {
@@ -71,7 +94,7 @@ const Main = () => {
 		console.log("Currentuser Changed");
 
 		if (user.cupboard !== undefined) {
-			setAutocompleteValue(user.cupboard.map((x) => x.name.toLocaleLowerCase()))
+			setAutocompleteValue(user.cupboard.map((x) => x.name))
 		}
 		else {
 			setAutocompleteValue([])
@@ -105,11 +128,12 @@ const Main = () => {
 						onBlur={updateDbUserCupboard}
 						onChange={(e, value) => setAutocompleteValue(value)}
 						value={autocompleteValue}
+
 						multiple
 						id="ingredients"
-						options={ingredientsList.map(x => x.name.toLocaleLowerCase())} // The autocomplete data
+						options={ingredientsList} // The autocomplete data
 						disableCloseOnSelect
-
+						getOptionLabel={option => option.name}
 						renderOption={(props, option, { selected }) => (
 							<li {...props}>
 								<Checkbox
@@ -118,7 +142,7 @@ const Main = () => {
 									style={{ marginRight: 8 }}
 									checked={selected}
 								/>
-								{option}
+								{option.name}
 							</li>
 						)}
 						style={{ minWidth: "79vmin" }}
