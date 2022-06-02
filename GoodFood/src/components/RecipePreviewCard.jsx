@@ -54,7 +54,7 @@ const RecipePreviewCard = ({ recipe }) => {
 	};
 
 	const isScreenSizeMedium = useMediaQuery(useTheme().breakpoints.down('md'));
-
+	const recipeNameLengthTooLong = recipe.name.length >= 39
 	return (
 
 		<Card sx={{ maxWidth: 500 }}>
@@ -74,11 +74,19 @@ const RecipePreviewCard = ({ recipe }) => {
 							{recipe.name}
 							<Divider />
 						</Typography>
-						: <Divider textAlign="left">
-							<Typography gutterBottom variant="h5" color="primary.dark" noWrap={false}>
-								{recipe.name}
-							</Typography>
-						</Divider>}
+						: recipeNameLengthTooLong
+							?
+							<Divider textAlign="left">
+								<Typography gutterBottom variant="h5" color="primary.dark" sx={{ whiteSpace: "normal" }}>
+									{recipe.name}
+								</Typography>
+							</Divider>
+							:
+							<Divider textAlign="left">
+								<Typography gutterBottom variant="h5" color="primary.dark">
+									{recipe.name}
+								</Typography>
+							</Divider>}
 
 					<Typography variant="body3" fontSize="1.1rem" color="text.secondary" noWrap={false} >
 
