@@ -52,12 +52,12 @@ const MenuDrawer = () => {
 
 
 	const handleOpenLoginContainer = () => {
-		console.log("click")
+		// console.log("click")
 		setOpenContainer(true)
 	}
 
 	const handleOpenContactForm = () => {
-		console.log("click")
+		// console.log("click")
 		setOpenContactForm(true)
 	}
 

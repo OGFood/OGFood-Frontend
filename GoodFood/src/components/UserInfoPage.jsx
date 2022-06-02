@@ -27,7 +27,7 @@ const UserInfoPage = () => {
 		e.preventDefault();
 		setCurrentUser("")
 		setUserLoggedIn(false)
-		console.log("user is logged out")
+		// console.log("user is logged out")
 	}
 
 
