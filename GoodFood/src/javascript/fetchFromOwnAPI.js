@@ -1,5 +1,5 @@
 const fetchIngredients = async (updateIngredientsList) => {
-	await fetch("https://localhost:7144/api/ingredients")
+	await fetch("https://godfoodapi.azurewebsites.net/api/ingredients")
 		.then(response => {
 			if (response.ok) {
 				return response.json();
@@ -12,7 +12,7 @@ const fetchIngredients = async (updateIngredientsList) => {
 
 const fetchRecipes = async (updateRecipes, updateFilteredRecipes) => {
 
-	await fetch("https://localhost:7144/api/recipes") // https://godfoodapi.azurewebsites.net/api/recipes
+	await fetch("https://godfoodapi.azurewebsites.net/api/recipes") // https://godfoodapi.azurewebsites.net/api/recipes
 		.then(response => {
 			if (response.ok) {
 				return response.json();

@@ -53,7 +53,7 @@ const LoginForm = () => {
 
 		// TODO: If fetchedUserData fails, make it use the offline version
 		//---------DB version-----------
-		const fetchedUserData = await fetch(`https://localhost:7144/api/user/${name}/${password}`)
+		const fetchedUserData = await fetch(`https://godfoodapi.azurewebsites.net/api/user/${name}/${password}`)
 		console.log(fetchedUserData)
 		const userMatch = JSON.parse(await fetchedUserData.text())
 		//--------------------------

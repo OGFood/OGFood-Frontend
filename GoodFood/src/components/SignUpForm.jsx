@@ -71,7 +71,7 @@ const SignUpForm = () => {
 				body: newUser
 			};
 
-			fetch('https://localhost:7144/api/user/', requestOptions)
+			fetch('https://godfoodapi.azurewebsites.net/api/user/', requestOptions)
 				.then(response => console.log(response.json()))
 
 
