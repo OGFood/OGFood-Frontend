@@ -20,7 +20,7 @@ const SelectPortionSize = ({ recipeIngredients, setRecipeIngredients, recServing
 	// TODO: Reset value shown in MUI-SelectBox to the correct value for each recipe
 
 	const changeIngredientsTest = (desiredServings) => {
-		console.log(originalIngredients)
+		// console.log(originalIngredients)
 		let adjustedIngredients = [...recipeIngredients]
 
 		const defaultServingSize = recServings;

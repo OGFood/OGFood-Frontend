@@ -78,13 +78,13 @@ const Main = () => {
 			},
 			body: newUser
 		};
-		console.log(requestOptions);
-		fetch("https://godfoodapi.azurewebsites.net/api/user/", requestOptions)
-			.then(response => console.log(response));
+		// console.log(requestOptions);
+		// fetch("https://godfoodapi.azurewebsites.net/api/user/", requestOptions)
+		// 	.then(response => console.log(response));
 
 
-		console.log("Autocomplete Value:", autocompleteValue)
-		console.log("All ingredients:", ingredientsList)
+		// console.log("Autocomplete Value:", autocompleteValue)
+		// console.log("All ingredients:", ingredientsList)
 	}
 
 
@@ -102,10 +102,10 @@ const Main = () => {
 	}, [selectedIngredients])
 
 	useEffect(() => {
-		console.log("Currentuser Changed", user);
+		// console.log("Currentuser Changed", user);
 
 		if (user !== null && user !== "" && user.name !== "") {
-			console.log("user is:", user)
+			// console.log("user is:", user)
 			setAutocompleteValue(user.cupboard.map((x) => x.name))
 		}
 		else {
