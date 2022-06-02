@@ -58,28 +58,26 @@ const SignUpForm = () => {
 			},
 			body: newUser
 		};
+		let json = null;
 
-		fetch('https://localhost:7144/api/user/', requestOptions)
-			.then(response => console.log(response.json()))
+		fetch("https://godfoodapi.azurewebsites.net/api/user/", requestOptions)
+			.then((response) => {
+				console.log(response)
+				if (response.status === 400) {
+					console.log("status is 400")
+					setSuccessfulSignUp(false)
+					setInfoMessage("Could not sign up using the chosen username / email")
+				}
+				if (response.status === 200) {
+					console.log("status is 200")
+					setSuccessfulSignUp(true)
+					setInfoMessage("Succesfully signed up!")
+					resetTextFields()
+				}
+			})
 
-		//TODO: Check if username exists in db / email in use from db. use response codes
-		if (usernameAlreadyExists(username, users)) {
-			setSuccessfulSignUp(false)
-			setInfoMessage("A user with that username already exists.")
-		}
-		else if (emailAlreadyInUse(email, users)) {
-			setSuccessfulSignUp(false)
-			setInfoMessage("The chosen email adress is already in use.")
-		}
-		else {
-			setSuccessfulSignUp(true)
-			setInfoMessage("Succesfully signed up!")
 
-			resetTextFields()
 
-		}
-
-		console.log(users)
 	};
 
 
