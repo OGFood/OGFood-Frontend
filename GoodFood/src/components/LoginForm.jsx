@@ -57,7 +57,6 @@ const LoginForm = () => {
 			setCurrentUser(foundUser)
 			setUserLoggedIn(true)
 			// console.log("found match")
-
 		}
 		else {
 			setUserNotFound(true)
