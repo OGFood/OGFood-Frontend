@@ -79,8 +79,8 @@ const Main = () => {
 			body: newUser
 		};
 		// console.log(requestOptions);
-		// fetch("https://godfoodapi.azurewebsites.net/api/user/", requestOptions)
-		// 	.then(response => console.log(response));
+		fetch("https://godfoodapi.azurewebsites.net/api/user/", requestOptions)
+			.then(response => console.log(response));
 
 
 		// console.log("Autocomplete Value:", autocompleteValue)
